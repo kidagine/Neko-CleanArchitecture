@@ -2,10 +2,12 @@
 
 
 .-----------------.----------------------------------------------------------------------------------------------------
- 0 Add video      |
- 1 Remove video   |
- 2 Edit video     |
- 3 Search video   |
+ 0 Add pet        |
+ 1 Remove pet     |
+ 2 Edit pet       |
+ 3 Search by type |
+ 4 Sort by price  |
+ 5 Cheapest pets  |
 .-----------------|
                   |
                   |

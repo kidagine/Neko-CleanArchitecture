@@ -19,7 +19,7 @@ namespace NekoPetShop.Application.Util
             }
         }
 
-        public void CreateASCIIAnimation(string path, int startingPositionX, int startingPositionY, int speedDelay = 5, bool willHide = false, int delay = 500)
+        public void CreateASCIIAnimation(string path, int startingPositionX, int startingPositionY, int speedDelay = 5, bool willHide = false)
         {
             string[] lines = System.IO.File.ReadAllLines(path);
             for (int i = 0; i < lines.Length; i++)
