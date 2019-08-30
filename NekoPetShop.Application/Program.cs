@@ -1,6 +1,5 @@
 ﻿using System;
 using NekoPetShop.Application.Views;
-using NekoPetShop.Infrastructure;
 
 namespace NekoPetShop.Application
 {

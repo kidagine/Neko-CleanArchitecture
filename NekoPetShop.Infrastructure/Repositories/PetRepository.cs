@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using NekoPetShop.Core.DomainService;
+using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
+using NekoPetShop.Core.DomainService;
 
 namespace NekoPetShop.Infrastructure.Repositories
 {
@@ -11,13 +11,14 @@ namespace NekoPetShop.Infrastructure.Repositories
         static int id = 20;
         private List<Pet> petsList = new List<Pet>();
 
-        public void CreatePet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, string previousOwner, double price)
+
+        public void CreatePet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
         {
             Pet petToAdd = new Pet() {Id = id++, Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
             petsList.Add(petToAdd);
         }
 
-        public void UpdatePet(int id, string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, string previousOwner, double price)
+        public void UpdatePet(int id, string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
         {
             Pet petToUpdate = new Pet() { Id = id, Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
             foreach (Pet p in petsList)
@@ -58,7 +59,6 @@ namespace NekoPetShop.Infrastructure.Repositories
 
         public void InitializeData()
         {
-            FakeDB.InitializeData();
             petsList = FakeDB.ReadData().ToList();
         }
     }

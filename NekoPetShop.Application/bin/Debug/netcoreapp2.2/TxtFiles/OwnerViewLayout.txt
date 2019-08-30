@@ -2,14 +2,14 @@
 
 
 .-----------------.----------------------------------------------------------------------------------------------------
- 0 Owners list    |
- 1 Add pet        |
- 2 Remove pet     |
- 3 Edit pet       |
- 4 Search by type |
- 5 Sort by price  |
- 6 Cheapest pets  |
+ 0 Pets list      |
+ 1 Add owner      |
+ 2 Remove owner   |
+ 3 Edit owner     |
 .-----------------|
+		  |
+		  |
+   		  |
                   |
                   |
                   |
