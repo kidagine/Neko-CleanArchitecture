@@ -9,6 +9,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
     {
         private readonly IOwnerRepository ownerRepository;
 
+
         public OwnerService(IOwnerRepository ownerRepository)
         {
             this.ownerRepository = ownerRepository;
@@ -37,11 +38,6 @@ namespace NekoPetShop.Core.ApplicationService.Services
         public Owner FindOwnerById(int id)
         {
             return ownerRepository.FindOwnerById(id);
-        }
-
-        public void InitializeData()
-        {
-            ownerRepository.InitializeData();
         }
     }
 }

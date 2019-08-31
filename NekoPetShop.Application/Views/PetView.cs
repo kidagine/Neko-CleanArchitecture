@@ -8,6 +8,7 @@ using NekoPetShop.Core.ApplicationService;
 using NekoPetShop.Infrastructure.Repositories;
 using NekoPetShop.Core.ApplicationService.Services;
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 
 namespace NekoPetShop.Application.Views
 {
@@ -30,7 +31,6 @@ namespace NekoPetShop.Application.Views
             ShowMenuLayoutASCII();
             ShowPetListLayout();
             ShowPetListData(petService.GetPets());
-            Console.ReadLine();
         }
 
         private void ShowMenuLayoutASCII()
@@ -56,7 +56,7 @@ namespace NekoPetShop.Application.Views
             int countTop = 12;
             foreach (Pet p in petsList)
             {
-                string petListing = ($"|  {p.Id} {GetFixedSpacing(p.Id.ToString().Length, 5)} {p.Name} {GetFixedSpacing(p.Name.Length, 8)} {p.Type} {GetFixedSpacing(p.Type.ToString().Length, 10)} {p.Birthdate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.SoldDate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.Color} {GetFixedSpacing(p.Color.ToString().Length, 9)} {p.PreviousOwner.FirstName} {p.PreviousOwner.LastName} {GetFixedSpacing(p.PreviousOwner.FirstName.ToString().Length + p.PreviousOwner.LastName.ToString().Length, 18)} {p.Price}$");
+                string petListing = ($"|  {p.Id} {GetFixedSpacing(p.Id.ToString().Length, 5)} {p.Name} {GetFixedSpacing(p.Name.Length, 8)} {p.Type} {GetFixedSpacing(p.Type.ToString().Length, 10)} {p.Birthdate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.SoldDate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.Color} {GetFixedSpacing(p.Color.ToString().Length, 9)} {p.PreviousOwner.FirstName} {p.PreviousOwner.LastName} {GetFixedSpacing(p.PreviousOwner.FirstName.ToString().Length + p.PreviousOwner.LastName.ToString().Length, 17)} {p.Price.ToString("C")}");
                 Console.SetCursorPosition(18, countTop);
                 Console.WriteLine(petListing);
                 countTop++;
@@ -137,8 +137,6 @@ namespace NekoPetShop.Application.Views
             serviceCollection.AddScoped<IOwnerService, OwnerService>();
             serviceCollection.AddScoped<IView, OwnerView>();
             ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-            IOwnerService ownerService = serviceProvider.GetRequiredService<IOwnerService>();
-            ownerService.InitializeData();
             IView ownerView = serviceProvider.GetRequiredService<IView>();
             ownerView.Initialize();
         }
@@ -148,25 +146,23 @@ namespace NekoPetShop.Application.Views
             Console.WriteLine("-Add-");
             Console.WriteLine("Choose animal:");
             AnimalType type = SelectAnimalType();
-            Console.WriteLine();
-            Console.WriteLine("Name: ");
+            Console.WriteLine("Name:");
             string name = Console.ReadLine();
             Console.WriteLine();
             Console.WriteLine("Birthdate:");
             Console.WriteLine("format(dd/mm/yyyy)");
             DateTime birthdate;
-            while (!DateTime.TryParse(Console.ReadLine(), out birthdate))
+            while (!DateTime.TryParseExact(Console.ReadLine(),"d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out birthdate))
             {
-                Console.WriteLine(GetRandomizedInsult());
-                Console.ReadLine();
+                ConsoleError();
             }
             Console.WriteLine();
             Console.WriteLine("Sold date:");
             Console.WriteLine("format(dd/mm/yyyy)");
             DateTime soldDate;
-            while (!DateTime.TryParse(Console.ReadLine(), out soldDate))
+            while (!DateTime.TryParseExact(Console.ReadLine(), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out soldDate))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             Console.WriteLine();
             Console.WriteLine("Color:");
@@ -179,7 +175,7 @@ namespace NekoPetShop.Application.Views
             double price;
             while (!Double.TryParse(Console.ReadLine(), out price))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             Console.WriteLine();
             petService.CreatePet(name, type, birthdate, soldDate, color, previousOwner, price);
@@ -190,11 +186,11 @@ namespace NekoPetShop.Application.Views
         private void DeletePet()
         {
             Console.WriteLine("-Delete-");
-            Console.WriteLine("Choose id: ");
+            Console.WriteLine("Choose id:");
             int id;
             while (!int.TryParse(Console.ReadLine(), out id))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             petService.DeletePet(id);
             ClearPetList();
@@ -204,42 +200,42 @@ namespace NekoPetShop.Application.Views
         private void UpdatePet()
         {
             Console.WriteLine("-Update-");
-            Console.WriteLine("Choose id: ");
+            Console.WriteLine("Choose id:");
             int id = int.Parse(Console.ReadLine());
             Console.WriteLine();
             Console.WriteLine("Choose animal:");
             AnimalType type = SelectAnimalType();
             Console.WriteLine();
-            Console.WriteLine("Name: ");
+            Console.WriteLine("Name:");
             string name = Console.ReadLine();
             Console.WriteLine();
             Console.WriteLine("Birthdate:");
             Console.WriteLine("format(dd/mm/yyyy)");
             DateTime birthdate;
-            while (!DateTime.TryParse(Console.ReadLine(), out birthdate))
+            while (!DateTime.TryParseExact(Console.ReadLine(), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out birthdate))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             Console.WriteLine();
             Console.WriteLine("Sold date:");
             Console.WriteLine("format(dd/mm/yyyy)");
             DateTime soldDate;
-            while (!DateTime.TryParse(Console.ReadLine(), out soldDate))
+            while (!DateTime.TryParseExact(Console.ReadLine(), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out soldDate))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             Console.WriteLine();
-            Console.WriteLine("Color: ");
+            Console.WriteLine("Color:");
             string color = Console.ReadLine();
             Console.WriteLine();
-            Console.WriteLine("Previous owner: ");
+            Console.WriteLine("Previous owner:");
             Owner previousOwner = SelectPreviousOwner();
             Console.WriteLine();
-            Console.WriteLine("Price: ");
+            Console.WriteLine("Price:");
             double price;
             while (!Double.TryParse(Console.ReadLine(), out price))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             Console.WriteLine();
             petService.UpdatePet(id, name, type, birthdate, soldDate, color, previousOwner, price);
@@ -264,7 +260,7 @@ namespace NekoPetShop.Application.Views
             Console.WriteLine("1 from pricey");
             while (!int.TryParse(Console.ReadLine(), out selection))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             if (selection == 0)
             {
@@ -294,7 +290,6 @@ namespace NekoPetShop.Application.Views
         {
             int selection;
             int max = 0;
-            ownerService.InitializeData();
             foreach (Owner o in ownerService.GetOwners())
             {
                 Console.WriteLine($"{o.Id}: {o.FirstName}");
@@ -344,6 +339,21 @@ namespace NekoPetShop.Application.Views
                 Console.Write('|');
                 topCount++;
             }
+        }
+
+        private void ConsoleError()
+        {
+            Console.WriteLine(GetRandomizedInsult());
+            Console.ReadLine();
+            int lengthToDelete = 3;
+            int topCount = Console.CursorTop - 3;
+            for (int i = 0; i < lengthToDelete; i++)
+            {
+                Console.SetCursorPosition(0, topCount);
+                Console.Write(new string(' ', 18));
+                topCount++;
+            }
+            Console.SetCursorPosition(0, Console.CursorTop - 2);
         }
 
         private string GetRandomizedInsult()

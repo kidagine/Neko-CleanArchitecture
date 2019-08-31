@@ -10,6 +10,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
     {
         private readonly IPetRepository petRepository;
 
+
         public PetService(IPetRepository petRepository)
         {
             this.petRepository = petRepository;
@@ -101,11 +102,6 @@ namespace NekoPetShop.Core.ApplicationService.Services
                 filteredPetsList.Add(allPetsList[i]);
             }
             return filteredPetsList;
-        }
-
-        public void InitializeData()
-        {
-            petRepository.InitializeData();
         }
     }
 }

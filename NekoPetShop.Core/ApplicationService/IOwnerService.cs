@@ -10,6 +10,5 @@ namespace NekoPetShop.Core.ApplicationService
         void DeleteOwner(int id);
         List<Owner> GetOwners();
         Owner FindOwnerById(int id);
-        void InitializeData();
     }
 }

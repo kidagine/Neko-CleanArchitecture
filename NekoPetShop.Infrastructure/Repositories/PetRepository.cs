@@ -8,20 +8,19 @@ namespace NekoPetShop.Infrastructure.Repositories
 {
     public class PetRepository : IPetRepository
     {
-        static int id = 20;
-        private List<Pet> petsList = new List<Pet>();
-
-
         public void CreatePet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
         {
-            Pet petToAdd = new Pet() {Id = id++, Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
-            petsList.Add(petToAdd);
+            List<Pet> updatedPetList = FakeDB.ReadPetData().ToList();
+            Pet petToAdd = new Pet() { Id = FakeDB.GetNextPetId(), Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
+            updatedPetList.Add(petToAdd);
+            FakeDB.UpdatePetData(updatedPetList);
         }
 
         public void UpdatePet(int id, string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
         {
+            List<Pet> updatedPetList = FakeDB.ReadPetData().ToList();
             Pet petToUpdate = new Pet() { Id = id, Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
-            foreach (Pet p in petsList)
+            foreach (Pet p in updatedPetList)
             {
                 if (p.Id == id)
                 {
@@ -34,32 +33,27 @@ namespace NekoPetShop.Infrastructure.Repositories
                     p.Price = petToUpdate.Price;
                 }
             }
+            FakeDB.UpdatePetData(updatedPetList);
         }
 
         public void DeletePet(int id)
         {
+            List<Pet> updatedPetList = FakeDB.ReadPetData().ToList();
             Pet petToRemove = null;
-            foreach (Pet p in petsList)
+            foreach (Pet p in updatedPetList)
             {
                 if (p.Id == id)
                 {
                     petToRemove = p;
                 }
             }
-            if (petToRemove != null)
-            {
-                petsList.Remove(petToRemove);
-            }
+            updatedPetList.Remove(petToRemove);
+            FakeDB.UpdatePetData(updatedPetList);
         }
 
         public IEnumerable<Pet> ReadPets()
         {
-            return petsList;
-        }
-
-        public void InitializeData()
-        {
-            petsList = FakeDB.ReadData().ToList();
+            return FakeDB.ReadPetData();
         }
     }
 }

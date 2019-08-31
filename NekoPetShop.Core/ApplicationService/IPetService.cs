@@ -13,6 +13,5 @@ namespace NekoPetShop.Core.ApplicationService
         List<Pet> SearchPetsByType(AnimalType type);
         List<Pet> SortPetsByPrice(bool isAscending);
         List<Pet> GetCheapestPets();
-        void InitializeData();
     }
 }

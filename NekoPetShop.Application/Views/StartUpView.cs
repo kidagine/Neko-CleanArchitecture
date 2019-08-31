@@ -17,7 +17,6 @@ namespace NekoPetShop.Application.Views
 
         public void Initialize()
         {
-            Console.Clear();
             ShowLogoASCII();
         }
 
@@ -37,10 +36,6 @@ namespace NekoPetShop.Application.Views
             serviceCollection.AddScoped<IPetService, PetService>();
             serviceCollection.AddScoped<IView, PetView>();
             ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-            IOwnerService ownerService = serviceProvider.GetRequiredService<IOwnerService>();
-            IPetService petService = serviceProvider.GetRequiredService<IPetService>();
-            ownerService.InitializeData();
-            petService.InitializeData();
             IView petView = serviceProvider.GetRequiredService<IView>();
             petView.Initialize();
         }

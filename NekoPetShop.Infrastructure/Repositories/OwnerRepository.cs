@@ -7,20 +7,19 @@ namespace NekoPetShop.Infrastructure.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {
-        static int id = 20;
-        private List<Owner> ownersList = new List<Owner>();
-
-
         public void CreateOwner(string firstName, string lastName, string address, string phoneNumber, string email)
         {
-            Owner ownerToAdd = new Owner() { Id = id++, FirstName = firstName, LastName = lastName, Address = address, PhoneNumber = phoneNumber, Email = email };
-            ownersList.Add(ownerToAdd);
+            List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
+            Owner ownerToAdd = new Owner() { Id = FakeDB.GetNextOwnerId(), FirstName = firstName, LastName = lastName, Address = address, PhoneNumber = phoneNumber, Email = email };
+            updatedOwnersList.Add(ownerToAdd);
+            FakeDB.UpdateOwnerData(updatedOwnersList);
         }
 
         public void UpdateOwner(int id, string firstName, string lastName, string address, string phoneNumber, string email)
-        {
+        {   
+            List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             Owner ownerToUpdate = new Owner() { Id = id, FirstName = firstName, LastName = lastName, Address = address, PhoneNumber = phoneNumber, Email = email };
-            foreach (Owner o in ownersList)
+            foreach (Owner o in updatedOwnersList)
             {
                 if (o.Id == id)
                 {
@@ -35,24 +34,27 @@ namespace NekoPetShop.Infrastructure.Repositories
 
         public void DeleteOwner(int id)
         {
+            List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             Owner ownerToRemove = null;
-            foreach (Owner o in ownersList)
+            foreach (Owner o in updatedOwnersList)
             {
                 if (o.Id == id)
                 {
                     ownerToRemove = o;
                 }
             }
-            ownersList.Remove(ownerToRemove);
+            updatedOwnersList.Remove(ownerToRemove);
+            FakeDB.UpdateOwnerData(updatedOwnersList);
         }
 
         public IEnumerable<Owner> GetOwners()
         {
-            return ownersList;
+            return FakeDB.ReadOwnerData();
         }
 
         public Owner FindOwnerById(int id)
         {
+            List<Owner> ownersList = FakeDB.ReadOwnerData().ToList();
             Owner ownerToReturn = null;
             foreach (Owner o in ownersList)
             {
@@ -62,11 +64,6 @@ namespace NekoPetShop.Infrastructure.Repositories
                 }
             }
             return ownerToReturn;
-        }
-
-        public void InitializeData()
-        {
-            ownersList = FakeDB.ReadOwnerData().ToList();
         }
     }
 }

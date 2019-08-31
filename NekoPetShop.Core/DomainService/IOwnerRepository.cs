@@ -10,6 +10,5 @@ namespace NekoPetShop.Core.DomainService
         void DeleteOwner(int id);
         IEnumerable<Owner> GetOwners();
         Owner FindOwnerById(int id);
-        void InitializeData();
     }
 }

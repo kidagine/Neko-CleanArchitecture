@@ -28,7 +28,6 @@ namespace NekoPetShop.Application.Views
             ShowMenuLayoutASCII();
             ShowOwnerListLayout();
             ShowOwnerListData(ownerService.GetOwners());
-            Console.ReadLine();
         }
 
         private void ShowMenuLayoutASCII()
@@ -116,12 +115,12 @@ namespace NekoPetShop.Application.Views
         private void SwitchToPetView()
         {
             ServiceCollection serviceCollection = new ServiceCollection();
+            serviceCollection.AddScoped<IOwnerRepository, OwnerRepository>();
+            serviceCollection.AddScoped<IOwnerService, OwnerService>();
             serviceCollection.AddScoped<IPetRepository, PetRepository>();
             serviceCollection.AddScoped<IPetService, PetService>();
             serviceCollection.AddScoped<IView, PetView>();
             ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-            IOwnerService ownerService = serviceProvider.GetRequiredService<IOwnerService>();
-            IPetService petService = serviceProvider.GetRequiredService<IPetService>();
             IView petView = serviceProvider.GetRequiredService<IView>();
             petView.Initialize();
         }
@@ -156,7 +155,7 @@ namespace NekoPetShop.Application.Views
             int id;
             while (!int.TryParse(Console.ReadLine(), out id))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             ownerService.DeleteOwner(id);
             ClearOwnerList();
@@ -166,11 +165,11 @@ namespace NekoPetShop.Application.Views
         private void UpdateOwner()
         {
             Console.WriteLine("-Update-");
-            Console.WriteLine("Choose id: ");
+            Console.WriteLine("Choose id:");
             int id;
             while (!int.TryParse(Console.ReadLine(), out id))
             {
-                Console.WriteLine(GetRandomizedInsult());
+                ConsoleError();
             }
             Console.WriteLine("First name:");
             string firstName = Console.ReadLine();
@@ -196,7 +195,7 @@ namespace NekoPetShop.Application.Views
         {
             int topCount = 9;
             int lengthToDelete = Console.CursorTop;
-            for (int i = 0; i < Console.CursorTop; i++)
+            for (int i = 0; i < lengthToDelete; i++)
             {
                 Console.SetCursorPosition(0, topCount);
                 Console.Write(new string(' ', 500));
@@ -211,6 +210,21 @@ namespace NekoPetShop.Application.Views
                 Console.Write('|');
                 topCount++;
             }
+        }
+
+        private void ConsoleError()
+        {
+            Console.WriteLine(GetRandomizedInsult());
+            Console.ReadLine();
+            int lengthToDelete = 3;
+            int topCount = Console.CursorTop - 3;
+            for (int i = 0; i < lengthToDelete; i++)
+            {
+                Console.SetCursorPosition(0, topCount);
+                Console.Write(new string(' ', 18));
+                topCount++;
+            }
+            Console.SetCursorPosition(0, Console.CursorTop - 2);
         }
 
         private string GetRandomizedInsult()
