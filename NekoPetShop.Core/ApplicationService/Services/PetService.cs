@@ -33,13 +33,13 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public List<Pet> GetPets()
         {
-            return petRepository.ReadPets().ToList();
+            return petRepository.GetPets().ToList();
         }
 
         public List<Pet> SearchPetsByType(AnimalType type)
         {
             List<Pet> filteredPetsList = new List<Pet>();
-            foreach (Pet p in petRepository.ReadPets().ToList())
+            foreach (Pet p in petRepository.GetPets().ToList())
             {
                 if (p.Type == type)
                 {
@@ -51,7 +51,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public List<Pet> SortPetsByPrice(bool isAscending)
         {
-            List<Pet> allPetsList = petRepository.ReadPets().ToList();
+            List<Pet> allPetsList = petRepository.GetPets().ToList();
             for (int i = 0; i < allPetsList.Count; i++)
             {
                 for (int j = 0; j < allPetsList.Count; j++)
@@ -83,7 +83,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
         public List<Pet> GetCheapestPets()
         {
             List<Pet> filteredPetsList = new List<Pet>();
-            List<Pet> allPetsList = petRepository.ReadPets().ToList();
+            List<Pet> allPetsList = petRepository.GetPets().ToList();
             for (int i = 0; i < allPetsList.Count; i++)
             {
                 for (int j = 0; j < allPetsList.Count; j++)

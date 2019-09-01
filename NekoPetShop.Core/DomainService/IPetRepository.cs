@@ -9,6 +9,6 @@ namespace NekoPetShop.Core.DomainService
         void CreatePet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price);
         void UpdatePet(int id, string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price);
         void DeletePet(int id);
-        IEnumerable<Pet> ReadPets();
+        IEnumerable<Pet> GetPets();
     }
 }

@@ -3,23 +3,21 @@ using System.Threading;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Application.Util;
-using NekoPetShop.Core.DomainService;
 using NekoPetShop.Core.ApplicationService;
-using NekoPetShop.Infrastructure.Repositories;
-using NekoPetShop.Core.ApplicationService.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace NekoPetShop.Application.Views
 {
     class OwnerView : IView
     {
         private readonly IOwnerService ownerService;
+        private readonly IPetService petService;
         private readonly string FILEPATHOWNERLAYOUT = AppContext.BaseDirectory + "\\TxtFiles\\OwnerViewLayout.txt";
 
 
-        public OwnerView(IOwnerService ownerService)
+        public OwnerView(IOwnerService ownerService, IPetService petService)
         {
             this.ownerService = ownerService;
+            this.petService = petService;
         }
 
         public void Initialize()
@@ -37,7 +35,7 @@ namespace NekoPetShop.Application.Views
 
         private void ShowOwnerListLayout()
         {
-            string listOfOwnersText = "LIST OF OWNERS";
+            string listOfOwnersText = "      -LIST OF OWNERS-";
             Console.SetCursorPosition((Console.WindowWidth - listOfOwnersText.Length) / 2, 4);
             Console.WriteLine(listOfOwnersText);
             string listTabs = "|  #      FIRST NAME    LAST NAME    ADDRESS               PHONE NUMBER      EMAIL";
@@ -114,14 +112,7 @@ namespace NekoPetShop.Application.Views
 
         private void SwitchToPetView()
         {
-            ServiceCollection serviceCollection = new ServiceCollection();
-            serviceCollection.AddScoped<IOwnerRepository, OwnerRepository>();
-            serviceCollection.AddScoped<IOwnerService, OwnerService>();
-            serviceCollection.AddScoped<IPetRepository, PetRepository>();
-            serviceCollection.AddScoped<IPetService, PetService>();
-            serviceCollection.AddScoped<IView, PetView>();
-            ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-            IView petView = serviceProvider.GetRequiredService<IView>();
+            IView petView = new PetView(petService, ownerService);
             petView.Initialize();
         }
 
@@ -194,11 +185,10 @@ namespace NekoPetShop.Application.Views
         private void ClearOwnerList()
         {
             int topCount = 9;
-            int lengthToDelete = Console.CursorTop;
-            for (int i = 0; i < lengthToDelete; i++)
+            for (int i = 0; i < Console.LargestWindowHeight; i++)
             {
                 Console.SetCursorPosition(0, topCount);
-                Console.Write(new string(' ', 500));
+                Console.Write(new string(' ', Console.WindowWidth));
                 topCount++;
             }
 

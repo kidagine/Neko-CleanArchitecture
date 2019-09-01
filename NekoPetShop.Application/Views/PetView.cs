@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Threading;
+using System.Globalization;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Application.Util;
-using NekoPetShop.Core.DomainService;
 using NekoPetShop.Core.ApplicationService;
-using NekoPetShop.Infrastructure.Repositories;
-using NekoPetShop.Core.ApplicationService.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System.Globalization;
 
 namespace NekoPetShop.Application.Views
 {
@@ -40,7 +36,7 @@ namespace NekoPetShop.Application.Views
 
         private void ShowPetListLayout()
         {
-            string listOfPetsText = "LIST OF PETS";
+            string listOfPetsText = "      -LIST OF PETS-";
             Console.SetCursorPosition((Console.WindowWidth - listOfPetsText.Length) / 2, 4);
             Console.WriteLine(listOfPetsText);
             string listTabs = "|  #      NAME      ANIMAL      BIRTHDATE      SOLD DATE      COLOR      PREVIOUS OWNER      PRICE";
@@ -132,12 +128,7 @@ namespace NekoPetShop.Application.Views
 
         private void SwitchToOwnerView()
         {
-            ServiceCollection serviceCollection = new ServiceCollection();
-            serviceCollection.AddScoped<IOwnerRepository, OwnerRepository>();
-            serviceCollection.AddScoped<IOwnerService, OwnerService>();
-            serviceCollection.AddScoped<IView, OwnerView>();
-            ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-            IView ownerView = serviceProvider.GetRequiredService<IView>();
+            IView ownerView = new OwnerView(ownerService, petService);
             ownerView.Initialize();
         }
 
@@ -323,11 +314,10 @@ namespace NekoPetShop.Application.Views
         private void ClearPetList()
         {
             int topCount = 12;
-            int lengthToDelete = Console.CursorTop;
-            for (int i = 0; i < lengthToDelete; i++)
+            for (int i = 0; i < Console.LargestWindowHeight; i++)
             {
                 Console.SetCursorPosition(0, topCount);
-                Console.Write(new string(' ', 500));
+                Console.Write(new string(' ', Console.WindowWidth));
                 topCount++;
             }
 
