@@ -16,19 +16,25 @@ namespace NekoPetShop.Core.ApplicationService.Services
             this.petRepository = petRepository;
         }
 
-        public void CreatePet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
+        public Pet NewPet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
         {
-            petRepository.CreatePet(name, type, birthdate, soldDate, color, previousOwner, price);
+            Pet pet = new Pet() { Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
+            return pet;
         }
 
-        public void UpdatePet(int id, string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
+        public Pet CreatePet(Pet pet)
         {
-            petRepository.UpdatePet(id, name, type, birthdate, soldDate, color, previousOwner, price);
+            return petRepository.CreatePet(pet);
         }
 
-        public void DeletePet(int id)
+        public Pet UpdatePet(Pet pet)
         {
-            petRepository.DeletePet(id);
+            return petRepository.UpdatePet(pet);
+        }
+
+        public Pet DeletePet(int id)
+        {
+            return petRepository.DeletePet(id);
         }
 
         public List<Pet> GetPets()

@@ -9,8 +9,8 @@ namespace NekoPetShop.Infrastructure
     {
         private static int ownerId;
         private static int petId;
-        private static IEnumerable<Pet> petsIenumarable = new List<Pet>();
-        private static List<Owner> ownersIenumarable = new List<Owner>();
+        private static IEnumerable<Pet> petsIenumarable;
+        private static IEnumerable<Owner> ownersIenumarable;
 
 
         public static void InitializeData()
@@ -20,7 +20,7 @@ namespace NekoPetShop.Infrastructure
             Owner owner3 = new Owner() { Id = ownerId++, FirstName = "Bart", LastName = "Simpson", Address = "Evergreen Terrace 13", PhoneNumber = "6824208534", Email = "eatMYSHORTS@gmail.com" };
             Owner owner4 = new Owner() { Id = ownerId++, FirstName = "Clarke", LastName = "Kent", Address = "Metropolis 89", PhoneNumber = "8424229058", Email = "notSuperman@hotmail.com" };
             Owner owner5 = new Owner() { Id = ownerId++, FirstName = "Son", LastName = "Goku", Address = "King kai's 25", PhoneNumber = "6459124429", Email = "dragonballz@gmail.com" };
-            List<Owner> ownersList = ownersIenumarable.ToList();
+            List<Owner> ownersList = new List<Owner>();
             ownersList.Add(owner1);
             ownersList.Add(owner2);
             ownersList.Add(owner3);
@@ -47,7 +47,7 @@ namespace NekoPetShop.Infrastructure
             Pet goatPet3 = new Pet() { Id = petId++, Name = "Tiki", Type = AnimalType.Goat, Birthdate = DateTime.Parse("10/05/2017"), SoldDate = DateTime.Parse("05/03/2018"), Color = "Grey", PreviousOwner = owner1, Price = 65 };
             Pet goatPet4 = new Pet() { Id = petId++, Name = "Bobo", Type = AnimalType.Goat, Birthdate = DateTime.Parse("05/12/2018"), SoldDate = DateTime.Parse("11/15/2019"), Color = "Orange", PreviousOwner = owner3, Price = 35 };
             Pet goatPet5 = new Pet() { Id = petId++, Name = "Potato", Type = AnimalType.Goat, Birthdate = DateTime.Parse("06/19/2019"), SoldDate = DateTime.Parse("05/29/2019"), Color = "Blond", PreviousOwner = owner4, Price = 28 };
-            List<Pet> petsList = petsIenumarable.ToList();
+            List<Pet> petsList = new List<Pet>();
             petsList.Add(catPet1);
             petsList.Add(catPet2);
             petsList.Add(catPet3);

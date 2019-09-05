@@ -15,14 +15,20 @@ namespace NekoPetShop.Core.ApplicationService.Services
             this.ownerRepository = ownerRepository;
         }
 
-        public void CreateOwner(string firstName, string lastName, string address, string phoneNumber, string email)
+        public Owner NewOwner(string firstName, string lastName, string address, string phoneNumber, string email)
         {
-            ownerRepository.CreateOwner(firstName, lastName, address, phoneNumber, email);
+            Owner owner = new Owner() { FirstName = firstName, LastName = lastName, Address = address, PhoneNumber = phoneNumber, Email = email };
+            return owner;
         }
 
-        public void UpdateOwner(int id, string firstName, string lastName, string address, string phoneNumber, string email)
+        public void CreateOwner(Owner owner)
         {
-            ownerRepository.UpdateOwner(id, firstName, lastName, address, phoneNumber, email);
+            ownerRepository.CreateOwner(owner);
+        }
+
+        public void UpdateOwner(Owner owner)
+        {
+            ownerRepository.UpdateOwner(owner);
         }
 
         public void DeleteOwner(int id)

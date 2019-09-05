@@ -6,9 +6,10 @@ namespace NekoPetShop.Core.ApplicationService
 {
     public interface IPetService
     {
-        void CreatePet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price);
-        void UpdatePet(int id, string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price);
-        void DeletePet(int id);
+        Pet NewPet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price);
+        Pet CreatePet(Pet pet);
+        Pet UpdatePet(Pet pet);
+        Pet DeletePet(int id);
         List<Pet> GetPets();
         List<Pet> SearchPetsByType(AnimalType type);
         List<Pet> SortPetsByPrice(bool isAscending);

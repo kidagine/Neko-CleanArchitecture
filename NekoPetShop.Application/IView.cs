@@ -1,4 +1,4 @@
-﻿namespace NekoPetShop.Application
+﻿namespace NekoPetShop.UI.ConsoleApp
 {
     interface IView
     {

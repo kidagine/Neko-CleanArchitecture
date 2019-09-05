@@ -3,10 +3,10 @@ using System.Threading;
 using System.Globalization;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
-using NekoPetShop.Application.Util;
+using NekoPetShop.UI.ConsoleApp.Util;
 using NekoPetShop.Core.ApplicationService;
 
-namespace NekoPetShop.Application.Views
+namespace NekoPetShop.UI.ConsoleApp
 {
     class PetView : IView
     {
@@ -169,7 +169,8 @@ namespace NekoPetShop.Application.Views
                 ConsoleError();
             }
             Console.WriteLine();
-            petService.CreatePet(name, type, birthdate, soldDate, color, previousOwner, price);
+            Pet pet = petService.NewPet(name, type, birthdate, soldDate, color, previousOwner, price);
+            petService.CreatePet(pet);
             ClearPetList();
             ShowPetListData(petService.GetPets());
         }
@@ -229,7 +230,8 @@ namespace NekoPetShop.Application.Views
                 ConsoleError();
             }
             Console.WriteLine();
-            petService.UpdatePet(id, name, type, birthdate, soldDate, color, previousOwner, price);
+            Pet pet = petService.NewPet(name, type, birthdate, soldDate, color, previousOwner, price);
+            petService.UpdatePet(pet);
             ClearPetList();
             ShowPetListData(petService.GetPets());
         }

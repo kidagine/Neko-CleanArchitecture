@@ -1,7 +1,7 @@
 ﻿using System;
-using NekoPetShop.Application.Views;
+using NekoPetShop.UI.ConsoleApp;
 
-namespace NekoPetShop.Application
+namespace NekoPetShop.UI.ConsoleApp
 {
     class Program
     {

@@ -7,21 +7,21 @@ namespace NekoPetShop.Infrastructure.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {
-        public void CreateOwner(string firstName, string lastName, string address, string phoneNumber, string email)
+        public void CreateOwner(Owner ownerToCreate)
         {
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
-            Owner ownerToAdd = new Owner() { Id = FakeDB.GetNextOwnerId(), FirstName = firstName, LastName = lastName, Address = address, PhoneNumber = phoneNumber, Email = email };
-            updatedOwnersList.Add(ownerToAdd);
+            ownerToCreate.Id = FakeDB.GetNextOwnerId();
+            updatedOwnersList.Add(ownerToCreate);
             FakeDB.UpdateOwnerData(updatedOwnersList);
         }
 
-        public void UpdateOwner(int id, string firstName, string lastName, string address, string phoneNumber, string email)
+        public void UpdateOwner(Owner ownerToUpdate)
         {   
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
-            Owner ownerToUpdate = new Owner() { Id = id, FirstName = firstName, LastName = lastName, Address = address, PhoneNumber = phoneNumber, Email = email };
+            ownerToUpdate.Id = FakeDB.GetNextOwnerId();
             foreach (Owner o in updatedOwnersList)
             {
-                if (o.Id == id)
+                if (o.Id == ownerToUpdate.Id)
                 {
                     o.FirstName = ownerToUpdate.FirstName;
                     o.LastName = ownerToUpdate.LastName;

@@ -5,8 +5,8 @@ namespace NekoPetShop.Core.DomainService
 {
     public interface IOwnerRepository
     {
-        void CreateOwner(string firstName, string lastName, string address, string phoneNumber, string email);
-        void UpdateOwner(int id, string firstName, string lastName, string address, string phoneNumber, string email);
+        void CreateOwner(Owner owner);
+        void UpdateOwner(Owner owner);
         void DeleteOwner(int id);
         IEnumerable<Owner> GetOwners();
         Owner FindOwnerById(int id);

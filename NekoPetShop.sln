@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoPetShop.Core", "NekoPetShop.Core\NekoPetShop.Core.csproj", "{89623DB3-E7AD-41DC-B15B-557AC7152687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoPetShop.Core", "NekoPetShop.Core\NekoPetShop.Core.csproj", "{89623DB3-E7AD-41DC-B15B-557AC7152687}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoPetShop.Core.Entity", "NekoPetShop.Core.Entity\NekoPetShop.Core.Entity.csproj", "{A777A8B8-179B-4159-8D6A-39613DE69E6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoPetShop.Core.Entity", "NekoPetShop.Core.Entity\NekoPetShop.Core.Entity.csproj", "{A777A8B8-179B-4159-8D6A-39613DE69E6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoPetShop.Infrastructure", "NekoPetShop.Infrastructure\NekoPetShop.Infrastructure.csproj", "{5BE44072-203C-4980-A437-203700FFC677}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoPetShop.Infrastructure", "NekoPetShop.Infrastructure\NekoPetShop.Infrastructure.csproj", "{5BE44072-203C-4980-A437-203700FFC677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoPetShop.Application", "NekoPetShop.Application\NekoPetShop.Application.csproj", "{2434F52E-8BB2-4A53-89D9-C9B0C2E866BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoPetShop.UI.ConsoleApp", "NekoPetShop.Application\NekoPetShop.UI.ConsoleApp.csproj", "{2434F52E-8BB2-4A53-89D9-C9B0C2E866BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{170CA4FA-22D0-400D-9D44-A294E44E8F41}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infastructure", "Infastructure", "{40C0A26F-37C4-4865-846D-4B1557ECFE97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EC99D80C-6730-47B4-9F9F-DEAA02BD8707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoPetShop.UI.RestAPI", "NekoPetShop.UI.RestAPI\NekoPetShop.UI.RestAPI.csproj", "{D38CFC32-D23A-48F6-B45C-B284CAF3AD26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2434F52E-8BB2-4A53-89D9-C9B0C2E866BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2434F52E-8BB2-4A53-89D9-C9B0C2E866BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2434F52E-8BB2-4A53-89D9-C9B0C2E866BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D38CFC32-D23A-48F6-B45C-B284CAF3AD26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38CFC32-D23A-48F6-B45C-B284CAF3AD26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38CFC32-D23A-48F6-B45C-B284CAF3AD26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38CFC32-D23A-48F6-B45C-B284CAF3AD26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{A777A8B8-179B-4159-8D6A-39613DE69E6C} = {EC99D80C-6730-47B4-9F9F-DEAA02BD8707}
 		{5BE44072-203C-4980-A437-203700FFC677} = {40C0A26F-37C4-4865-846D-4B1557ECFE97}
 		{2434F52E-8BB2-4A53-89D9-C9B0C2E866BE} = {170CA4FA-22D0-400D-9D44-A294E44E8F41}
+		{D38CFC32-D23A-48F6-B45C-B284CAF3AD26} = {170CA4FA-22D0-400D-9D44-A294E44E8F41}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68E5F8C0-D613-481C-BF3F-63C0E6127A26}

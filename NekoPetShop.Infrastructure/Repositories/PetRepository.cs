@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
@@ -8,21 +7,21 @@ namespace NekoPetShop.Infrastructure.Repositories
 {
     public class PetRepository : IPetRepository
     {
-        public void CreatePet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
+        public Pet CreatePet(Pet petToCreate)
         {
             List<Pet> updatedPetsList = FakeDB.ReadPetData().ToList();
-            Pet petToAdd = new Pet() { Id = FakeDB.GetNextPetId(), Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
-            updatedPetsList.Add(petToAdd);
+            petToCreate.Id = FakeDB.GetNextPetId();
+            updatedPetsList.Add(petToCreate);
             FakeDB.UpdatePetData(updatedPetsList);
+            return petToCreate;
         }
 
-        public void UpdatePet(int id, string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
+        public Pet UpdatePet(Pet petToUpdate)
         {
             List<Pet> updatedPetsList = FakeDB.ReadPetData().ToList();
-            Pet petToUpdate = new Pet() { Id = id, Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
             foreach (Pet p in updatedPetsList)
             {
-                if (p.Id == id)
+                if (p.Id == petToUpdate.Id)
                 {
                     p.Name = petToUpdate.Name;
                     p.Type = petToUpdate.Type;
@@ -34,9 +33,10 @@ namespace NekoPetShop.Infrastructure.Repositories
                 }
             }
             FakeDB.UpdatePetData(updatedPetsList);
+            return petToUpdate;
         }
 
-        public void DeletePet(int id)
+        public Pet DeletePet(int id)
         {
             List<Pet> updatedPetsList = FakeDB.ReadPetData().ToList();
             Pet petToRemove = null;
@@ -49,6 +49,7 @@ namespace NekoPetShop.Infrastructure.Repositories
             }
             updatedPetsList.Remove(petToRemove);
             FakeDB.UpdatePetData(updatedPetsList);
+            return petToRemove;
         }
 
         public IEnumerable<Pet> GetPets()

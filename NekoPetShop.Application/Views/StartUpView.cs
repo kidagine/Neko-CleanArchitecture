@@ -1,6 +1,6 @@
 ﻿using System;
 using NekoPetShop.Infrastructure;
-using NekoPetShop.Application.Util;
+using NekoPetShop.UI.ConsoleApp.Util;
 using NekoPetShop.Core.DomainService;
 using NekoPetShop.Core.ApplicationService;
 using NekoPetShop.Infrastructure.Repositories;
@@ -8,7 +8,7 @@ using NekoPetShop.Core.ApplicationService.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace NekoPetShop.Application.Views
+namespace NekoPetShop.UI.ConsoleApp
 {
     class StartUpView : IView
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NekoPetShop.Application.Util
+namespace NekoPetShop.UI.ConsoleApp.Util
 {
     class ASCIIAnimator
     {

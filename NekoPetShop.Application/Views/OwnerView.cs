@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
-using NekoPetShop.Application.Util;
+using NekoPetShop.UI.ConsoleApp.Util;
 using NekoPetShop.Core.ApplicationService;
 
-namespace NekoPetShop.Application.Views
+namespace NekoPetShop.UI.ConsoleApp
 {
     class OwnerView : IView
     {
@@ -134,7 +134,8 @@ namespace NekoPetShop.Application.Views
             Console.WriteLine("Email:");
             string email = Console.ReadLine();
             Console.WriteLine();
-            ownerService.CreateOwner(firstName, lastName, address, phoneNumber, email);
+            Owner owner = ownerService.NewOwner(firstName, lastName, address, phoneNumber, email);
+            ownerService.CreateOwner(owner);
             ClearOwnerList();
             ShowOwnerListData(ownerService.GetOwners());
         }
@@ -177,7 +178,8 @@ namespace NekoPetShop.Application.Views
             Console.WriteLine("Email:");
             string email = Console.ReadLine();
             Console.WriteLine();
-            ownerService.UpdateOwner(id, firstName, lastName, address, phoneNumber, email);
+            Owner owner = ownerService.NewOwner(firstName, lastName, address, phoneNumber, email);
+            ownerService.UpdateOwner(owner);
             ClearOwnerList();
             ShowOwnerListData(ownerService.GetOwners());
         }
