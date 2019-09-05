@@ -12997,11 +12997,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.UI.RestAPI\\NekoPetShop.UI.RestAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.UI.RestAPI\\NekoPetShop.UI.RestAPI.csproj",
       "projectName": "NekoPetShop.UI.RestAPI",
-      "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.UI.RestAPI\\NekoPetShop.UI.RestAPI.csproj",
+      "projectPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.UI.RestAPI\\NekoPetShop.UI.RestAPI.csproj",
       "packagesPath": "C:\\Users\\Kiddo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.UI.RestAPI\\obj\\",
+      "outputPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.UI.RestAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13020,14 +13020,14 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {
-              "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj"
+            "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {
+              "projectPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj"
             },
-            "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core\\NekoPetShop.Core.csproj": {
-              "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core\\NekoPetShop.Core.csproj"
+            "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core\\NekoPetShop.Core.csproj": {
+              "projectPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core\\NekoPetShop.Core.csproj"
             },
-            "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj"
+            "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj"
             }
           }
         }

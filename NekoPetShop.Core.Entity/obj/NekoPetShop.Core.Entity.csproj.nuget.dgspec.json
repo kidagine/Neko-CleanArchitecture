@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {}
+    "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {
+    "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj",
+        "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj",
         "projectName": "NekoPetShop.Core.Entity",
-        "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj",
+        "projectPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj",
         "packagesPath": "C:\\Users\\Kiddo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\obj\\",
+        "outputPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
