@@ -12,8 +12,16 @@ namespace NekoPetShop.UI.ConsoleApp
 {
     class StartUpView : IView
     {
+        private readonly IPetService petService;
+        private readonly IOwnerService ownerService;
         private readonly string FILEPATHLOGO = AppContext.BaseDirectory + "\\TxtFiles\\LogoText.txt";
 
+
+        public StartUpView(IPetService petService, IOwnerService ownerService)
+        {
+            this.petService = petService;
+            this.ownerService = ownerService;
+        }
 
         public void Initialize()
         {

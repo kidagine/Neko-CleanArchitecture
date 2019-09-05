@@ -18,8 +18,8 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public Pet NewPet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
         {
-            Pet pet = new Pet() { Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
-            return pet;
+            Pet newPet = new Pet() { Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
+            return newPet;
         }
 
         public Pet CreatePet(Pet pet)
@@ -27,9 +27,9 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return petRepository.CreatePet(pet);
         }
 
-        public Pet UpdatePet(Pet pet)
+        public Pet UpdatePet(int id, Pet pet)
         {
-            return petRepository.UpdatePet(pet);
+            return petRepository.UpdatePet(id, pet);
         }
 
         public Pet DeletePet(int id)
@@ -55,59 +55,20 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return filteredPetsList;
         }
 
-        public List<Pet> SortPetsByPrice(bool isAscending)
+        public List<Pet> SortPetsByPrice(SortType type)
         {
-            List<Pet> allPetsList = petRepository.GetPets().ToList();
-            for (int i = 0; i < allPetsList.Count; i++)
+            if (type == SortType.Ascending)
             {
-                for (int j = 0; j < allPetsList.Count; j++)
-                {
-                    double temp;
-                    if (isAscending)
-                    {
-                        if (allPetsList[i].Price > allPetsList[j].Price)
-                        {
-                            temp = allPetsList[i].Price;
-                            allPetsList[i].Price = allPetsList[j].Price;
-                            allPetsList[j].Price = temp;
-                        }
-                    }
-                    else
-                    {
-                        if (allPetsList[i].Price < allPetsList[j].Price)
-                        {
-                            temp = allPetsList[i].Price;
-                            allPetsList[i].Price = allPetsList[j].Price;
-                            allPetsList[j].Price = temp;
-                        }
-                    }
-                }
+                return GetPets().OrderBy(o => o.Price).ToList();
             }
-            return allPetsList;
+            else
+            {
+                return GetPets().OrderByDescending(o => o.Price).ToList();
+            }
         }
-
         public List<Pet> GetCheapestPets()
         {
-            List<Pet> filteredPetsList = new List<Pet>();
-            List<Pet> allPetsList = petRepository.GetPets().ToList();
-            for (int i = 0; i < allPetsList.Count; i++)
-            {
-                for (int j = 0; j < allPetsList.Count; j++)
-                {
-                    double temp;
-                    if (allPetsList[i].Price < allPetsList[j].Price)
-                    {
-                        temp = allPetsList[i].Price;
-                        allPetsList[i].Price = allPetsList[j].Price;
-                        allPetsList[j].Price = temp;
-                    }
-                }
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                filteredPetsList.Add(allPetsList[i]);
-            }
-            return filteredPetsList;
+            return SortPetsByPrice(SortType.Ascending).Take(5).ToList();
         }
     }
 }

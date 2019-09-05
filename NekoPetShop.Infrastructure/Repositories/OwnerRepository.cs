@@ -15,13 +15,12 @@ namespace NekoPetShop.Infrastructure.Repositories
             FakeDB.UpdateOwnerData(updatedOwnersList);
         }
 
-        public void UpdateOwner(Owner ownerToUpdate)
+        public void UpdateOwner(int id, Owner ownerToUpdate)
         {   
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
-            ownerToUpdate.Id = FakeDB.GetNextOwnerId();
             foreach (Owner o in updatedOwnersList)
             {
-                if (o.Id == ownerToUpdate.Id)
+                if (o.Id == id)
                 {
                     o.FirstName = ownerToUpdate.FirstName;
                     o.LastName = ownerToUpdate.LastName;
@@ -30,6 +29,7 @@ namespace NekoPetShop.Infrastructure.Repositories
                     o.Email = ownerToUpdate.Email;
                 }
             }
+            FakeDB.UpdateOwnerData(updatedOwnersList);
         }
 
         public void DeleteOwner(int id)

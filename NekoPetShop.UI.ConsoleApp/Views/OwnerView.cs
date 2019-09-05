@@ -9,15 +9,15 @@ namespace NekoPetShop.UI.ConsoleApp
 {
     class OwnerView : IView
     {
-        private readonly IOwnerService ownerService;
         private readonly IPetService petService;
+        private readonly IOwnerService ownerService;
         private readonly string FILEPATHOWNERLAYOUT = AppContext.BaseDirectory + "\\TxtFiles\\OwnerViewLayout.txt";
 
 
-        public OwnerView(IOwnerService ownerService, IPetService petService)
+        public OwnerView(IPetService petService, IOwnerService ownerService)
         {
-            this.ownerService = ownerService;
             this.petService = petService;
+            this.ownerService = ownerService;
         }
 
         public void Initialize()
@@ -179,7 +179,7 @@ namespace NekoPetShop.UI.ConsoleApp
             string email = Console.ReadLine();
             Console.WriteLine();
             Owner owner = ownerService.NewOwner(firstName, lastName, address, phoneNumber, email);
-            ownerService.UpdateOwner(owner);
+            ownerService.UpdateOwner(id, owner);
             ClearOwnerList();
             ShowOwnerListData(ownerService.GetOwners());
         }

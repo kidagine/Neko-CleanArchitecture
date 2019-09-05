@@ -128,7 +128,7 @@ namespace NekoPetShop.UI.ConsoleApp
 
         private void SwitchToOwnerView()
         {
-            IView ownerView = new OwnerView(ownerService, petService);
+            IView ownerView = new OwnerView(petService, ownerService);
             ownerView.Initialize();
         }
 
@@ -231,7 +231,7 @@ namespace NekoPetShop.UI.ConsoleApp
             }
             Console.WriteLine();
             Pet pet = petService.NewPet(name, type, birthdate, soldDate, color, previousOwner, price);
-            petService.UpdatePet(pet);
+            petService.UpdatePet(id, pet);
             ClearPetList();
             ShowPetListData(petService.GetPets());
         }
@@ -246,7 +246,6 @@ namespace NekoPetShop.UI.ConsoleApp
 
         private void SortPetsByPrice()
         {
-            bool isAscending;
             int selection;
             Console.WriteLine("-Sort-");
             Console.WriteLine("0 from cheap");
@@ -257,15 +256,15 @@ namespace NekoPetShop.UI.ConsoleApp
             }
             if (selection == 0)
             {
-                isAscending = false;
-                List<Pet> filteredPetsList = petService.SortPetsByPrice(isAscending);
+                SortType type = SortType.Ascending;
+                List<Pet> filteredPetsList = petService.SortPetsByPrice(type);
                 ClearPetList();
                 ShowPetListData(filteredPetsList);
             }
             else
             {
-                isAscending = true;
-                List<Pet> filteredPetsList = petService.SortPetsByPrice(isAscending);
+                SortType type = SortType.Descending;
+                List<Pet> filteredPetsList = petService.SortPetsByPrice(type);
                 ClearPetList();
                 ShowPetListData(filteredPetsList);
             }

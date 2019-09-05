@@ -16,12 +16,12 @@ namespace NekoPetShop.Infrastructure.Repositories
             return petToCreate;
         }
 
-        public Pet UpdatePet(Pet petToUpdate)
+        public Pet UpdatePet(int id, Pet petToUpdate)
         {
             List<Pet> updatedPetsList = FakeDB.ReadPetData().ToList();
             foreach (Pet p in updatedPetsList)
             {
-                if (p.Id == petToUpdate.Id)
+                if (p.Id == id)
                 {
                     p.Name = petToUpdate.Name;
                     p.Type = petToUpdate.Type;

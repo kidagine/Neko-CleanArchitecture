@@ -6,7 +6,7 @@ namespace NekoPetShop.Core.DomainService
     public interface IPetRepository
     {
         Pet CreatePet(Pet pet);
-        Pet UpdatePet(Pet pet);
+        Pet UpdatePet(int id, Pet pet);
         Pet DeletePet(int id);
         IEnumerable<Pet> GetPets();
     }

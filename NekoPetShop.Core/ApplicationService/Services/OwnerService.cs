@@ -26,9 +26,9 @@ namespace NekoPetShop.Core.ApplicationService.Services
             ownerRepository.CreateOwner(owner);
         }
 
-        public void UpdateOwner(Owner owner)
+        public void UpdateOwner(int id, Owner owner)
         {
-            ownerRepository.UpdateOwner(owner);
+            ownerRepository.UpdateOwner(id, owner);
         }
 
         public void DeleteOwner(int id)
