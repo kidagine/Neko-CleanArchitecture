@@ -25,10 +25,10 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         }
 
         // GET api/pets/true
-        [HttpGet("{isAscending}")]
-        public ActionResult<IEnumerable<Pet>> Get(bool isAscending)
+        [HttpGet("{type}")]
+        public ActionResult<IEnumerable<Pet>> Get(SortType type)
         {
-            return petService.SortPetsByPrice(isAscending);
+            return petService.SortPetsByPrice(type);
         }
 
         // POST api/pets
@@ -54,7 +54,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             {
                 return BadRequest("Parameter ID and pet ID have to be the same");
             }
-            return Ok(petService.UpdatePet(pet));
+            return Ok(petService.UpdatePet(id, pet));
         }
 
         // DELETE api/pets/5

@@ -219,11 +219,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj",
       "projectName": "NekoPetShop.Infrastructure",
-      "projectPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Infrastructure\\NekoPetShop.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Kiddo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -242,8 +242,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core\\NekoPetShop.Core.csproj": {
-              "projectPath": "C:\\Users\\Kiddo\\Desktop\\New folder (2)\\PetShop-CleanArchitecture-master\\NekoPetShop.Core\\NekoPetShop.Core.csproj"
+            "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Core\\NekoPetShop.Core.csproj": {
+              "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Core\\NekoPetShop.Core.csproj"
             }
           }
         }
