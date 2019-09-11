@@ -1,0 +1,6 @@
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infastructure.SQLData\bin\Debug\netcoreapp2.2\NekoPetShop.Infastructure.SQLData.deps.json
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infastructure.SQLData\bin\Debug\netcoreapp2.2\NekoPetShop.Infastructure.SQLData.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infastructure.SQLData\obj\Debug\netcoreapp2.2\NekoPetShop.Infastructure.SQLData.csprojAssemblyReference.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infastructure.SQLData\obj\Debug\netcoreapp2.2\NekoPetShop.Infastructure.SQLData.csproj.CoreCompileInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infastructure.SQLData\obj\Debug\netcoreapp2.2\NekoPetShop.Infastructure.SQLData.AssemblyInfoInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infastructure.SQLData\obj\Debug\netcoreapp2.2\NekoPetShop.Infastructure.SQLData.AssemblyInfo.cs
