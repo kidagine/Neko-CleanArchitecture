@@ -9,8 +9,9 @@ namespace NekoPetShop.Infrastructure.Repositories
     {
         public Pet CreatePet(Pet petToCreate)
         {
-            List<Pet> updatedPetsList = FakeDB.ReadPetData().ToList();
+            List<Pet> updatedPetsList = GetPets().ToList();
             petToCreate.Id = FakeDB.GetNextPetId();
+            petToCreate.PreviousOwner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == petToCreate.PreviousOwner.Id);
             updatedPetsList.Add(petToCreate);
             FakeDB.UpdatePetData(updatedPetsList);
             return petToCreate;
@@ -18,7 +19,7 @@ namespace NekoPetShop.Infrastructure.Repositories
 
         public Pet UpdatePet(int id, Pet petToUpdate)
         {
-            List<Pet> updatedPetsList = FakeDB.ReadPetData().ToList();
+            List<Pet> updatedPetsList = GetPets().ToList();
             foreach (Pet p in updatedPetsList)
             {
                 if (p.Id == id)
@@ -28,7 +29,7 @@ namespace NekoPetShop.Infrastructure.Repositories
                     p.Birthdate = petToUpdate.Birthdate;
                     p.SoldDate = petToUpdate.SoldDate;
                     p.Color = petToUpdate.Color;
-                    p.PreviousOwner = petToUpdate.PreviousOwner;
+                    p.PreviousOwner = petToUpdate.PreviousOwner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == petToUpdate.PreviousOwner.Id);
                     p.Price = petToUpdate.Price;
                 }
             }
@@ -38,7 +39,7 @@ namespace NekoPetShop.Infrastructure.Repositories
 
         public Pet DeletePet(int id)
         {
-            List<Pet> updatedPetsList = FakeDB.ReadPetData().ToList();
+            List<Pet> updatedPetsList = GetPets().ToList();
             Pet petToRemove = null;
             foreach (Pet p in updatedPetsList)
             {
@@ -54,7 +55,14 @@ namespace NekoPetShop.Infrastructure.Repositories
 
         public IEnumerable<Pet> GetPets()
         {
-            return FakeDB.ReadPetData();
+            List<Pet> petsList = new List<Pet>();
+            foreach (Pet p in FakeDB.ReadPetData())
+            {
+                if (p.PreviousOwner == null) continue;
+                p.PreviousOwner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == p.PreviousOwner.Id);
+                petsList.Add(p);
+            }
+            return petsList;
         }
     }
 }

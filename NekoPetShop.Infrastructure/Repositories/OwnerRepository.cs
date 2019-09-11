@@ -7,15 +7,16 @@ namespace NekoPetShop.Infrastructure.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {
-        public void CreateOwner(Owner ownerToCreate)
+        public Owner CreateOwner(Owner ownerToCreate)
         {
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             ownerToCreate.Id = FakeDB.GetNextOwnerId();
             updatedOwnersList.Add(ownerToCreate);
             FakeDB.UpdateOwnerData(updatedOwnersList);
+            return ownerToCreate;
         }
 
-        public void UpdateOwner(int id, Owner ownerToUpdate)
+        public Owner UpdateOwner(int id, Owner ownerToUpdate)
         {   
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             foreach (Owner o in updatedOwnersList)
@@ -30,9 +31,10 @@ namespace NekoPetShop.Infrastructure.Repositories
                 }
             }
             FakeDB.UpdateOwnerData(updatedOwnersList);
+            return ownerToUpdate;
         }
 
-        public void DeleteOwner(int id)
+        public Owner DeleteOwner(int id)
         {
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             Owner ownerToRemove = null;
@@ -45,6 +47,7 @@ namespace NekoPetShop.Infrastructure.Repositories
             }
             updatedOwnersList.Remove(ownerToRemove);
             FakeDB.UpdateOwnerData(updatedOwnersList);
+            return ownerToRemove;
         }
 
         public IEnumerable<Owner> GetOwners()
@@ -54,16 +57,7 @@ namespace NekoPetShop.Infrastructure.Repositories
 
         public Owner FindOwnerById(int id)
         {
-            List<Owner> ownersList = FakeDB.ReadOwnerData().ToList();
-            Owner ownerToReturn = null;
-            foreach (Owner o in ownersList)
-            {
-                if (o.Id == id)
-                {
-                    ownerToReturn = o;
-                }
-            }
-            return ownerToReturn;
+            return FakeDB.ReadOwnerData().FirstOrDefault(owner => owner.Id == id);
         }
     }
 }

@@ -24,9 +24,26 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             return petService.GetPets();
         }
 
-        // GET api/pets/true
+        // GET api/pets/getcheapest
+        [HttpGet]
+        [Route("getcheapest")]
+        public ActionResult<IEnumerable<Pet>> GetCheapest()
+        {
+            return petService.GetCheapestPets();
+        }
+
+        // GET api/pets/animal type
         [HttpGet("{type}")]
-        public ActionResult<IEnumerable<Pet>> Get(SortType type)
+        [Route("getbytype")]
+        public ActionResult<IEnumerable<Pet>> GetByType(AnimalType type)
+        {
+            return petService.SearchPetsByType(type);
+        }
+
+        // GET api/pets/sort type
+        [HttpGet("{type}")]
+        [Route("getbyprice")]
+        public ActionResult<IEnumerable<Pet>> GetByPrice(SortType type)
         {
             return petService.SortPetsByPrice(type);
         }
@@ -35,26 +52,32 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Pet pet)
         {
-            if (string.IsNullOrEmpty(pet.Name))
+            try
             {
-                return BadRequest("Name is required to create a pet");
+                return Ok(petService.CreatePet(pet));
             }
-            return Ok(petService.CreatePet(pet));
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/pets/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Pet pet)
         {
-            if (id < 0)
+            try
             {
-                return StatusCode(404,"No ID under 0 exists");
+                if (id != pet.Id)
+                {
+                    return BadRequest("Parameter ID and pet ID have to be the same");
+                }
+                return Ok(petService.UpdatePet(id, pet));
             }
-            else if (id != pet.Id)
+            catch (Exception e)
             {
-                return BadRequest("Parameter ID and pet ID have to be the same");
+                return BadRequest(e.Message);
             }
-            return Ok(petService.UpdatePet(id, pet));
         }
 
         // DELETE api/pets/5

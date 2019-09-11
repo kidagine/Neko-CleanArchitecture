@@ -37,6 +37,7 @@ namespace NekoPetShop.UI.ConsoleApp.Util
                 startingPositionY++;
             }
             System.Threading.Thread.Sleep(500);
+
             if (willHide)
             {
                 HideASCIIAnimation(path, startingPositionY, speedDelay);

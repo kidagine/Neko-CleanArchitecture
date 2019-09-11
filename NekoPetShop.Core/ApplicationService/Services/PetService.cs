@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
@@ -9,11 +10,13 @@ namespace NekoPetShop.Core.ApplicationService.Services
     public class PetService : IPetService
     {
         private readonly IPetRepository petRepository;
+        private readonly IOwnerRepository ownerRepository;
 
 
-        public PetService(IPetRepository petRepository)
+        public PetService(IPetRepository petRepository, IOwnerRepository ownerRepository)
         {
             this.petRepository = petRepository;
+            this.ownerRepository = ownerRepository;
         }
 
         public Pet NewPet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
@@ -24,11 +27,13 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public Pet CreatePet(Pet pet)
         {
+            ValidatePet(pet);
             return petRepository.CreatePet(pet);
         }
 
         public Pet UpdatePet(int id, Pet pet)
         {
+            ValidatePet(pet);
             return petRepository.UpdatePet(id, pet);
         }
 
@@ -69,6 +74,21 @@ namespace NekoPetShop.Core.ApplicationService.Services
         public List<Pet> GetCheapestPets()
         {
             return SortPetsByPrice(SortType.Ascending).Take(5).ToList();
+        }
+
+        private void ValidatePet(Pet pet)
+        {
+            if (string.IsNullOrEmpty(pet.Name))
+            {
+                throw new InvalidDataException("You need to specify the pet's name.");
+            }
+            else if (pet.PreviousOwner != null)
+            {
+                if (ownerRepository.FindOwnerById(pet.PreviousOwner.Id) == null)
+                {
+                    throw new InvalidDataException($"Owner with ID: { pet.PreviousOwner.Id } does not exist.");
+                }
+            }
         }
     }
 }

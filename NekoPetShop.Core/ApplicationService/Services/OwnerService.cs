@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
@@ -21,19 +22,21 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return owner;
         }
 
-        public void CreateOwner(Owner owner)
+        public Owner CreateOwner(Owner owner)
         {
-            ownerRepository.CreateOwner(owner);
+            ValidateOwner(owner);
+            return ownerRepository.CreateOwner(owner);
         }
 
-        public void UpdateOwner(int id, Owner owner)
+        public Owner UpdateOwner(int id, Owner owner)
         {
-            ownerRepository.UpdateOwner(id, owner);
+            ValidateOwner(owner);
+            return ownerRepository.UpdateOwner(id, owner);
         }
 
-        public void DeleteOwner(int id)
+        public Owner DeleteOwner(int id)
         {
-            ownerRepository.DeleteOwner(id);
+            return ownerRepository.DeleteOwner(id);
         }
 
         public List<Owner> GetOwners()
@@ -44,6 +47,30 @@ namespace NekoPetShop.Core.ApplicationService.Services
         public Owner FindOwnerById(int id)
         {
             return ownerRepository.FindOwnerById(id);
+        }
+
+        private void ValidateOwner(Owner owner)
+        {
+            if (string.IsNullOrEmpty(owner.FirstName))
+            {
+                throw new InvalidDataException("You need to specify the owner's first name.");
+            }
+            else if (string.IsNullOrEmpty(owner.LastName))
+            {
+                throw new InvalidDataException("You need to specify the owner's last name.");
+            }
+            else if (string.IsNullOrEmpty(owner.Address))
+            {
+                throw new InvalidDataException("You need to specify the owner's address.");
+            }
+            else if (string.IsNullOrEmpty(owner.Email))
+            {
+                throw new InvalidDataException("You need to specify the owner's email.");
+            }
+            else if (string.IsNullOrEmpty(owner.PhoneNumber))
+            {
+                throw new InvalidDataException("You need to specify the owner's phone number.");
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace NekoPetShop.Core.Entity
+﻿using System.Collections.Generic;
+
+namespace NekoPetShop.Core.Entity
 {
     public class Owner
     {

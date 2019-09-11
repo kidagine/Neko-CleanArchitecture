@@ -54,3 +54,17 @@ C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetSh
 C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.csproj.CopyComplete
 C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.dll
 C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\bin\Debug\netstandard2.0\NekoPetShop.Infrastructure.deps.json
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\bin\Debug\netstandard2.0\NekoPetShop.Infrastructure.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\bin\Debug\netstandard2.0\NekoPetShop.Infrastructure.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\bin\Debug\netstandard2.0\NekoPetShop.Core.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\bin\Debug\netstandard2.0\NekoPetShop.Core.Entity.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\bin\Debug\netstandard2.0\NekoPetShop.Core.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\bin\Debug\netstandard2.0\NekoPetShop.Core.Entity.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.AssemblyInfo.cs
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.csproj.CopyComplete
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder (2)\PetShop-CleanArchitecture\NekoPetShop.Infrastructure\obj\Debug\netstandard2.0\NekoPetShop.Infrastructure.pdb
