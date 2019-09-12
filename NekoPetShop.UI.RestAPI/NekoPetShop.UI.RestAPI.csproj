@@ -14,7 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NekoPetShop.Core.Entity\NekoPetShop.Core.Entity.csproj" />
     <ProjectReference Include="..\NekoPetShop.Core\NekoPetShop.Core.csproj" />
-    <ProjectReference Include="..\NekoPetShop.Infrastructure\NekoPetShop.Infrastructure.csproj" />
+    <ProjectReference Include="..\NekoPetShop.Infrastructure.SQLData\NekoPetShop.Infrastructure.SQLData.csproj" />
   </ItemGroup>
 
 </Project>

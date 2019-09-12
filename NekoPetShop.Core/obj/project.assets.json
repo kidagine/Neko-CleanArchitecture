@@ -201,11 +201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Core\\NekoPetShop.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder\\PetShop-CleanArchitecture\\NekoPetShop.Core\\NekoPetShop.Core.csproj",
       "projectName": "NekoPetShop.Core",
-      "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Core\\NekoPetShop.Core.csproj",
+      "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder\\PetShop-CleanArchitecture\\NekoPetShop.Core\\NekoPetShop.Core.csproj",
       "packagesPath": "C:\\Users\\Kiddo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Core\\obj\\",
+      "outputPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder\\PetShop-CleanArchitecture\\NekoPetShop.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -224,8 +224,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {
-              "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder (2)\\PetShop-CleanArchitecture\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj"
+            "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder\\PetShop-CleanArchitecture\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj": {
+              "projectPath": "C:\\Users\\Kiddo\\Desktop\\Code\\C#\\School\\Projects\\New folder\\PetShop-CleanArchitecture\\NekoPetShop.Core.Entity\\NekoPetShop.Core.Entity.csproj"
             }
           }
         }

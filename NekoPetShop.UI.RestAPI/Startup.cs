@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NekoPetShop.Core.ApplicationService;
 using NekoPetShop.Core.ApplicationService.Services;
 using NekoPetShop.Core.DomainService;
-using NekoPetShop.Infrastructure;
-using NekoPetShop.Infrastructure.Repositories;
-using System;
+using NekoPetShop.Infrastructure.SQLData;
+using NekoPetShop.Infrastructure.SQLData.Repositories;
 
 namespace NekoPetShop.UI.RestAPI
 {
@@ -24,6 +24,7 @@ namespace NekoPetShop.UI.RestAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<NekoPetShopContext>(opt => opt.UseSqlite("Data Source=petApp.db"));
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
@@ -36,7 +37,12 @@ namespace NekoPetShop.UI.RestAPI
         {
             if (env.IsDevelopment())
             {
-                FakeDB.InitializeData();
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var ctx = scope.ServiceProvider.GetService<NekoPetShopContext>();
+                    ctx.Database.EnsureDeleted();
+                    ctx.Database.EnsureCreated();
+                }
                 app.UseDeveloperExceptionPage();
             }
             else

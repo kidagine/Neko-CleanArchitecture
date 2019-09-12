@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace NekoPetShop.Infastructure.SQLData.Repositories
+namespace NekoPetShop.Infrastructure.SQLData.Repositories
 {
-    class PetRepository : IPetRepository
+    public class PetRepository : IPetRepository
     {
-        private Context context;
+        private readonly NekoPetShopContext context;
 
-        public PetRepository(Context context)
+        public PetRepository(NekoPetShopContext context)
         {
             this.context = context;
         }
+
         public Pet CreatePet(Pet pet)
         {
             context.Add(pet);
