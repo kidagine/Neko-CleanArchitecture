@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using NekoPetShop.Core.ApplicationService;
 using NekoPetShop.Core.ApplicationService.Services;
 using NekoPetShop.Core.DomainService;
@@ -29,6 +30,12 @@ namespace NekoPetShop.UI.RestAPI
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
             services.AddScoped<IOwnerService, OwnerService>();
+
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.MaxDepth = 3;
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -40,8 +47,7 @@ namespace NekoPetShop.UI.RestAPI
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
                     var ctx = scope.ServiceProvider.GetService<NekoPetShopContext>();
-                    ctx.Database.EnsureDeleted();
-                    ctx.Database.EnsureCreated();
+                    DBInitializer.Seed(ctx);
                 }
                 app.UseDeveloperExceptionPage();
             }

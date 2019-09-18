@@ -14,8 +14,11 @@ namespace NekoPetShop.Core.ApplicationService
         Pet UpdatePet(int id, Pet pet);
         Pet DeletePet(int id);
         List<Pet> GetPets();
+        List<Pet> GetPetsIncludeOwners();
         List<Pet> SearchPetsByType(AnimalType type);
         List<Pet> SortPetsByPrice(SortType type);
         List<Pet> GetCheapestPets();
+        Pet GetPetById(int id);
+        Pet GetPetByIdIncludeOwner(int id);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
 
-namespace NekoPetShop.Infrastructure.Repositories
+namespace NekoPetShop.Infrastructure.FakeData.Repositories
 {
     public class PetRepository : IPetRepository
     {
@@ -63,6 +63,11 @@ namespace NekoPetShop.Infrastructure.Repositories
                 petsList.Add(p);
             }
             return petsList;
+        }
+
+        public Pet GetPetById(int id)
+        {
+            return FakeDB.ReadPetData().FirstOrDefault(pet => pet.Id == id);
         }
     }
 }

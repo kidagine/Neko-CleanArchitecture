@@ -26,24 +26,47 @@ namespace NekoPetShop.UI.RestAPI.Controllers
 
         // GET api/pets/getcheapest
         [HttpGet]
+        [Route("includeowners")]
+        public ActionResult<IEnumerable<Pet>> GetPetsIncludeOwners()
+        {
+            return petService.GetPetsIncludeOwners();
+        }
+
+        // GET api/pets/5
+        [HttpGet("{id}")]
+        public ActionResult<Pet> Get(int id)
+        {
+            return petService.GetPetById(id);
+        }
+
+        // GET api/pets/includeowners?id=5
+        [HttpGet]
+        [Route("includeowner")]
+        public ActionResult<Pet> GetPetByIdIncludeOwner([FromQuery]int id)
+        {
+            return petService.GetPetByIdIncludeOwner(id);
+        }
+
+        // GET api/pets/getcheapest
+        [HttpGet]
         [Route("getcheapest")]
         public ActionResult<IEnumerable<Pet>> GetCheapest()
         {
             return petService.GetCheapestPets();
         }
 
-        // GET api/pets/animal type
-        [HttpGet("{type}")]
-        [Route("getbytype")]
-        public ActionResult<IEnumerable<Pet>> GetByType(AnimalType type)
+        // GET api/pets/animaltype?type=enum
+        [HttpGet]
+        [Route("animaltype")]
+        public ActionResult<IEnumerable<Pet>> GetByType([FromQuery]AnimalType type)
         {
             return petService.SearchPetsByType(type);
         }
 
-        // GET api/pets/sort type
-        [HttpGet("{type}")]
-        [Route("getbyprice")]
-        public ActionResult<IEnumerable<Pet>> GetByPrice(SortType type)
+        // GET api/pets/animaltype?type=enum
+        [HttpGet]
+        [Route("pricetype")]
+        public ActionResult<IEnumerable<Pet>> GetByPrice([FromQuery]SortType type)
         {
             return petService.SortPetsByPrice(type);
         }

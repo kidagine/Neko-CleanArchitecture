@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using NekoPetShop.Core.ApplicationService;
 using NekoPetShop.Core.Entity;
+using NekoPetShop.Core.ApplicationService;
 
 namespace NekoPetShop.UI.RestAPI.Controllers
 {
@@ -22,6 +22,13 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         public ActionResult<IEnumerable<Owner>> Get()
         {
             return ownerService.GetOwners();
+        }
+
+        // GET api/owners/5
+        [HttpGet("{id}")]
+        public ActionResult<Owner> Get(int id)
+        {
+            return ownerService.GetOwnerById(id);
         }
 
         // POST api/owners

@@ -44,9 +44,9 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return ownerRepository.GetOwners().ToList();
         }
 
-        public Owner FindOwnerById(int id)
+        public Owner GetOwnerById(int id)
         {
-            return ownerRepository.FindOwnerById(id);
+            return ownerRepository.GetOwnerById(id);
         }
 
         private void ValidateOwner(Owner owner)

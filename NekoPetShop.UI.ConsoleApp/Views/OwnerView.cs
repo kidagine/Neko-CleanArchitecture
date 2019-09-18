@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
-using NekoPetShop.UI.ConsoleApp.Util;
 using NekoPetShop.Core.ApplicationService;
+using NekoPetShop.UI.ConsoleApp.Util;
 
 namespace NekoPetShop.UI.ConsoleApp
 {

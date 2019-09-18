@@ -10,7 +10,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "2.2.0",
           "NekoPetShop.Core": "1.0.0",
-          "NekoPetShop.Infrastructure": "1.0.0"
+          "NekoPetShop.Infrastructure.FakeData": "1.0.0"
         },
         "runtime": {
           "NekoPetShop.UI.ConsoleApp.dll": {}
@@ -48,12 +48,12 @@
           "NekoPetShop.Core.Entity.dll": {}
         }
       },
-      "NekoPetShop.Infrastructure/1.0.0": {
+      "NekoPetShop.Infrastructure.FakeData/1.0.0": {
         "dependencies": {
           "NekoPetShop.Core": "1.0.0"
         },
         "runtime": {
-          "NekoPetShop.Infrastructure.dll": {}
+          "NekoPetShop.Infrastructure.FakeData.dll": {}
         }
       }
     }
@@ -88,7 +88,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "NekoPetShop.Infrastructure/1.0.0": {
+    "NekoPetShop.Infrastructure.FakeData/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

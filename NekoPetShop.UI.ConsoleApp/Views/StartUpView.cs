@@ -1,11 +1,11 @@
 ﻿using System;
-using NekoPetShop.Infrastructure;
-using NekoPetShop.UI.ConsoleApp.Util;
+using Microsoft.Extensions.DependencyInjection;
 using NekoPetShop.Core.DomainService;
 using NekoPetShop.Core.ApplicationService;
-using NekoPetShop.Infrastructure.Repositories;
 using NekoPetShop.Core.ApplicationService.Services;
-using Microsoft.Extensions.DependencyInjection;
+using NekoPetShop.Infrastructure.FakeData;
+using NekoPetShop.Infrastructure.FakeData.Repositories;
+using NekoPetShop.UI.ConsoleApp.Util;
 
 
 namespace NekoPetShop.UI.ConsoleApp

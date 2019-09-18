@@ -52,3 +52,21 @@ C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetSh
 C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.csproj.CopyComplete
 C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.dll
 C:\Users\Kiddo\Desktop\New folder (2)\PetShop-CleanArchitecture-master\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.csprojAssemblyReference.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.AssemblyInfo.cs
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.deps.json
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.runtimeconfig.json
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.runtimeconfig.dev.json
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.Core.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.Core.Entity.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.FakeData.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.Core.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.FakeData.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\bin\Debug\netcoreapp2.2\NekoPetShop.Core.Entity.pdb
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.ConsoleApp\obj\Debug\netcoreapp2.2\NekoPetShop.UI.ConsoleApp.csproj.CopyComplete

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 
-namespace NekoPetShop.Infrastructure
+namespace NekoPetShop.Infrastructure.FakeData
 {
     public static class FakeDB
     {

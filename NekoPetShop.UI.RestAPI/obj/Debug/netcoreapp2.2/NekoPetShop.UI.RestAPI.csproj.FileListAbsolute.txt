@@ -90,9 +90,30 @@ C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitect
 C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.pdb
 C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.dll
 C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.Entity.dll
-C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.SQLData.dll
 C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.Entity.pdb
 C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.pdb
-C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.SQLData.pdb
 C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.RazorTargetAssemblyInfo.cache
 C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.csproj.CopyComplete
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.SQLData.dll
+C:\Users\Kiddo\Desktop\Code\C#\School\Projects\New folder\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.SQLData.pdb
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.deps.json
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.runtimeconfig.json
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.runtimeconfig.dev.json
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.dll
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.pdb
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.dll
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.Entity.dll
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.SQLData.dll
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.Entity.pdb
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Core.pdb
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\bin\Debug\netcoreapp2.2\NekoPetShop.Infrastructure.SQLData.pdb
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.csprojAssemblyReference.cache
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.csproj.CoreCompileInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.RazorAssemblyInfo.cache
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.RazorAssemblyInfo.cs
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.AssemblyInfoInputs.cache
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.AssemblyInfo.cs
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.RazorTargetAssemblyInfo.cache
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.csproj.CopyComplete
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.dll
+C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.UI.RestAPI\obj\Debug\netcoreapp2.2\NekoPetShop.UI.RestAPI.pdb

@@ -47,6 +47,11 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return petRepository.GetPets().ToList();
         }
 
+        public List<Pet> GetPetsIncludeOwners()
+        {
+            return petRepository.GetPetsIncludeOwners().ToList();
+        }
+
         public List<Pet> SearchPetsByType(AnimalType type)
         {
             List<Pet> filteredPetsList = new List<Pet>();
@@ -84,11 +89,21 @@ namespace NekoPetShop.Core.ApplicationService.Services
             }
             else if (pet.PreviousOwner != null)
             {
-                if (ownerRepository.FindOwnerById(pet.PreviousOwner.Id) == null)
+                if (ownerRepository.GetOwnerById(pet.PreviousOwner.Id) == null)
                 {
                     throw new InvalidDataException($"Owner with ID: { pet.PreviousOwner.Id } does not exist.");
                 }
             }
+        }
+
+        public Pet GetPetById(int id)
+        {
+            return petRepository.GetPetById(id);
+        }
+
+        public Pet GetPetByIdIncludeOwner(int id)
+        {
+            return petRepository.GetPetByIdIncludeOwner(id);
         }
     }
 }

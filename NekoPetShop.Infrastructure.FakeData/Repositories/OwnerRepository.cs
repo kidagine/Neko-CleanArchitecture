@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
 
-namespace NekoPetShop.Infrastructure.Repositories
+namespace NekoPetShop.Infrastructure.FakeData.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {

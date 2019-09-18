@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
-using System.Linq;
 
 namespace NekoPetShop.Infrastructure.SQLData.Repositories
 {
@@ -28,7 +28,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             return entityEntry.Entity;
         }
 
-        public Owner FindOwnerById(int id)
+        public Owner GetOwnerById(int id)
         {
             return context.owners.ToList().FirstOrDefault(owner => owner.Id == id);
         }

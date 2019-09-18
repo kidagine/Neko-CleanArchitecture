@@ -1,5 +1,5 @@
-﻿using NekoPetShop.Core.Entity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using NekoPetShop.Core.Entity;
 
 namespace NekoPetShop.Core.ApplicationService
 {
@@ -10,6 +10,6 @@ namespace NekoPetShop.Core.ApplicationService
         Owner UpdateOwner(int id, Owner owner);
         Owner DeleteOwner(int id);
         List<Owner> GetOwners();
-        Owner FindOwnerById(int id);
+        Owner GetOwnerById(int id);
     }
 }
