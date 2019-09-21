@@ -1,9 +1,0 @@
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\bin\Release\netstandard2.0\NekoPetShop.Core.Entity.deps.json
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\bin\Release\netstandard2.0\NekoPetShop.Core.Entity.dll
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\bin\Release\netstandard2.0\NekoPetShop.Core.Entity.pdb
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\obj\Release\netstandard2.0\NekoPetShop.Core.Entity.csprojAssemblyReference.cache
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\obj\Release\netstandard2.0\NekoPetShop.Core.Entity.csproj.CoreCompileInputs.cache
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\obj\Release\netstandard2.0\NekoPetShop.Core.Entity.AssemblyInfoInputs.cache
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\obj\Release\netstandard2.0\NekoPetShop.Core.Entity.AssemblyInfo.cs
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\obj\Release\netstandard2.0\NekoPetShop.Core.Entity.dll
-C:\Users\Kiddo\Desktop\Code\C#\SchoolProjects\Projects\PetShop\PetShop-CleanArchitecture\NekoPetShop.Core.Entity\obj\Release\netstandard2.0\NekoPetShop.Core.Entity.pdb
