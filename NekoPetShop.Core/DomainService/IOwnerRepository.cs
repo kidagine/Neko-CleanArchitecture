@@ -5,10 +5,11 @@ namespace NekoPetShop.Core.DomainService
 {
     public interface IOwnerRepository
     {
-        Owner CreateOwner(Owner owner);
-        Owner UpdateOwner(int id, Owner owner);
-        Owner DeleteOwner(int id);
-        IEnumerable<Owner> GetOwners();
-        Owner GetOwnerById(int id);
+        Owner Create(Owner owner);
+        Owner Update(int id, Owner owner);
+        Owner Delete(int id);
+        Owner ReadById(int id);
+        Owner ReadByIdIncludePets(int id);
+        IEnumerable<Owner> ReadAll();
     }
 }

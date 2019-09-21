@@ -8,45 +8,50 @@ namespace NekoPetShop.Core.ApplicationService.Services
 {
     public class OwnerService : IOwnerService
     {
-        private readonly IOwnerRepository ownerRepository;
+        private readonly IOwnerRepository _ownerRepository;
 
 
         public OwnerService(IOwnerRepository ownerRepository)
         {
-            this.ownerRepository = ownerRepository;
+            _ownerRepository = ownerRepository;
         }
 
-        public Owner NewOwner(string firstName, string lastName, string address, string phoneNumber, string email)
+        public Owner New(string firstName, string lastName, string address, string phoneNumber, string email)
         {
             Owner owner = new Owner() { FirstName = firstName, LastName = lastName, Address = address, PhoneNumber = phoneNumber, Email = email };
             return owner;
         }
 
-        public Owner CreateOwner(Owner owner)
+        public Owner Create(Owner owner)
         {
             ValidateOwner(owner);
-            return ownerRepository.CreateOwner(owner);
+            return _ownerRepository.Create(owner);
         }
 
-        public Owner UpdateOwner(int id, Owner owner)
+        public Owner Update(int id, Owner owner)
         {
             ValidateOwner(owner);
-            return ownerRepository.UpdateOwner(id, owner);
+            return _ownerRepository.Update(id, owner);
         }
 
-        public Owner DeleteOwner(int id)
+        public Owner Delete(int id)
         {
-            return ownerRepository.DeleteOwner(id);
+            return _ownerRepository.Delete(id);
         }
 
-        public List<Owner> GetOwners()
+        public Owner ReadById(int id)
         {
-            return ownerRepository.GetOwners().ToList();
+            return _ownerRepository.ReadById(id);
         }
 
-        public Owner GetOwnerById(int id)
+        public Owner ReadByIdIncludePets(int id)
         {
-            return ownerRepository.GetOwnerById(id);
+            return _ownerRepository.ReadByIdIncludePets(id);
+        }
+
+        public List<Owner> ReadAll()
+        {
+            return _ownerRepository.ReadAll().ToList();
         }
 
         private void ValidateOwner(Owner owner)

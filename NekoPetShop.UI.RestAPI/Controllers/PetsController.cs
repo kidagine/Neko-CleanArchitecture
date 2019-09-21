@@ -10,18 +10,25 @@ namespace NekoPetShop.UI.RestAPI.Controllers
     [ApiController]
     public class PetsController : ControllerBase
     {
-        private readonly IPetService petService;
+        private readonly IPetService _petService;
 
         public PetsController(IPetService petService)
         {
-            this.petService = petService;
+            _petService = petService;
         }
 
-        // GET api/pets
+        // GET api/pets -- READ ALL
         [HttpGet]
-        public ActionResult<IEnumerable<Pet>> Get()
+        public ActionResult<IEnumerable<Pet>> Get([FromQuery] Filter filter)
         {
-            return petService.GetPets();
+            try
+            {
+                return Ok(_petService.ReadAll(filter));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/pets/getcheapest
@@ -29,14 +36,14 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [Route("includeowners")]
         public ActionResult<IEnumerable<Pet>> GetPetsIncludeOwners()
         {
-            return petService.GetPetsIncludeOwners();
+            return _petService.ReadAllIncludeOwners();
         }
 
         // GET api/pets/5
         [HttpGet("{id}")]
         public ActionResult<Pet> Get(int id)
         {
-            return petService.GetPetById(id);
+            return _petService.ReadById(id);
         }
 
         // GET api/pets/includeowners?id=5
@@ -44,7 +51,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [Route("includeowner")]
         public ActionResult<Pet> GetPetByIdIncludeOwner([FromQuery]int id)
         {
-            return petService.GetPetByIdIncludeOwner(id);
+            return _petService.ReadByIdIncludeOwner(id);
         }
 
         // GET api/pets/getcheapest
@@ -52,7 +59,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [Route("getcheapest")]
         public ActionResult<IEnumerable<Pet>> GetCheapest()
         {
-            return petService.GetCheapestPets();
+            return _petService.ReadCheapest();
         }
 
         // GET api/pets/animaltype?type=enum
@@ -60,7 +67,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [Route("animaltype")]
         public ActionResult<IEnumerable<Pet>> GetByType([FromQuery]AnimalType type)
         {
-            return petService.SearchPetsByType(type);
+            return _petService.ReadByType(type);
         }
 
         // GET api/pets/animaltype?type=enum
@@ -68,7 +75,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [Route("pricetype")]
         public ActionResult<IEnumerable<Pet>> GetByPrice([FromQuery]SortType type)
         {
-            return petService.SortPetsByPrice(type);
+            return _petService.ReadByPrice(type);
         }
 
         // POST api/pets
@@ -77,7 +84,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         {
             try
             {
-                return Ok(petService.CreatePet(pet));
+                return Ok(_petService.Create(pet));
             }
             catch (Exception e)
             {
@@ -95,7 +102,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
                 {
                     return BadRequest("Parameter ID and pet ID have to be the same");
                 }
-                return Ok(petService.UpdatePet(id, pet));
+                return Ok(_petService.Update(id, pet));
             }
             catch (Exception e)
             {
@@ -107,7 +114,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            Pet petToDelete = petService.DeletePet(id);
+            Pet petToDelete = _petService.Delete(id);
             if (petToDelete == null)
             {
                 return StatusCode(404,$"Did not find pet with ID: {id}");

@@ -9,53 +9,65 @@ namespace NekoPetShop.Core.ApplicationService.Services
 {
     public class PetService : IPetService
     {
-        private readonly IPetRepository petRepository;
-        private readonly IOwnerRepository ownerRepository;
+        private readonly IPetRepository _petRepository;
 
 
-        public PetService(IPetRepository petRepository, IOwnerRepository ownerRepository)
+        public PetService(IPetRepository petRepository)
         {
-            this.petRepository = petRepository;
-            this.ownerRepository = ownerRepository;
+            _petRepository = petRepository;
         }
 
-        public Pet NewPet(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
+        public Pet New(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
         {
-            Pet newPet = new Pet() { Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, PreviousOwner = previousOwner, Price = price };
+            Pet newPet = new Pet() { Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, Owner = previousOwner, Price = price };
             return newPet;
         }
 
-        public Pet CreatePet(Pet pet)
+        public Pet Create(Pet pet)
         {
             ValidatePet(pet);
-            return petRepository.CreatePet(pet);
+            return _petRepository.Create(pet);
         }
 
-        public Pet UpdatePet(int id, Pet pet)
+        public Pet Update(int id, Pet pet)
         {
             ValidatePet(pet);
-            return petRepository.UpdatePet(id, pet);
+            return _petRepository.Update(id, pet);
         }
 
-        public Pet DeletePet(int id)
+        public Pet Delete(int id)
         {
-            return petRepository.DeletePet(id);
+            return _petRepository.Delete(id);
         }
 
-        public List<Pet> GetPets()
+        public Pet ReadById(int id)
         {
-            return petRepository.GetPets().ToList();
+            return _petRepository.ReadById(id);
         }
 
-        public List<Pet> GetPetsIncludeOwners()
+        public Pet ReadByIdIncludeOwner(int id)
         {
-            return petRepository.GetPetsIncludeOwners().ToList();
+            return _petRepository.ReadByIdIncludeOwner(id);
         }
 
-        public List<Pet> SearchPetsByType(AnimalType type)
+        public List<Pet> ReadAll(Filter filter = null)
+        {
+            if (filter.CurrentPage < 0 || filter.ItemsPerPage < 0)
+            {
+                throw new InvalidDataException("Current Page and Items Page have to be zero or more");
+            }
+            return _petRepository.ReadAll(filter).ToList();
+        }
+
+        public List<Pet> ReadAllIncludeOwners()
+        {
+            return _petRepository.ReadAllIncludeOwners().ToList();
+        }
+
+        public List<Pet> ReadByType(AnimalType type)
         {
             List<Pet> filteredPetsList = new List<Pet>();
-            foreach (Pet p in petRepository.GetPets().ToList())
+            foreach (Pet p in _petRepository.ReadAll().ToList())
             {
                 if (p.Type == type)
                 {
@@ -65,20 +77,20 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return filteredPetsList;
         }
 
-        public List<Pet> SortPetsByPrice(SortType type)
+        public List<Pet> ReadByPrice(SortType type)
         {
             if (type == SortType.Ascending)
             {
-                return GetPets().OrderBy(o => o.Price).ToList();
+                return ReadAll().OrderBy(o => o.Price).ToList();
             }
             else
             {
-                return GetPets().OrderByDescending(o => o.Price).ToList();
+                return ReadAll().OrderByDescending(o => o.Price).ToList();
             }
         }
-        public List<Pet> GetCheapestPets()
+        public List<Pet> ReadCheapest()
         {
-            return SortPetsByPrice(SortType.Ascending).Take(5).ToList();
+            return ReadByPrice(SortType.Ascending).Take(5).ToList();
         }
 
         private void ValidatePet(Pet pet)
@@ -87,23 +99,6 @@ namespace NekoPetShop.Core.ApplicationService.Services
             {
                 throw new InvalidDataException("You need to specify the pet's name.");
             }
-            else if (pet.PreviousOwner != null)
-            {
-                if (ownerRepository.GetOwnerById(pet.PreviousOwner.Id) == null)
-                {
-                    throw new InvalidDataException($"Owner with ID: { pet.PreviousOwner.Id } does not exist.");
-                }
-            }
-        }
-
-        public Pet GetPetById(int id)
-        {
-            return petRepository.GetPetById(id);
-        }
-
-        public Pet GetPetByIdIncludeOwner(int id)
-        {
-            return petRepository.GetPetByIdIncludeOwner(id);
         }
     }
 }

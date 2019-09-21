@@ -52,7 +52,7 @@ namespace NekoPetShop.UI.ConsoleApp
             int countTop = 12;
             foreach (Pet p in petsList)
             {
-                string petListing = ($"|  {p.Id} {GetFixedSpacing(p.Id.ToString().Length, 5)} {p.Name} {GetFixedSpacing(p.Name.Length, 8)} {p.Type} {GetFixedSpacing(p.Type.ToString().Length, 10)} {p.Birthdate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.SoldDate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.Color} {GetFixedSpacing(p.Color.ToString().Length, 9)} {p.PreviousOwner.FirstName} {p.PreviousOwner.LastName} {GetFixedSpacing(p.PreviousOwner.FirstName.ToString().Length + p.PreviousOwner.LastName.ToString().Length, 17)} {p.Price.ToString("C")}");
+                string petListing = ($"|  {p.Id} {GetFixedSpacing(p.Id.ToString().Length, 5)} {p.Name} {GetFixedSpacing(p.Name.Length, 8)} {p.Type} {GetFixedSpacing(p.Type.ToString().Length, 10)} {p.Birthdate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.SoldDate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.Color} {GetFixedSpacing(p.Color.ToString().Length, 9)} {p.Owner.FirstName} {p.Owner.LastName} {GetFixedSpacing(p.Owner.FirstName.ToString().Length + p.Owner.LastName.ToString().Length, 17)} {p.Price.ToString("C")}");
                 Console.SetCursorPosition(18, countTop);
                 Console.WriteLine(petListing);
                 countTop++;

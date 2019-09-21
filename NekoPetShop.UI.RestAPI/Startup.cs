@@ -46,13 +46,19 @@ namespace NekoPetShop.UI.RestAPI
             {
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
-                    var ctx = scope.ServiceProvider.GetService<NekoPetShopContext>();
-                    DBInitializer.Seed(ctx);
+                    NekoPetShopContext context = scope.ServiceProvider.GetService<NekoPetShopContext>();
+                    DBInitializer.Seed(context);
                 }
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    NekoPetShopContext context = scope.ServiceProvider.GetService<NekoPetShopContext>();
+                    DBInitializer.Seed(context);
+                }
+                app.UseDeveloperExceptionPage();
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

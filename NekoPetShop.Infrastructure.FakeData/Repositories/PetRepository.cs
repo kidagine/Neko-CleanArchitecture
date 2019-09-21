@@ -11,7 +11,7 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
         {
             List<Pet> updatedPetsList = GetPets().ToList();
             petToCreate.Id = FakeDB.GetNextPetId();
-            petToCreate.PreviousOwner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == petToCreate.PreviousOwner.Id);
+            petToCreate.Owner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == petToCreate.Owner.Id);
             updatedPetsList.Add(petToCreate);
             FakeDB.UpdatePetData(updatedPetsList);
             return petToCreate;
@@ -29,7 +29,7 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
                     p.Birthdate = petToUpdate.Birthdate;
                     p.SoldDate = petToUpdate.SoldDate;
                     p.Color = petToUpdate.Color;
-                    p.PreviousOwner = petToUpdate.PreviousOwner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == petToUpdate.PreviousOwner.Id);
+                    p.Owner = petToUpdate.Owner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == petToUpdate.Owner.Id);
                     p.Price = petToUpdate.Price;
                 }
             }
@@ -58,8 +58,8 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
             List<Pet> petsList = new List<Pet>();
             foreach (Pet p in FakeDB.ReadPetData())
             {
-                if (p.PreviousOwner == null) continue;
-                p.PreviousOwner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == p.PreviousOwner.Id);
+                if (p.Owner == null) continue;
+                p.Owner = FakeDB.ReadOwnerData().FirstOrDefault(o => o.Id == p.Owner.Id);
                 petsList.Add(p);
             }
             return petsList;

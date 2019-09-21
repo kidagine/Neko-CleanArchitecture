@@ -10,25 +10,33 @@ namespace NekoPetShop.UI.RestAPI.Controllers
     [ApiController]
     public class OwnersController : ControllerBase
     {
-        private readonly IOwnerService ownerService;
+        private readonly IOwnerService _ownerService;
 
         public OwnersController(IOwnerService ownerService)
         {
-            this.ownerService = ownerService;
+            _ownerService = ownerService;
         }
 
         // GET api/owners
         [HttpGet]
         public ActionResult<IEnumerable<Owner>> Get()
         {
-            return ownerService.GetOwners();
+            return _ownerService.ReadAll();
         }
 
         // GET api/owners/5
         [HttpGet("{id}")]
         public ActionResult<Owner> Get(int id)
         {
-            return ownerService.GetOwnerById(id);
+            return _ownerService.ReadById(id);
+        }
+
+        // GET api/pets/includeowners?id=5
+        [HttpGet]
+        [Route("includepets")]
+        public ActionResult<Owner> GetOwnerByIdIncludePets([FromQuery]int id)
+        {
+            return _ownerService.ReadByIdIncludePets(id);
         }
 
         // POST api/owners
@@ -37,7 +45,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         {
             try
             {
-                return Ok(ownerService.CreateOwner(owner));
+                return Ok(_ownerService.Create(owner));
             }
             catch (Exception e)
             {
@@ -55,7 +63,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
                 {
                     return BadRequest("Parameter ID and pet ID have to be the same");
                 }
-                return Ok(ownerService.UpdateOwner(id, owner));
+                return Ok(_ownerService.Update(id, owner));
             }
             catch (Exception e)
             {
@@ -67,7 +75,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            Owner ownerToDelete = ownerService.DeleteOwner(id);
+            Owner ownerToDelete = _ownerService.Delete(id);
             if (ownerToDelete == null)
             {
                 return StatusCode(404, $"Did not find owner with ID: {id}");

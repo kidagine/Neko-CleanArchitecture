@@ -5,12 +5,17 @@ namespace NekoPetShop.Infrastructure.SQLData
 {
     public class NekoPetShopContext : DbContext
     {
-        public NekoPetShopContext(DbContextOptions<NekoPetShopContext> opt) : base(opt)
+        public NekoPetShopContext(DbContextOptions<NekoPetShopContext> options) : base(options)
         {
 
         }
 
-        public DbSet<Owner> owners { get; set; }
-        public DbSet<Pet> pets { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Pet>().HasOne(p => p.Owner).WithMany(o => o.Pets).OnDelete(DeleteBehavior.SetNull);
+        }
+
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Pet> Pets { get; set; }
     }
 }

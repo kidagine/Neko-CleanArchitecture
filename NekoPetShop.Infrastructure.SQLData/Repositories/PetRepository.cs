@@ -1,59 +1,64 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
-using Microsoft.EntityFrameworkCore;
 
 namespace NekoPetShop.Infrastructure.SQLData.Repositories
 {
     public class PetRepository : IPetRepository
     {
-        private readonly NekoPetShopContext context;
+        private readonly NekoPetShopContext _context;
 
         public PetRepository(NekoPetShopContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
-        public Pet CreatePet(Pet pet)
+        public Pet Create(Pet pet)
         {
-            context.Add(pet);
-            context.SaveChanges();
+            _context.Attach(pet).State = EntityState.Added;
+            _context.SaveChanges();
             return pet;
         }
 
-        public Pet DeletePet(int id)
+        public Pet Update(int id, Pet pet)
         {
-            var entityEntry = context.Remove(new Pet() { Id = id });
-            context.SaveChanges();
+            _context.Attach(pet).State = EntityState.Modified;
+            _context.Entry(pet).Reference(p => p.Owner).IsModified = true;
+            _context.SaveChanges();
+            return pet;
+        }
+
+        public Pet Delete(int id)
+        {
+            var entityEntry = _context.Remove(new Pet() { Id = id });
+            _context.SaveChanges();
             return entityEntry.Entity;
         }
 
-        public IEnumerable<Pet> GetPets()
+        public Pet ReadById(int id)
         {
-            return context.pets;
+            return _context.Pets.ToList().FirstOrDefault(pet => pet.Id == id);
         }
 
-        public IEnumerable<Pet> GetPetsIncludeOwners()
+        public Pet ReadByIdIncludeOwner(int id)
         {
-            return context.pets.Include(p => p.PreviousOwner);
+            return _context.Pets.Include(p => p.Owner).FirstOrDefault(pet => pet.Id == id);
         }
 
-        public Pet UpdatePet(int id, Pet pet)
+        public IEnumerable<Pet> ReadAll(Filter filter = null)
         {
-            var entityEntry = context.Update(pet);
-            context.SaveChanges();
-            return entityEntry.Entity;
+            if (filter.CurrentPage == 0 || filter.ItemsPerPage == 0)
+            {
+                return _context.Pets;
+            }
+            return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage);
         }
 
-        public Pet GetPetById(int id)
+        public IEnumerable<Pet> ReadAllIncludeOwners()
         {
-            return context.pets.ToList().FirstOrDefault(pet => pet.Id == id);
-        }
-
-        public Pet GetPetByIdIncludeOwner(int id)
-        {
-            return context.pets.Include(p => p.PreviousOwner).FirstOrDefault(pet => pet.Id == id);
+            return _context.Pets.Include(p => p.Owner);
         }
     }
 }

@@ -5,11 +5,12 @@ namespace NekoPetShop.Core.ApplicationService
 {
     public interface IOwnerService
     {
-        Owner NewOwner(string firstName, string lastName, string address, string phoneNumber, string email);
-        Owner CreateOwner(Owner owner);
-        Owner UpdateOwner(int id, Owner owner);
-        Owner DeleteOwner(int id);
-        List<Owner> GetOwners();
-        Owner GetOwnerById(int id);
+        Owner New(string firstName, string lastName, string address, string phoneNumber, string email);
+        Owner Create(Owner owner);
+        Owner Update(int id, Owner owner);
+        Owner Delete(int id);
+        Owner ReadById(int id);
+        Owner ReadByIdIncludePets(int id);
+        List<Owner> ReadAll();
     }
 }

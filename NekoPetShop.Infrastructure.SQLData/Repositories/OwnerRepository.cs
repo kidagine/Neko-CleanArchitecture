@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
 
@@ -14,35 +15,40 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             this.context = context;
         }
 
-        public Owner CreateOwner(Owner owner)
+        public Owner Create(Owner owner)
         {
             context.Add(owner);
             context.SaveChanges();
             return owner;
         }
 
-        public Owner DeleteOwner(int id)
+        public Owner Update(int id, Owner owner)
+        {
+            var entityEntry = context.Update(owner);
+            context.SaveChanges();
+            return entityEntry.Entity;
+        }
+
+        public Owner Delete(int id)
         {
             var entityEntry = context.Remove(new Owner() { Id = id });
             context.SaveChanges();
             return entityEntry.Entity;
         }
 
-        public Owner GetOwnerById(int id)
+        public Owner ReadById(int id)
         {
-            return context.owners.ToList().FirstOrDefault(owner => owner.Id == id);
+            return context.Owners.ToList().FirstOrDefault(owner => owner.Id == id);
         }
 
-        public IEnumerable<Owner> GetOwners()
+        public Owner ReadByIdIncludePets(int id)
         {
-            return context.owners.ToList();
+            return context.Owners.Include(p => p.Pets).FirstOrDefault(owner => owner.Id == id);
         }
 
-        public Owner UpdateOwner(int id, Owner owner)
+        public IEnumerable<Owner> ReadAll()
         {
-            var entityEntry = context.Update(owner);
-            context.SaveChanges();
-            return entityEntry.Entity;
+            return context.Owners.ToList();
         }
     }
 }

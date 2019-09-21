@@ -5,12 +5,12 @@ namespace NekoPetShop.Core.DomainService
 {
     public interface IPetRepository
     {
-        Pet CreatePet(Pet pet);
-        Pet UpdatePet(int id, Pet pet);
-        Pet DeletePet(int id);
-        IEnumerable<Pet> GetPets();
-        IEnumerable<Pet> GetPetsIncludeOwners();
-        Pet GetPetById(int id);
-        Pet GetPetByIdIncludeOwner(int id);
+        Pet Create(Pet pet);
+        Pet Update(int id, Pet pet);
+        Pet Delete(int id);
+        Pet ReadById(int id);
+        Pet ReadByIdIncludeOwner(int id);
+        IEnumerable<Pet> ReadAll(Filter filter = null);
+        IEnumerable<Pet> ReadAllIncludeOwners();
     }
 }
