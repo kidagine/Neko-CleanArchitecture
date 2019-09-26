@@ -12,6 +12,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
     {
         private readonly IPetService _petService;
 
+
         public PetsController(IPetService petService)
         {
             _petService = petService;
@@ -23,7 +24,14 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         {
             try
             {
-                return Ok(_petService.ReadAll(filter));
+                List<Pet> filteredPets = _petService.ReadAll(filter);
+                List<Object> specificPets = new List<object>();
+                foreach (Pet pet in filteredPets)
+                {
+                    specificPets.Add(new { pet.Id, pet.Name, pet.Price, ownerFirstName = pet.Owner.FirstName ?? "No owner", ownerLastName = pet.Owner.LastName ?? "No owner" });
+                }
+
+                return Ok(specificPets);
             }
             catch (Exception e)
             {
@@ -31,54 +39,14 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             }
         }
 
-        // GET api/pets/getcheapest
-        [HttpGet]
-        [Route("includeowners")]
-        public ActionResult<IEnumerable<Pet>> GetPetsIncludeOwners()
-        {
-            return _petService.ReadAllIncludeOwners();
-        }
-
-        // GET api/pets/5
+        // GET api/pets/5 -- READ BY ID
         [HttpGet("{id}")]
         public ActionResult<Pet> Get(int id)
         {
             return _petService.ReadById(id);
         }
 
-        // GET api/pets/includeowners?id=5
-        [HttpGet]
-        [Route("includeowner")]
-        public ActionResult<Pet> GetPetByIdIncludeOwner([FromQuery]int id)
-        {
-            return _petService.ReadByIdIncludeOwner(id);
-        }
-
-        // GET api/pets/getcheapest
-        [HttpGet]
-        [Route("getcheapest")]
-        public ActionResult<IEnumerable<Pet>> GetCheapest()
-        {
-            return _petService.ReadCheapest();
-        }
-
-        // GET api/pets/animaltype?type=enum
-        [HttpGet]
-        [Route("animaltype")]
-        public ActionResult<IEnumerable<Pet>> GetByType([FromQuery]AnimalType type)
-        {
-            return _petService.ReadByType(type);
-        }
-
-        // GET api/pets/animaltype?type=enum
-        [HttpGet]
-        [Route("pricetype")]
-        public ActionResult<IEnumerable<Pet>> GetByPrice([FromQuery]SortType type)
-        {
-            return _petService.ReadByPrice(type);
-        }
-
-        // POST api/pets
+        // POST api/pets -- CREATE
         [HttpPost]
         public ActionResult Post([FromBody] Pet pet)
         {
@@ -92,7 +60,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             }
         }
 
-        // PUT api/pets/5
+        // PUT api/pets/5 - UPDATE
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Pet pet)
         {
@@ -110,16 +78,19 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             }
         }
 
-        // DELETE api/pets/5
+        // DELETE api/pets/5 -- DELETE
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            Pet petToDelete = _petService.Delete(id);
-            if (petToDelete == null)
+            try
             {
-                return StatusCode(404,$"Did not find pet with ID: {id}");
+                _petService.Delete(id);
+                return Ok($"Deleted pet with Id: {id}");
             }
-            return Ok($"Deleted pet with ID: {id}");
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
     }
 }

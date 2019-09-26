@@ -23,6 +23,10 @@ namespace NekoPetShop.Infrastructure.SQLData
             Pet dragonPet1 = context.Pets.Add(new Pet() { Name = "Heidi", Type = AnimalType.Dragon, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Color = "White", Owner = owner4, Price = 150 }).Entity;
             Pet dragonPet2 = context.Pets.Add(new Pet() { Name = "Loki", Type = AnimalType.Dragon, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Color = "Grey", Owner = owner4, Price = 180 }).Entity;
 
+            Color colorRed = context.Colors.Add(new Color { Name = "Red" }).Entity;
+            Color colorBlack = context.Colors.Add(new Color { Name = "Black" }).Entity;
+            Color colorWhite = context.Colors.Add(new Color { Name = "White" }).Entity;
+
             owner1.Pets.Add(catPet1);
             owner1.Pets.Add(catPet2);
             owner2.Pets.Add(dogPet1);

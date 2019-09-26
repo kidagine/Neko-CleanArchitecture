@@ -4,7 +4,6 @@ namespace NekoPetShop.Core.Entity
 {
     public enum AnimalType { Cat, Dog, Goat, Dragon };
 
-
     public class Pet
     {
         public int Id { get; set; }

@@ -8,47 +8,81 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {
-        private readonly NekoPetShopContext context;
+        private readonly NekoPetShopContext _context;
+
 
         public OwnerRepository(NekoPetShopContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public Owner Create(Owner owner)
         {
-            context.Add(owner);
-            context.SaveChanges();
+            _context.Attach(owner).State = EntityState.Added;
+            _context.SaveChanges();
             return owner;
         }
 
         public Owner Update(int id, Owner owner)
         {
-            var entityEntry = context.Update(owner);
-            context.SaveChanges();
-            return entityEntry.Entity;
+            _context.Attach(owner).State = EntityState.Modified;
+            _context.Entry(owner).Reference(o => o.Pets).IsModified = true;
+            _context.SaveChanges();
+            return owner;
         }
 
         public Owner Delete(int id)
         {
-            var entityEntry = context.Remove(new Owner() { Id = id });
-            context.SaveChanges();
-            return entityEntry.Entity;
+            Owner owner = ReadById(id);
+            _context.Attach(owner).State = EntityState.Deleted;
+            _context.SaveChanges();
+            return owner;
         }
 
         public Owner ReadById(int id)
         {
-            return context.Owners.ToList().FirstOrDefault(owner => owner.Id == id);
+            return _context.Owners.Include(o => o.Pets).FirstOrDefault(owner => owner.Id == id); 
         }
 
-        public Owner ReadByIdIncludePets(int id)
+        public IEnumerable<Owner> ReadAll(Filter filter = null)
         {
-            return context.Owners.Include(p => p.Pets).FirstOrDefault(owner => owner.Id == id);
+            IEnumerable<Owner> filteredOwners;
+            if (filter.CurrentPage != 0 && filter.ItemsPerPage != 0)
+            {
+                if (filter.OrderByType == OrderByType.Ascending)
+                {
+                    filteredOwners = SortByType(filter).Include(o => o.Pets);
+                }
+                else
+                {
+                    filteredOwners = SortByType(filter).Include(o => o.Pets).Reverse();
+                }
+            }
+            filteredOwners = _context.Owners.Include(o => o.Pets);
+            return filteredOwners;
         }
 
-        public IEnumerable<Owner> ReadAll()
+        private IQueryable<Owner> SortByType(Filter filter)
         {
-            return context.Owners.ToList();
+            switch (filter.SortType)
+            {
+                case SortType.Id:
+                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Id);
+                case SortType.Name:
+                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.FirstName);
+                case SortType.Birthday:
+                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.LastName);
+                case SortType.SoldDate:
+                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Address);
+                case SortType.Color:
+                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.PhoneNumber);
+                case SortType.Owner:
+                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Email);
+                case SortType.Price:
+                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Pets);
+                default:
+                    return _context.Owners;
+            }
         }
     }
 }

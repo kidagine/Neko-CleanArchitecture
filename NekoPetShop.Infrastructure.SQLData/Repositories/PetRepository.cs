@@ -10,6 +10,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
     {
         private readonly NekoPetShopContext _context;
 
+
         public PetRepository(NekoPetShopContext context)
         {
             _context = context;
@@ -32,33 +33,59 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Pet Delete(int id)
         {
-            var entityEntry = _context.Remove(new Pet() { Id = id });
+            Pet pet = ReadById(id);
+            _context.Attach(pet).State = EntityState.Deleted;
             _context.SaveChanges();
-            return entityEntry.Entity;
+            return pet;
         }
 
         public Pet ReadById(int id)
         {
-            return _context.Pets.ToList().FirstOrDefault(pet => pet.Id == id);
-        }
-
-        public Pet ReadByIdIncludeOwner(int id)
-        {
-            return _context.Pets.Include(p => p.Owner).FirstOrDefault(pet => pet.Id == id);
+            return _context.Pets.Include(p => p.Owner).FirstOrDefault(pet => pet.Id == id);     
         }
 
         public IEnumerable<Pet> ReadAll(Filter filter = null)
         {
-            if (filter.CurrentPage == 0 || filter.ItemsPerPage == 0)
+            IEnumerable<Pet> filteredPets;
+            if (filter.CurrentPage != 0 && filter.ItemsPerPage != 0)
             {
-                return _context.Pets;
+                if (filter.OrderByType == OrderByType.Ascending)
+                {
+                    filteredPets = SortByType(filter).Include(p => p.Owner);
+                }
+                else
+                {
+                    filteredPets = SortByType(filter).Include(p => p.Owner).Reverse();
+                }
             }
-            return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage);
+            else
+            {
+                filteredPets = _context.Pets.Include(p => p.Owner);
+            }
+            return filteredPets;
         }
 
-        public IEnumerable<Pet> ReadAllIncludeOwners()
+        private IQueryable<Pet> SortByType(Filter filter)
         {
-            return _context.Pets.Include(p => p.Owner);
+            switch (filter.SortType)
+            {
+                case SortType.Id:
+                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Id);
+                case SortType.Name:
+                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Name);
+                case SortType.Birthday:
+                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Birthdate);
+                case SortType.SoldDate:
+                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.SoldDate);
+                case SortType.Color:
+                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Color);
+                case SortType.Owner:
+                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Owner);
+                case SortType.Price:
+                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Price);
+                default:
+                    return _context.Pets;
+            }
         }
     }
 }

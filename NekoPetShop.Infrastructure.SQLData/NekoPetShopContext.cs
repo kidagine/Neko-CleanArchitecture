@@ -15,6 +15,7 @@ namespace NekoPetShop.Infrastructure.SQLData
             modelBuilder.Entity<Pet>().HasOne(p => p.Owner).WithMany(o => o.Pets).OnDelete(DeleteBehavior.SetNull);
         }
 
+        public DbSet<Color> Colors { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Pet> Pets { get; set; }
     }

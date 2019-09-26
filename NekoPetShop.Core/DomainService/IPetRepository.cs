@@ -9,8 +9,6 @@ namespace NekoPetShop.Core.DomainService
         Pet Update(int id, Pet pet);
         Pet Delete(int id);
         Pet ReadById(int id);
-        Pet ReadByIdIncludeOwner(int id);
         IEnumerable<Pet> ReadAll(Filter filter = null);
-        IEnumerable<Pet> ReadAllIncludeOwners();
     }
 }

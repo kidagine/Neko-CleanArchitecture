@@ -26,10 +26,12 @@ namespace NekoPetShop.UI.RestAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NekoPetShopContext>(opt => opt.UseSqlite("Data Source=petApp.db"));
-            services.AddScoped<IPetRepository, PetRepository>();
-            services.AddScoped<IPetService, PetService>();
+            services.AddScoped<IColorRepository, ColorRepository>();
+            services.AddScoped<IColorService, ColorService>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
             services.AddScoped<IOwnerService, OwnerService>();
+            services.AddScoped<IPetRepository, PetRepository>();
+            services.AddScoped<IPetService, PetService>();
 
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

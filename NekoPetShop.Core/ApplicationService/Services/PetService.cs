@@ -25,29 +25,44 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public Pet Create(Pet pet)
         {
-            ValidatePet(pet);
+            if (pet.Id != default)
+            {
+                throw new NotSupportedException($"The pet id should not be specified");
+            }
+            if (string.IsNullOrEmpty(pet.Name))
+            {
+                throw new InvalidDataException("You need to specify the pet's name.");
+            }
             return _petRepository.Create(pet);
         }
 
         public Pet Update(int id, Pet pet)
         {
-            ValidatePet(pet);
+            pet = _petRepository.ReadById(id);
+            if (pet == null)
+            {
+                throw new NullReferenceException($"The pet with Id: {id} does not exist");
+            }
+            if (string.IsNullOrEmpty(pet.Name))
+            {
+                throw new InvalidDataException("You need to specify the pet's name.");
+            }
             return _petRepository.Update(id, pet);
         }
 
         public Pet Delete(int id)
         {
+            Pet pet = _petRepository.ReadById(id);
+            if (pet == null)
+            {
+                throw new NullReferenceException($"The pet with Id: {id} does not exist");
+            }
             return _petRepository.Delete(id);
         }
 
         public Pet ReadById(int id)
         {
             return _petRepository.ReadById(id);
-        }
-
-        public Pet ReadByIdIncludeOwner(int id)
-        {
-            return _petRepository.ReadByIdIncludeOwner(id);
         }
 
         public List<Pet> ReadAll(Filter filter = null)
@@ -57,48 +72,6 @@ namespace NekoPetShop.Core.ApplicationService.Services
                 throw new InvalidDataException("Current Page and Items Page have to be zero or more");
             }
             return _petRepository.ReadAll(filter).ToList();
-        }
-
-        public List<Pet> ReadAllIncludeOwners()
-        {
-            return _petRepository.ReadAllIncludeOwners().ToList();
-        }
-
-        public List<Pet> ReadByType(AnimalType type)
-        {
-            List<Pet> filteredPetsList = new List<Pet>();
-            foreach (Pet p in _petRepository.ReadAll().ToList())
-            {
-                if (p.Type == type)
-                {
-                    filteredPetsList.Add(p);
-                }
-            }
-            return filteredPetsList;
-        }
-
-        public List<Pet> ReadByPrice(SortType type)
-        {
-            if (type == SortType.Ascending)
-            {
-                return ReadAll().OrderBy(o => o.Price).ToList();
-            }
-            else
-            {
-                return ReadAll().OrderByDescending(o => o.Price).ToList();
-            }
-        }
-        public List<Pet> ReadCheapest()
-        {
-            return ReadByPrice(SortType.Ascending).Take(5).ToList();
-        }
-
-        private void ValidatePet(Pet pet)
-        {
-            if (string.IsNullOrEmpty(pet.Name))
-            {
-                throw new InvalidDataException("You need to specify the pet's name.");
-            }
         }
     }
 }
