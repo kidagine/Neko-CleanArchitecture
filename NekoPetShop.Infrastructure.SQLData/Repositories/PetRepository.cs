@@ -41,7 +41,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Pet ReadById(int id)
         {
-            return _context.Pets.Include(p => p.Owner).FirstOrDefault(pet => pet.Id == id);     
+            return _context.Pets.Include(p => p.Owner).FirstOrDefault(p => p.Id == id);     
         }
 
         public IEnumerable<Pet> ReadAll(Filter filter = null)
@@ -51,11 +51,11 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             {
                 if (filter.OrderByType == OrderByType.Ascending)
                 {
-                    filteredPets = SortByType(filter).Include(p => p.Owner);
+                    filteredPets = SortByType(filter);
                 }
                 else
                 {
-                    filteredPets = SortByType(filter).Include(p => p.Owner).Reverse();
+                    filteredPets = SortByType(filter).Reverse();
                 }
             }
             else
@@ -65,24 +65,24 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             return filteredPets;
         }
 
-        private IQueryable<Pet> SortByType(Filter filter)
+        private IEnumerable<Pet> SortByType(Filter filter)
         {
             switch (filter.SortType)
             {
                 case SortType.Id:
-                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Id);
+                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Id);
                 case SortType.Name:
-                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Name);
+                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Name);
                 case SortType.Birthday:
-                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Birthdate);
+                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Birthdate);
                 case SortType.SoldDate:
-                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.SoldDate);
+                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.SoldDate);
                 case SortType.Color:
-                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Color);
+                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.PetColors);
                 case SortType.Owner:
-                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Owner);
+                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Owner);
                 case SortType.Price:
-                    return _context.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Price);
+                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Price);
                 default:
                     return _context.Pets;
             }

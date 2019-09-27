@@ -68,13 +68,13 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return _ownerRepository.ReadById(id);
         }
 
-        public List<Owner> ReadAll(Filter filter = null)
+        public List<Owner> ReadAll(Filter filter)
         {
             if (filter.CurrentPage < 0 || filter.ItemsPerPage < 0)
             {
                 throw new InvalidDataException("Current Page and Items Page have to be zero or more");
             }
-            return _ownerRepository.ReadAll().ToList();
+            return _ownerRepository.ReadAll(filter).ToList();
         }
     }
 }

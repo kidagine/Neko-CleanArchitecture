@@ -6,6 +6,6 @@ namespace NekoPetShop.Core.Entity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Pet> Pets { get; set; }
+        public List<PetColor> PetColors { get; set; }
     }
 }

@@ -66,7 +66,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
             {
                 throw new InvalidDataException("Current Page and Items Page have to be zero or more");
             }
-            return _colorRepository.ReadAll().ToList();
+            return _colorRepository.ReadAll(filter).ToList();
         }
     }
 }

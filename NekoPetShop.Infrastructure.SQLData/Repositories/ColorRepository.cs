@@ -26,7 +26,6 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
         public Color Update(Color color)
         {
             _context.Attach(color).State = EntityState.Modified;
-            _context.Entry(color).Reference(c => c.Pets).IsModified = true;
             _context.SaveChanges();
             return color;
         }
@@ -41,13 +40,27 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Color ReadById(int id)
         {
-            return _context.Colors.Include(c => c.Pets).FirstOrDefault(color => color.Id == id);
+            return _context.Colors.FirstOrDefault(c => c.Id == id);
         }
 
         public IEnumerable<Color> ReadAll(Filter filter = null)
         {
             IEnumerable<Color> filteredColors;
-            filteredColors = _context.Colors.Include(c => c.Pets);
+            if (filter.CurrentPage != 0 && filter.ItemsPerPage != 0)
+            {
+                if (filter.OrderByType == OrderByType.Ascending)
+                {
+                    filteredColors = _context.Colors.Include(c => c.PetColors).ThenInclude(pc => pc.Color).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(c => c.Id);
+                }
+                else
+                {
+                    filteredColors = _context.Colors.Include(c => c.PetColors).ThenInclude(pc => pc.Color).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(c => c.Id).Reverse();
+                }
+            }
+            else
+            {
+                filteredColors = _context.Colors;
+            }
             return filteredColors;
         }
     }

@@ -17,9 +17,9 @@ namespace NekoPetShop.Core.ApplicationService.Services
             _petRepository = petRepository;
         }
 
-        public Pet New(string name, AnimalType type, DateTime birthdate, DateTime soldDate, string color, Owner previousOwner, double price)
+        public Pet New(string name, AnimalType type, DateTime birthdate, DateTime soldDate, Owner previousOwner, double price)
         {
-            Pet newPet = new Pet() { Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Color = color, Owner = previousOwner, Price = price };
+            Pet newPet = new Pet() { Name = name, Type = type, Birthdate = birthdate, SoldDate = soldDate, Owner = previousOwner, Price = price };
             return newPet;
         }
 

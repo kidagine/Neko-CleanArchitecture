@@ -44,45 +44,25 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             return _context.Owners.Include(o => o.Pets).FirstOrDefault(owner => owner.Id == id); 
         }
 
-        public IEnumerable<Owner> ReadAll(Filter filter = null)
+        public IEnumerable<Owner> ReadAll(Filter filter)
         {
             IEnumerable<Owner> filteredOwners;
             if (filter.CurrentPage != 0 && filter.ItemsPerPage != 0)
             {
                 if (filter.OrderByType == OrderByType.Ascending)
                 {
-                    filteredOwners = SortByType(filter).Include(o => o.Pets);
+                    return _context.Owners.Include(o => o.Pets).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(c => c.Id);
                 }
                 else
                 {
-                    filteredOwners = SortByType(filter).Include(o => o.Pets).Reverse();
+                    return _context.Owners.Include(o => o.Pets).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(c => c.Id).Reverse();
                 }
             }
-            filteredOwners = _context.Owners.Include(o => o.Pets);
-            return filteredOwners;
-        }
-
-        private IQueryable<Owner> SortByType(Filter filter)
-        {
-            switch (filter.SortType)
+            else
             {
-                case SortType.Id:
-                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Id);
-                case SortType.Name:
-                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.FirstName);
-                case SortType.Birthday:
-                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.LastName);
-                case SortType.SoldDate:
-                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Address);
-                case SortType.Color:
-                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.PhoneNumber);
-                case SortType.Owner:
-                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Email);
-                case SortType.Price:
-                    return _context.Owners.Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(o => o.Pets);
-                default:
-                    return _context.Owners;
+                filteredOwners = _context.Owners.Include(o => o.Pets);
             }
+            return filteredOwners;
         }
     }
 }

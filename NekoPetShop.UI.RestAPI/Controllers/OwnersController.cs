@@ -24,7 +24,14 @@ namespace NekoPetShop.UI.RestAPI.Controllers
         {
             try
             {
-                return _ownerService.ReadAll(filter);
+                List<Owner> filteredOwners = _ownerService.ReadAll(filter);
+                List<Object> specificOwners = new List<object>();
+                foreach (Owner owner in filteredOwners)
+                {
+                    specificOwners.Add(new { owner.Id, owner.FirstName, owner.LastName, petName = owner.Pets[0].Name ?? "No owner" });
+                }
+    
+                return Ok(specificOwners);
             }
             catch (Exception e)
             {
