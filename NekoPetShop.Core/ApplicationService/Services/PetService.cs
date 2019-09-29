@@ -36,18 +36,18 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return _petRepository.Create(pet);
         }
 
-        public Pet Update(int id, Pet pet)
+        public Pet Update(Pet pet)
         {
-            pet = _petRepository.ReadById(id);
+            pet = _petRepository.ReadById(pet.Id);
             if (pet == null)
             {
-                throw new NullReferenceException($"The pet with Id: {id} does not exist");
+                throw new NullReferenceException($"The pet with Id: {pet.Id} does not exist");
             }
             if (string.IsNullOrEmpty(pet.Name))
             {
                 throw new InvalidDataException("You need to specify the pet's name.");
             }
-            return _petRepository.Update(id, pet);
+            return _petRepository.Update(pet);
         }
 
         public Pet Delete(int id)

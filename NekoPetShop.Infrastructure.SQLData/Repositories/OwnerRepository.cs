@@ -23,10 +23,10 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             return owner;
         }
 
-        public Owner Update(int id, Owner owner)
+        public Owner Update(Owner owner)
         {
             _context.Attach(owner).State = EntityState.Modified;
-            _context.Entry(owner).Reference(o => o.Pets).IsModified = true;
+            _context.Entry(owner).Collection(o => o.Pets).IsModified = true;
             _context.SaveChanges();
             return owner;
         }
@@ -55,7 +55,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
                 }
                 else
                 {
-                    return _context.Owners.Include(o => o.Pets).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(c => c.Id).Reverse();
+                    return _context.Owners.Include(o => o.Pets).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderByDescending(c => c.Id);
                 }
             }
             else

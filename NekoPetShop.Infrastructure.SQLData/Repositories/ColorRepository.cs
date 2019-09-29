@@ -26,6 +26,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
         public Color Update(Color color)
         {
             _context.Attach(color).State = EntityState.Modified;
+            _context.Entry(color).Collection(c => c.PetColors).IsModified = true;
             _context.SaveChanges();
             return color;
         }
@@ -54,7 +55,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
                 }
                 else
                 {
-                    filteredColors = _context.Colors.Include(c => c.PetColors).ThenInclude(pc => pc.Color).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(c => c.Id).Reverse();
+                    filteredColors = _context.Colors.Include(c => c.PetColors).ThenInclude(pc => pc.Color).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderByDescending(c => c.Id).Reverse();
                 }
             }
             else

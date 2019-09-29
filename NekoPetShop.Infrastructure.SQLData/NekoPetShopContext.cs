@@ -13,7 +13,6 @@ namespace NekoPetShop.Infrastructure.SQLData
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pet>().HasOne(p => p.Owner).WithMany(o => o.Pets).OnDelete(DeleteBehavior.SetNull);
-            modelBuilder.Entity<Owner>().HasMany(o => o.Pets).WithOne(p => p.Owner).OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<PetColor>().HasKey(pc => new { pc.PetId, pc.ColorId });
             modelBuilder.Entity<PetColor>().HasOne(pc => pc.Pet).WithMany(p => p.PetColors).HasForeignKey(pc => pc.PetId);
             modelBuilder.Entity<PetColor>().HasOne(pc => pc.Color).WithMany(c => c.PetColors).HasForeignKey(pc => pc.ColorId);

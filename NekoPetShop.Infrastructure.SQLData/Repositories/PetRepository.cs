@@ -23,10 +23,11 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             return pet;
         }
 
-        public Pet Update(int id, Pet pet)
+        public Pet Update(Pet pet)
         {
             _context.Attach(pet).State = EntityState.Modified;
             _context.Entry(pet).Reference(p => p.Owner).IsModified = true;
+            _context.Entry(pet).Collection(p => p.PetColors).IsModified = true;
             _context.SaveChanges();
             return pet;
         }
@@ -77,8 +78,6 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
                     return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Birthdate);
                 case SortType.SoldDate:
                     return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.SoldDate);
-                case SortType.Color:
-                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.PetColors);
                 case SortType.Owner:
                     return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Owner);
                 case SortType.Price:

@@ -70,7 +70,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
                 {
                     return BadRequest("Parameter ID and pet ID have to be the same");
                 }
-                return Ok(_petService.Update(id, pet));
+                return Ok(_petService.Update(pet));
             }
             catch (Exception e)
             {

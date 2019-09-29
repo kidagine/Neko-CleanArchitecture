@@ -40,7 +40,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return _ownerRepository.Create(owner);
         }
 
-        public Owner Update(int id, Owner owner)
+        public Owner Update(Owner owner)
         {
             if (string.IsNullOrEmpty(owner.FirstName))
             {
@@ -50,7 +50,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
             {
                 throw new InvalidDataException("You need to specify the owner's last name.");
             }
-            return _ownerRepository.Update(id, owner);
+            return _ownerRepository.Update(owner);
         }
 
         public Owner Delete(int id)
