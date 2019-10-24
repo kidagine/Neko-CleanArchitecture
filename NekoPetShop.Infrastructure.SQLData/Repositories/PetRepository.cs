@@ -25,9 +25,18 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Pet Update(Pet pet)
         {
+
+            //_context.Attach(pet).State = EntityState.Modified;
+            //_context.Entry(pet).Reference(p => p.Owner).IsModified = true;
+            //_context.Entry(pet).Collection(p => p.PetColors).IsModified = true;
+            //_context.SaveChanges();
+            var petColors = new List<PetColor>(pet.PetColors);
             _context.Attach(pet).State = EntityState.Modified;
-            _context.Entry(pet).Reference(p => p.Owner).IsModified = true;
-            _context.Entry(pet).Collection(p => p.PetColors).IsModified = true;
+            _context.PetColors.RemoveRange(_context.PetColors.Where(pc => pc.PetId == pet.Id));
+            foreach (PetColor pc in petColors)
+            {
+                _context.Entry(pc).State = EntityState.Modified;
+            }
             _context.SaveChanges();
             return pet;
         }
@@ -42,7 +51,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Pet ReadById(int id)
         {
-            return _context.Pets.Include(p => p.Owner).FirstOrDefault(p => p.Id == id);     
+            return _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).FirstOrDefault(p => p.Id == id);     
         }
 
         public IEnumerable<Pet> ReadAll(Filter filter = null)

@@ -28,7 +28,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
                 List<Object> specificPets = new List<object>();
                 foreach (Pet pet in filteredPets)
                 {
-                    specificPets.Add(new { pet.Id, pet.Name, pet.Price, ownerFirstName = pet.Owner.FirstName ?? "No owner", ownerLastName = pet.Owner.LastName ?? "No owner", pet.PetColors });
+                    specificPets.Add(new { pet.Id, pet.Name, pet.Price, pet.Type, ownerFirstName = pet.Owner.FirstName ?? "No owner", ownerLastName = pet.Owner.LastName ?? "No owner" });
                 }
 
                 return Ok(specificPets);

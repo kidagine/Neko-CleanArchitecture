@@ -15,30 +15,51 @@ namespace NekoPetShop.UI.RestAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+			Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+		public IHostingEnvironment Environment { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NekoPetShopContext>(opt => opt.UseSqlite("Data Source=petApp.db"));
-            services.AddScoped<IColorRepository, ColorRepository>();
-            services.AddScoped<IColorService, ColorService>();
-            services.AddScoped<IOwnerRepository, OwnerRepository>();
-            services.AddScoped<IOwnerService, OwnerService>();
-            services.AddScoped<IPetRepository, PetRepository>();
-            services.AddScoped<IPetService, PetService>();
+			services.AddCors();
 
-            services.AddMvc().AddJsonOptions(options => {
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+			if (Environment.IsDevelopment())
+			{
+				services.AddDbContext<NekoPetShopContext>(opt =>
+				{
+					opt.UseSqlite("Data Source=petApp.db");
+				});
+			}
+			else
+			{
+				services.AddDbContext<NekoPetShopContext>(opt =>
+				{
+					opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection"));
+				});
+			}
+
+			services.AddScoped<IColorRepository, ColorRepository>();
+			services.AddScoped<IColorService, ColorService>();
+
+			services.AddScoped<IOwnerRepository, OwnerRepository>();
+			services.AddScoped<IOwnerService, OwnerService>();
+
+			services.AddScoped<IPetRepository, PetRepository>();
+			services.AddScoped<IPetService, PetService>();
+
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			services.AddMvc().AddJsonOptions(options => {
+				options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.MaxDepth = 3;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +86,12 @@ namespace NekoPetShop.UI.RestAPI
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+			app.UseCors(builder =>
+			{
+				builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+			});
+
+			app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
