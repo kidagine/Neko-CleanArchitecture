@@ -1,33 +1,29 @@
-<!-- <ul class="pets">
-  <li *ngFor="let pet of pets">
-      <a routerLink="/detail/{{pet.id}}">
-        <span class="badge">{{pet.id}}</span> {{pet.name}} {{pet.birthDate}} {{pet.price}}
-      </a>
-      <button class="delete" title="delete pet"
-      (click)="delete(pet)">x</button>
-  </li>
-</ul> -->
-  <h1 id="page-heading">SHOP</h1>
-  <div id="main-container">
-      <div id="buttons-container">
-          <div id="button-container">
-            <a id="button">Kitties</a>
-          </div>
-          <div id="button-container">
-            <a id="button">Doggos</a>
-          </div>
-          <div id="button-container">
-            <a id="button">Donkos</a>
-          </div>
-        </div>
-    <!-- <div id="sort-container">
-    </div> -->
-    <div class="wrapper-product">
-      <ul class="product-list" *ngFor="let pet of pets">
-        <div class="product-list-item">
-          <img src="https://i.gifer.com/tEo.gif" width="260" height="260" routerLink="/detail/{{pet.id}}">
-          <h1>
-            {{ pet.name }} <br> {{ pet.price }}.99€ {{ pet.type }}
-          </h1>
-        </div>
-      </ul>
+<app-navigation-bar></app-navigation-bar>
+<h1 id="page-heading">SHOP</h1>
+<div id="main-container">
+  <div id="buttons-container">
+    <div id="button-container">
+      <a id="button">Kitties</a>
+    </div>
+    <div id="button-container">
+      <a id="button">Doggos</a>
+    </div>
+    <div id="button-container">
+      <a id="button">Donkos</a>
+    </div>
+  </div>
+  <div class="wrapper-product" *ngIf="pets">
+    <ul class="product-list" *ngFor="let pet of pets">
+      <div class="product-list-item">
+        <img src="https://i.gifer.com/tEo.gif" width="260" height="260" routerLink="/pet/{{pet.id}}">
+        <p>
+          {{ pet.name }} <br> {{ pet.price }}.99€ {{ pet.type }}
+        </p>
+      </div>
+    </ul>
+  </div>
+</div>
+
+<div class="loading-ring-container" *ngIf="!pets">
+  <div class="loading-ring"></div>
+</div>
