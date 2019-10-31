@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.ApplicationService;
+using NekoPetShop.Core.Entity.Filtering;
 
 namespace NekoPetShop.UI.RestAPI.Controllers
 {
@@ -20,18 +21,17 @@ namespace NekoPetShop.UI.RestAPI.Controllers
 
         // GET api/pets -- READ ALL
         [HttpGet]
-        public ActionResult<IEnumerable<Pet>> Get([FromQuery] Filter filter)
+        public ActionResult<FilteredList<Pet>> Get([FromQuery] Filter filter)
         {
             try
             {
-                List<Pet> filteredPets = _petService.ReadAll(filter);
-                List<Object> specificPets = new List<object>();
-                foreach (Pet pet in filteredPets)
+                FilteredList<Pet> filteredPets = _petService.ReadAll(filter);
+                List<Object> advancedFilteredPets = new List<object>();
+                foreach (Pet pet in filteredPets.List)
                 {
-                    specificPets.Add(new { pet.Id, pet.Name, pet.Price, pet.Type, ownerFirstName = pet.Owner.FirstName ?? "No owner", ownerLastName = pet.Owner.LastName ?? "No owner" });
+                    advancedFilteredPets.Add(new { pet.Id, pet.Name, pet.Price, pet.Type, ownerFirstName = pet.Owner.FirstName ?? "No owner", ownerLastName = pet.Owner.LastName ?? "No owner" });
                 }
-
-                return Ok(specificPets);
+				return Ok(new FilteredList<object> { TotalPages = filteredPets.TotalPages, List = advancedFilteredPets }); ;
             }
             catch (Exception e)
             {

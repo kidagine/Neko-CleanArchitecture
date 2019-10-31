@@ -10,12 +10,15 @@ import { PetService } from '../shared/pet.service';
 })
 export class PetListComponent implements OnInit {
   pets: Pet[];
+  totalPages: number;
+  currentPage: number;
+  itemsPerPage: number = 6;
 
   constructor(private petService: PetService) { }
 
-  getPets(): void {
-    this.petService.getPets()
-    .subscribe(pets => this.pets = pets);
+  getPets(currentPage: number): void {
+    this.petService.getPets(currentPage, this.itemsPerPage, 1)
+    .subscribe(filteredList => {this.pets = filteredList.list; this.totalPages = filteredList.totalPages;});
   }
 
   add(name: string): void {
@@ -27,13 +30,17 @@ export class PetListComponent implements OnInit {
       });
   }
 
+  counter(i: number) {
+    return new Array(i);
+  }
+
   delete(pet: Pet): void {
     this.pets = this.pets.filter(p => p !== pet);
     this.petService.deletePet(pet).subscribe();
   }
 
   ngOnInit() {
-    this.getPets()
+    this.getPets(1)
   }
 
 }

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
+using NekoPetShop.Core.Entity.Filtering;
 
 namespace NekoPetShop.Core.ApplicationService
 {
@@ -11,6 +11,6 @@ namespace NekoPetShop.Core.ApplicationService
         Pet Update(Pet pet);
         Pet Delete(int id);
         Pet ReadById(int id);
-        List<Pet> ReadAll(Filter filter = null);
+        FilteredList<Pet> ReadAll(Filter filter = null);
     }
 }

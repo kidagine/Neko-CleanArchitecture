@@ -22,8 +22,15 @@ namespace NekoPetShop.Infrastructure.SQLData
             Pet goatPet2 = context.Pets.Add(new Pet() { Name = "Rex", Type = AnimalType.Goat, Birthdate = DateTime.Parse("08/10/2018"), SoldDate = DateTime.Parse("01/12/2018"), Owner = owner3, Price = 40 }).Entity;
             Pet dragonPet1 = context.Pets.Add(new Pet() { Name = "Heidi", Type = AnimalType.Dragon, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
             Pet dragonPet2 = context.Pets.Add(new Pet() { Name = "Loki", Type = AnimalType.Dragon, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
+			Pet PugPet1 = context.Pets.Add(new Pet() { Name = "Sam", Type = AnimalType.Pug, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
+			Pet PugPet2 = context.Pets.Add(new Pet() { Name = "Bibi", Type = AnimalType.Pug, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
+			Pet gundamPet1 = context.Pets.Add(new Pet() { Name = "Bandai", Type = AnimalType.Gundam, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
+			Pet gundamPet2 = context.Pets.Add(new Pet() { Name = "Oda", Type = AnimalType.Gundam, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
+			Pet broomPet1 = context.Pets.Add(new Pet() { Name = "Bob", Type = AnimalType.Broom, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
+			Pet broomPet2 = context.Pets.Add(new Pet() { Name = "Dexter", Type = AnimalType.Broom, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
 
-            Color colorRed = context.Colors.Add(new Color { Name = "Red" }).Entity;
+
+			Color colorRed = context.Colors.Add(new Color { Name = "Red" }).Entity;
             Color colorBlack = context.Colors.Add(new Color { Name = "Black" }).Entity;
             Color colorWhite = context.Colors.Add(new Color { Name = "White" }).Entity;
 

@@ -11,6 +11,18 @@
     <div id="button-container">
       <a id="button">Donkos</a>
     </div>
+    <div id="button-container">
+        <a id="button">Dragis</a>
+    </div>
+    <div id="button-container">
+        <a id="button">Puggies</a>
+    </div>
+    <div id="button-container">
+        <a id="button">Gundams</a>
+    </div>
+    <div id="button-container">
+        <a id="button">Brooms</a>
+    </div>
   </div>
   <div class="wrapper-product" *ngIf="pets">
     <ul class="product-list" *ngFor="let pet of pets">
@@ -22,7 +34,18 @@
       </div>
     </ul>
   </div>
+  <div  class="paging-container">
+    <div *ngFor='let in of counter(totalPages); let i = index'>
+      <button class="paging-button" (click)="getPets(i + 1)">{{ i + 1 }}</button>
+    </div>
+  </div>
 </div>
+<!-- <div class="paging-container">
+    <button class="paging-button">&laquo;</button>
+    <div *ngFor='let in of counter(totalPages); let i = index'>
+      <button class="paging-button" (click)="getPets(i + 1)">{{ i + 1 }}</button>
+    </div>
+    <button class="paging-button">&laquo;</button> -->
 
 <div class="loading-ring-container" *ngIf="!pets">
   <div class="loading-ring"></div>

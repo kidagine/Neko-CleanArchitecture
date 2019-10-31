@@ -1,35 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Pet } from './pet.model';
+import { FilteredList } from '../../shared/models/filteredList.model';
+
 
 
 @Injectable({ providedIn: 'root' })
 export class PetService {
+  private apiUrl = 'http://neko-petshop.azurewebsites.net/api/pets';
 
-  private petsUrl = 'http://neko-petshop.azurewebsites.net/api/pets';  // URL to web api
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+  constructor(private http: HttpClient) { }
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  /** GET all pets */
+  getAllPets(): Observable<FilteredList<Pet>> {
+    return this.http.get<FilteredList<Pet>>(this.apiUrl);
+  }
 
-  /** GET pets from the server */
-  getPets(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.petsUrl)
-      .pipe(
-        catchError(this.handleError<Pet[]>('getPets', []))
-      );
+  /** GET filtered pets */
+  getPets(currentPage: number, itemsPerPage: number, sortType?: number ): Observable<FilteredList<Pet>> {
+    const params = new HttpParams()
+      .set('currentPage', currentPage.toString())
+      .set('itemsPerPage', itemsPerPage.toString())
+      .set('sortType', sortType.toString());
+    return this.http.get<FilteredList<Pet>>(this.apiUrl, {params: params});
   }
 
   /** GET pet by id. Return `undefined` when id not found */
   getPetNo404<Data>(id: number): Observable<Pet> {
-    const url = `${this.petsUrl}/?id=${id}`;
+    const url = `${this.apiUrl}/?id=${id}`;
     return this.http.get<Pet[]>(url)
       .pipe(
         map(pets => pets[0]), 
@@ -42,7 +45,7 @@ export class PetService {
 
   /** GET pet by id. Will 404 if id not found */
   getPet(id: number): Observable<Pet> {
-    const url = `${this.petsUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     return this.http.get<Pet>(url).pipe(
       catchError(this.handleError<Pet>(`getPet id=${id}`))
     );
@@ -53,14 +56,14 @@ export class PetService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Pet[]>(`${this.petsUrl}/?name=${term}`).pipe(
+    return this.http.get<Pet[]>(`${this.apiUrl}/?name=${term}`).pipe(
       catchError(this.handleError<Pet[]>('searchPets', []))
     );
   }
 
   /** POST: add a new pet to the server */
   addPet (pet: Pet): Observable<Pet> {
-    return this.http.post<Pet>(this.petsUrl, pet, this.httpOptions).pipe(
+    return this.http.post<Pet>(this.apiUrl, pet, this.httpOptions).pipe(
       tap((newPet: Pet) =>
       catchError(this.handleError<Pet>('addPet'))
     ));
@@ -69,7 +72,7 @@ export class PetService {
   /** DELETE: delete the pet from the server */
   deletePet (pet: Pet | number): Observable<Pet> {
     const id = typeof pet === 'number' ? pet : pet.id;
-    const url = `${this.petsUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
 
     return this.http.delete<Pet>(url, this.httpOptions).pipe(
       catchError(this.handleError<Pet>('deletePet'))
@@ -78,7 +81,7 @@ export class PetService {
 
   /** PUT: update the pet on the server */
   updatePet (pet: Pet): Observable<any> {
-    return this.http.put(this.petsUrl, pet, this.httpOptions).pipe(
+    return this.http.put(this.apiUrl, pet, this.httpOptions).pipe(
       catchError(this.handleError<any>('updatePet'))
     );
   }

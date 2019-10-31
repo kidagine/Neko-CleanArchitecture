@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
+using NekoPetShop.Core.Entity.Filtering;
 
 namespace NekoPetShop.Infrastructure.SQLData.Repositories
 {
@@ -25,7 +26,6 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Pet Update(Pet pet)
         {
-
             //_context.Attach(pet).State = EntityState.Modified;
             //_context.Entry(pet).Reference(p => p.Owner).IsModified = true;
             //_context.Entry(pet).Collection(p => p.PetColors).IsModified = true;
@@ -54,25 +54,33 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             return _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).FirstOrDefault(p => p.Id == id);     
         }
 
-        public IEnumerable<Pet> ReadAll(Filter filter = null)
-        {
-            IEnumerable<Pet> filteredPets;
-            if (filter.CurrentPage != 0 && filter.ItemsPerPage != 0)
-            {
-                if (filter.OrderByType == OrderByType.Ascending)
-                {
-                    filteredPets = SortByType(filter);
-                }
-                else
-                {
-                    filteredPets = SortByType(filter).Reverse();
-                }
-            }
-            else
-            {
-                filteredPets = _context.Pets.Include(p => p.Owner);
-            }
-            return filteredPets;
+		public FilteredList<Pet> ReadAll(Filter filter = null)
+		{
+			FilteredList<Pet> filteredList = new FilteredList<Pet>();
+			if (filter.CurrentPage != 0 && filter.ItemsPerPage != 0)
+			{
+				if (filter.OrderByType == OrderByType.Ascending)
+				{
+					filteredList.List = SortByType(filter);
+				}
+				else
+				{
+					filteredList.List = SortByType(filter).Reverse();
+				}
+			}
+			else
+			{
+				filteredList.List = _context.Pets.Include(p => p.Owner);
+			}
+			if (_context.Pets.Count() % filter.ItemsPerPage != 0)
+			{
+				filteredList.TotalPages = (_context.Pets.Count() / filter.ItemsPerPage) + 1;
+			}
+			else
+			{
+				filteredList.TotalPages = _context.Pets.Count() / filter.ItemsPerPage;
+			}
+			return filteredList;
         }
 
         private IEnumerable<Pet> SortByType(Filter filter)

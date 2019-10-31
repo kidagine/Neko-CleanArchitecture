@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.DomainService;
+using NekoPetShop.Core.Entity.Filtering;
 
 namespace NekoPetShop.Core.ApplicationService.Services
 {
@@ -65,13 +64,13 @@ namespace NekoPetShop.Core.ApplicationService.Services
             return _petRepository.ReadById(id);
         }
 
-        public List<Pet> ReadAll(Filter filter = null)
+        public FilteredList<Pet> ReadAll(Filter filter = null)
         {
             if (filter.CurrentPage < 0 || filter.ItemsPerPage < 0)
             {
                 throw new InvalidDataException("Current Page and Items Page have to be zero or more");
             }
-            return _petRepository.ReadAll(filter).ToList();
+            return _petRepository.ReadAll(filter);
         }
     }
 }

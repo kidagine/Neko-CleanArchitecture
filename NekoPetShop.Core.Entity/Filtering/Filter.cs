@@ -3,7 +3,6 @@
     public enum OrderByType { Ascending, Descending };
     public enum SortType { Id, Name, Birthday, SoldDate, Owner, Price };
 
-
     public class Filter
     {
         public int CurrentPage { get; set; }

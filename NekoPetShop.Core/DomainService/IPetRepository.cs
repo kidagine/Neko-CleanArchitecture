@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using NekoPetShop.Core.Entity;
+﻿using NekoPetShop.Core.Entity;
+using NekoPetShop.Core.Entity.Filtering;
 
 namespace NekoPetShop.Core.DomainService
 {
@@ -9,6 +9,6 @@ namespace NekoPetShop.Core.DomainService
         Pet Update(Pet pet);
         Pet Delete(int id);
         Pet ReadById(int id);
-        IEnumerable<Pet> ReadAll(Filter filter = null);
+        FilteredList<Pet> ReadAll(Filter filter = null);
     }
 }
