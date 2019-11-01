@@ -22,10 +22,11 @@ export class PetService {
   }
 
   /** GET filtered pets */
-  getPets(currentPage: number, itemsPerPage: number, sortType?: number ): Observable<FilteredList<Pet>> {
+  getPets(currentPage: number, itemsPerPage: number, animalType: number, sortType: number ): Observable<FilteredList<Pet>> {
     const params = new HttpParams()
       .set('currentPage', currentPage.toString())
       .set('itemsPerPage', itemsPerPage.toString())
+      .set('animalType', animalType.toString())
       .set('sortType', sortType.toString());
     return this.http.get<FilteredList<Pet>>(this.apiUrl, {params: params});
   }

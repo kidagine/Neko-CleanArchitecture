@@ -16,14 +16,20 @@ namespace NekoPetShop.Infrastructure.SQLData
 
             Pet catPet1 = context.Pets.Add(new Pet() { Name = "Charlie", Type = AnimalType.Cat, Birthdate = DateTime.Parse("01/04/2016"), SoldDate = DateTime.Parse("05/25/2016"), Owner = owner1, Price = 50 }).Entity;
             Pet catPet2 = context.Pets.Add(new Pet() { Name = "Max", Type = AnimalType.Cat, Birthdate = DateTime.Parse("05/08/2018"), SoldDate = DateTime.Parse("08/25/2018"), Owner = owner1, Price = 55 }).Entity;
-            Pet dogPet1 = context.Pets.Add(new Pet() { Name = "Bingo", Type = AnimalType.Dog, Birthdate = DateTime.Parse("12/30/2018"), SoldDate = DateTime.Parse("05/02/2019"), Owner = owner2, Price = 45 }).Entity;
+			Pet catPet3 = context.Pets.Add(new Pet() { Name = "Charlie", Type = AnimalType.Cat, Birthdate = DateTime.Parse("01/04/2016"), SoldDate = DateTime.Parse("05/25/2016"), Owner = owner1, Price = 50 }).Entity;
+			Pet catPet4 = context.Pets.Add(new Pet() { Name = "Max", Type = AnimalType.Cat, Birthdate = DateTime.Parse("05/08/2018"), SoldDate = DateTime.Parse("08/25/2018"), Owner = owner1, Price = 55 }).Entity;
+			Pet catPet5 = context.Pets.Add(new Pet() { Name = "Charlie", Type = AnimalType.Cat, Birthdate = DateTime.Parse("01/04/2016"), SoldDate = DateTime.Parse("05/25/2016"), Owner = owner1, Price = 50 }).Entity;
+			Pet catPet6 = context.Pets.Add(new Pet() { Name = "Max", Type = AnimalType.Cat, Birthdate = DateTime.Parse("05/08/2018"), SoldDate = DateTime.Parse("08/25/2018"), Owner = owner1, Price = 55 }).Entity;
+			Pet catPet7 = context.Pets.Add(new Pet() { Name = "Charlie", Type = AnimalType.Cat, Birthdate = DateTime.Parse("01/04/2016"), SoldDate = DateTime.Parse("05/25/2016"), Owner = owner1, Price = 50 }).Entity;
+			Pet catPet8 = context.Pets.Add(new Pet() { Name = "Max", Type = AnimalType.Cat, Birthdate = DateTime.Parse("05/08/2018"), SoldDate = DateTime.Parse("08/25/2018"), Owner = owner1, Price = 55 }).Entity;
+			Pet dogPet1 = context.Pets.Add(new Pet() { Name = "Bingo", Type = AnimalType.Dog, Birthdate = DateTime.Parse("12/30/2018"), SoldDate = DateTime.Parse("05/02/2019"), Owner = owner2, Price = 45 }).Entity;
             Pet dogPet2 = context.Pets.Add(new Pet() { Name = "Biscuit", Type = AnimalType.Dog, Birthdate = DateTime.Parse("01/15/2017"), SoldDate = DateTime.Parse("10/09/2017"), Owner = owner2, Price = 30 }).Entity;
             Pet goatPet1 = context.Pets.Add(new Pet() { Name = "Paco", Type = AnimalType.Goat, Birthdate = DateTime.Parse("02/24/2019"), SoldDate = DateTime.Parse("08/20/2019"), Owner = owner3, Price = 90 }).Entity;
             Pet goatPet2 = context.Pets.Add(new Pet() { Name = "Rex", Type = AnimalType.Goat, Birthdate = DateTime.Parse("08/10/2018"), SoldDate = DateTime.Parse("01/12/2018"), Owner = owner3, Price = 40 }).Entity;
             Pet dragonPet1 = context.Pets.Add(new Pet() { Name = "Heidi", Type = AnimalType.Dragon, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
             Pet dragonPet2 = context.Pets.Add(new Pet() { Name = "Loki", Type = AnimalType.Dragon, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
-			Pet PugPet1 = context.Pets.Add(new Pet() { Name = "Sam", Type = AnimalType.Pug, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
-			Pet PugPet2 = context.Pets.Add(new Pet() { Name = "Bibi", Type = AnimalType.Pug, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
+			Pet pugPet1 = context.Pets.Add(new Pet() { Name = "Sam", Type = AnimalType.Pug, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
+			Pet pugPet2 = context.Pets.Add(new Pet() { Name = "Bibi", Type = AnimalType.Pug, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
 			Pet gundamPet1 = context.Pets.Add(new Pet() { Name = "Bandai", Type = AnimalType.Gundam, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
 			Pet gundamPet2 = context.Pets.Add(new Pet() { Name = "Oda", Type = AnimalType.Gundam, Birthdate = DateTime.Parse("07/05/2019"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
 			Pet broomPet1 = context.Pets.Add(new Pet() { Name = "Bob", Type = AnimalType.Broom, Birthdate = DateTime.Parse("10/22/2018"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;

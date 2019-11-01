@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Pet } from '../shared/pet.model';
 import { PetService } from '../shared/pet.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-pet-list',
@@ -12,12 +13,30 @@ export class PetListComponent implements OnInit {
   pets: Pet[];
   totalPages: number;
   currentPage: number;
+  animalType: number;
   itemsPerPage: number = 6;
 
-  constructor(private petService: PetService) { }
+  constructor(private petService: PetService, private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+   }
 
-  getPets(currentPage: number): void {
-    this.petService.getPets(currentPage, this.itemsPerPage, 1)
+   this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+         this.router.navigated = false;
+         window.scrollTo(0, 0);
+      }
+  });
+
+}
+  getPets(currentPage: number, animalType?: number ): void {
+    if (!animalType)
+    {
+      animalType = 0;
+    }
+    this.animalType = animalType;
+    this.currentPage = currentPage;
+    this.petService.getPets(currentPage, this.itemsPerPage, animalType, 1)
     .subscribe(filteredList => {this.pets = filteredList.list; this.totalPages = filteredList.totalPages;});
   }
 
@@ -42,5 +61,4 @@ export class PetListComponent implements OnInit {
   ngOnInit() {
     this.getPets(1)
   }
-
 }

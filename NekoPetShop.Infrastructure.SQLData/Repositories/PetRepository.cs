@@ -72,36 +72,76 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 			{
 				filteredList.List = _context.Pets.Include(p => p.Owner);
 			}
-			if (_context.Pets.Count() % filter.ItemsPerPage != 0)
+
+			if (filter.AnimalType == AnimalType.All)
 			{
-				filteredList.TotalPages = (_context.Pets.Count() / filter.ItemsPerPage) + 1;
+				if (_context.Pets.Count() % filter.ItemsPerPage != 0)
+				{
+					filteredList.TotalPages = (_context.Pets.Count() / filter.ItemsPerPage) + 1;
+				}
+				else
+				{
+					filteredList.TotalPages = _context.Pets.Count() / filter.ItemsPerPage;
+				}
 			}
 			else
 			{
-				filteredList.TotalPages = _context.Pets.Count() / filter.ItemsPerPage;
+				int totalFilteredPets = _context.Pets.Where(p => p.Type == filter.AnimalType).Count();
+				if (totalFilteredPets % filter.ItemsPerPage != 0)
+				{
+					filteredList.TotalPages = (totalFilteredPets / filter.ItemsPerPage) + 1;
+				}
+				else
+				{
+					filteredList.TotalPages = totalFilteredPets / filter.ItemsPerPage;
+				}
 			}
+
 			return filteredList;
         }
 
         private IEnumerable<Pet> SortByType(Filter filter)
         {
-            switch (filter.SortType)
-            {
-                case SortType.Id:
-                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Id);
-                case SortType.Name:
-                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Name);
-                case SortType.Birthday:
-                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Birthdate);
-                case SortType.SoldDate:
-                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.SoldDate);
-                case SortType.Owner:
-                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Owner);
-                case SortType.Price:
-                    return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Price);
-                default:
-                    return _context.Pets;
-            }
+			if (filter.AnimalType == AnimalType.All)
+			{
+				switch (filter.SortType)
+				{
+					case SortType.Id:
+						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Id);
+					case SortType.Name:
+						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Name);
+					case SortType.Birthday:
+						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Birthdate);
+					case SortType.SoldDate:
+						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.SoldDate);
+					case SortType.Owner:
+						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Owner);
+					case SortType.Price:
+						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Price);
+					default:
+						return _context.Pets;
+				}
+			}
+			else
+			{
+				switch (filter.SortType)
+				{
+					case SortType.Id:
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Id);
+					case SortType.Name:
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Name);
+					case SortType.Birthday:
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Birthdate);
+					case SortType.SoldDate:
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.SoldDate);
+					case SortType.Owner:
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Owner);
+					case SortType.Price:
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).Skip((filter.CurrentPage - 1) * filter.ItemsPerPage).Take(filter.ItemsPerPage).OrderBy(p => p.Price);
+					default:
+						return _context.Pets.Where(p => p.Type == filter.AnimalType);
+				}
+			}
         }
     }
 }
