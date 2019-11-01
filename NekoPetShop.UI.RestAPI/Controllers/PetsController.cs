@@ -29,7 +29,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
                 List<Object> advancedFilteredPets = new List<object>();
                 foreach (Pet pet in filteredPets.List)
                 {
-                    advancedFilteredPets.Add(new { pet.Id, pet.Name, pet.Price, pet.Type, ownerFirstName = pet.Owner.FirstName ?? "No owner", ownerLastName = pet.Owner.LastName ?? "No owner" });
+                    advancedFilteredPets.Add(new { pet.Id, pet.Name, pet.Price, pet.Type, age = DateTime.Today.Year - pet.Birthdate.Year, ownerFirstName = pet.Owner.FirstName ?? "No owner", ownerLastName = pet.Owner.LastName ?? "No owner" });
                 }
 				return Ok(new FilteredList<object> { TotalPages = filteredPets.TotalPages, List = advancedFilteredPets }); ;
             }
@@ -68,7 +68,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             {
                 if (id != pet.Id)
                 {
-                    return BadRequest("Parameter ID and pet ID have to be the same");
+                    return BadRequest($"Parameter ID({id}) and pet ID({pet.Id}) have to be the same");
                 }
                 return Ok(_petService.Update(pet));
             }

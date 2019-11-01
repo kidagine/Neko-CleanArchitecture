@@ -37,8 +37,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public Pet Update(Pet pet)
         {
-            pet = _petRepository.ReadById(pet.Id);
-            if (pet == null)
+            if (_petRepository.ReadById(pet.Id) == null)
             {
                 throw new NullReferenceException($"The pet with Id: {pet.Id} does not exist");
             }

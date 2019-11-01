@@ -2,7 +2,7 @@ export class Pet {
   id: number;
   name: string;
   type: string;
-  // birthDate: Date;
+  age: number;
   // soldDate: Date;
   Price: number;
 }

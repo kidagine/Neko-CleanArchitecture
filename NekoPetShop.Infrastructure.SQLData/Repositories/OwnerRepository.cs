@@ -41,7 +41,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Owner ReadById(int id)
         {
-            return _context.Owners.Include(o => o.Pets).FirstOrDefault(o => o.Id == id); 
+            return _context.Owners.AsNoTracking().Include(o => o.Pets).FirstOrDefault(o => o.Id == id); 
         }
 
         public IEnumerable<Owner> ReadAll(Filter filter)
@@ -60,7 +60,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
             }
             else
             {
-                filteredOwners = _context.Owners.Include(o => o.Pets);
+                filteredOwners = _context.Owners.AsNoTracking().Include(o => o.Pets);
             }
             return filteredOwners;
         }

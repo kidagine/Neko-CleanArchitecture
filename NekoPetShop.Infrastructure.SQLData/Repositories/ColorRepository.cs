@@ -25,7 +25,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Color Update(Color color)
         {
-            _context.Attach(color).State = EntityState.Modified;
+			_context.Attach(color).State = EntityState.Modified;
             _context.Entry(color).Collection(c => c.PetColors).IsModified = true;
             _context.SaveChanges();
             return color;
@@ -41,7 +41,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Color ReadById(int id)
         {
-            return _context.Colors.FirstOrDefault(c => c.Id == id);
+            return _context.Colors.AsNoTracking().FirstOrDefault(c => c.Id == id);
         }
 
         public IEnumerable<Color> ReadAll(Filter filter = null)

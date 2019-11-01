@@ -22,12 +22,13 @@ export class PetService {
   }
 
   /** GET filtered pets */
-  getPets(currentPage: number, itemsPerPage: number, animalType: number, sortType: number ): Observable<FilteredList<Pet>> {
+  getPets(currentPage: number, itemsPerPage: number, animalType: number, sortType: number, orderByType: number ): Observable<FilteredList<Pet>> {
     const params = new HttpParams()
       .set('currentPage', currentPage.toString())
       .set('itemsPerPage', itemsPerPage.toString())
       .set('animalType', animalType.toString())
-      .set('sortType', sortType.toString());
+      .set('sortType', sortType.toString())
+      .set('orderByType', orderByType.toString());
     return this.http.get<FilteredList<Pet>>(this.apiUrl, {params: params});
   }
 
@@ -81,8 +82,11 @@ export class PetService {
   }
 
   /** PUT: update the pet on the server */
-  updatePet (pet: Pet): Observable<any> {
-    return this.http.put(this.apiUrl, pet, this.httpOptions).pipe(
+  updatePet (pet: Pet,id: number ): Observable<Pet> {
+    debugger;
+    const url = `${this.apiUrl}/${id}`;
+
+    return this.http.put<Pet>(url, pet, this.httpOptions).pipe(
       catchError(this.handleError<any>('updatePet'))
     );
   }

@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   constructor(private petService: PetService) { }
 
   getPets(): void {
-    this.petService.getPets(1, 10, 0, 1)
+    this.petService.getPets(1, 24, 0, 0, 0)
     .subscribe(filteredList => {this.pets = filteredList.list});
   }
 

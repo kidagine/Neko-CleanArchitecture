@@ -33,8 +33,8 @@ export class PetDetailComponent implements OnInit {
     this.location.back();
   }
 
- save(): void {
-    this.petService.updatePet(this.pet)
+ updatePet(id: number): void {
+    this.petService.updatePet(this.pet, id)
       .subscribe(() => this.goBack());
   }
 }

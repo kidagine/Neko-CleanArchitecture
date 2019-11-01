@@ -3,6 +3,10 @@
     <h2>{{pet.name | uppercase}} Details</h2>
     <div><span>id: </span>{{pet.id}}</div>
     <div>
+      <label>id:
+        <input [(ngModel)]="pet.id" placeholder="id"/>
+      </label>
+      <br>
       <label>name:
         <input [(ngModel)]="pet.name" placeholder="name"/>
       </label>
@@ -16,5 +20,5 @@
       </label>
     </div>
     <button (click)="goBack()">go back</button>
-    <button (click)="save()">save</button>
+    <button (click)="updatePet(pet.id)">save</button>
 </div>

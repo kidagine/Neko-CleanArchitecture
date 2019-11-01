@@ -48,6 +48,9 @@
   transform: scale(1.525);
   cursor:pointer;
 }
+.product-list-item img:focus{
+  outline:0;
+}
 #buttons-container{
   max-width: none;
   margin-left: -.71429rem;
@@ -88,11 +91,11 @@
   text-align: center;
   background: 0 0;
   color: #171821;
-  background: transparent;
+  background-color: transparent;
   z-index: 9;
-  width: 100%;
+  width: 60%;
   display: block;
-    -o-transition:.5s;
+  -o-transition:.5s;
   -ms-transition:.5s;
   -moz-transition:.5s;
   -webkit-transition:.5s;
@@ -119,6 +122,69 @@
   padding-bottom:60px;
 }
 
+//Sorting
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.drop-button {
+  background-color: transparent;
+  color: #171821;
+  padding: 16px;
+  min-width: 272px;
+  margin-left: 30px;
+  font-size: 16px;
+  text-align: left;
+  border: 0;
+  border-bottom: 2px solid #171821;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.drop-button:focus{
+  outline:0;
+}
+
+.dropdown img{
+  margin-left: -30px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  margin-left: 30px;
+  min-width: 272px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  border-bottom: 2px solid #000;
+}
+
+.dropdown:hover img{
+  transform: rotate(90deg)
+}
+
 //Paging
 [data-pagination],
 [data-pagination] *,
@@ -132,6 +198,7 @@
   -moz-osx-font-smoothing: grayscale;
   font-kerning: auto;
 }
+
 [data-pagination] {
   font-size: 8pt;
   line-height: 1;
@@ -143,6 +210,7 @@
   text-align: center;
   transition: font-size .2s ease-in-out;
 }
+
 [data-pagination] ul {
   list-style-type: none;
   display: inline;
@@ -150,6 +218,7 @@
   margin: 0;
   padding: .5em;
 }
+
 [data-pagination] ul li {
   display: inline-block;
   font-size: 100%;
@@ -157,44 +226,53 @@
   background-color: transparent;
   border-radius: 3px;
 }
+
 [data-pagination] > a {
   font-size: 140%;
 }
+
 [data-pagination] a {
   color: #54555E;
   font-size: 100%;
   padding: .5em;
 }
+
 [data-pagination] a:focus,
 [data-pagination] a:hover {
   cursor: pointer;
   text-decoration: underline;
   color: #171821;
 }
+
 [data-pagination] a.current {
   color: #f53357;
 }
+
 [data-pagination] .disabled,
 [data-pagination] [hidden],
 [data-pagination] [disabled] {
   opacity: .5;
   pointer-events: none;
 }
+
 @media (min-width: 350px) {
   [data-pagination] {
     font-size: 10pt;
   }
 }
+
 @media (min-width: 500px) {
   [data-pagination] {
     font-size: 12pt;
   }
 }
+
 @media (min-width: 700px) {
   [data-pagination] {
     font-size: 14pt;
   }
 }
+
 @media (min-width: 900px) {
   [data-pagination] {
     font-size: 16pt;
