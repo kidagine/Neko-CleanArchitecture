@@ -1,50 +1,45 @@
 <app-navigation-bar></app-navigation-bar>
-<h1 id="page-heading">PETS</h1>
-<div id="main-container">
-
-  <div id="buttons-container">
-    <div id="button-container">
-      <a id="button" (click)="getPets(1, 1, sortType, orderByType)">Kitties</a>
+<h1 class="page-heading">{{ currentFilter }}</h1>
+<div class="main-container">
+  <div class="filter-wrapper">
+    <div class="filter-container">
+      <a class="filter-button" (click)="getPets(1, 1, sortType, orderByType); setCurrentFilter('Kitties')">Kitties</a>
     </div>
-    <div id="button-container">
-      <a id="button" (click)="getPets(1, 2, sortType, orderByType)">Doggos</a>
+    <div class="filter-container">
+      <a class="filter-button" (click)="getPets(1, 2, sortType, orderByType); setCurrentFilter('Doggos')">Doggos</a>
     </div>
-    <div id="button-container">
-      <a id="button" (click)="getPets(1, 3, sortType, orderByType)">Donkos</a>
+    <div class="filter-container">
+      <a class="filter-button" (click)="getPets(1, 3, sortType, orderByType); setCurrentFilter('Goatis')">Goatis</a>
     </div>
-    <div id="button-container">
-        <a id="button" (click)="getPets(1, 4, sortType, orderByType)">Dragis</a>
+    <div class="filter-container">
+      <a class="filter-button" (click)="getPets(1, 4, sortType, orderByType); setCurrentFilter('Dragis')">Dragis</a>
     </div>
-    <div id="button-container">
-        <a id="button" (click)="getPets(1, 5, sortType, orderByType)">Puggies</a>
-    </div>
-    <div id="button-container">
-        <a id="button" (click)="getPets(1, 6, sortType, orderByType)">Gundams</a>
+    <div class="filter-container">
+      <a class="filter-button" (click)="getPets(1, 5, sortType, orderByType); setCurrentFilter('Puggies')">Puggies</a>
     </div>
     <div class="dropdown">
-        <div>
-          <button class="drop-button">Sort: {{ currentSort }} </button>
-          <img src="assets/images/paging-arrow-right-hover.png" width="16" height="12" >
-        </div>
-        <div class="dropdown-content">
-          <a (click)="getPets(currentPage, animalType, 4, 1); setCurrentSort('Newest pets')">Newest pets</a>
-          <a (click)="getPets(currentPage, animalType, 1, 0); setCurrentSort('A to Z')">A to Z</a>
-          <a (click)="getPets(currentPage, animalType, 1, 1); setCurrentSort('Z to A')">Z to A</a>
-          <a (click)="getPets(currentPage, animalType, 2, 0); setCurrentSort('Price low to high')">Price low to high</a>
-          <a (click)="getPets(currentPage, animalType, 2, 1); setCurrentSort('Price high to low')">Price high to low</a>
-          <a (click)="getPets(currentPage, animalType, 3, 0); setCurrentSort('Age old to young')">Age old to young</a>
-          <a (click)="getPets(currentPage, animalType, 3, 1); setCurrentSort('Age young to old')">Age young to old</a>  
-        </div>
+      <div>
+        <button class="drop-button">Sort: {{ currentSort }} </button>
+        <img src="assets/images/paging-arrow-right-hover.png" width="16" height="12" >
       </div>
+      <div class="dropdown-content">
+        <a (click)="getPets(currentPage, animalType, 4, 1); setCurrentSort('Newest pets')">Newest pets</a>
+        <a (click)="getPets(currentPage, animalType, 1, 0); setCurrentSort('A to Z')">A to Z</a>
+        <a (click)="getPets(currentPage, animalType, 1, 1); setCurrentSort('Z to A')">Z to A</a>
+        <a (click)="getPets(currentPage, animalType, 2, 0); setCurrentSort('Price low to high')">Price low to high</a>
+        <a (click)="getPets(currentPage, animalType, 2, 1); setCurrentSort('Price high to low')">Price high to low</a>
+        <a (click)="getPets(currentPage, animalType, 3, 0); setCurrentSort('Age old to young')">Age old to young</a>
+        <a (click)="getPets(currentPage, animalType, 3, 1); setCurrentSort('Age young to old')">Age young to old</a>  
+      </div>
+    </div>
   </div>
   
   <div class="wrapper-product" *ngIf="pets">
     <ul class="product-list" *ngFor="let pet of pets">
       <div class="product-list-item">
         <img src="https://i.gifer.com/tEo.gif" width="260" height="260" routerLink="/pet/{{pet.id}}">
-        <p>
-          {{ pet.name }} <br> {{ pet.price }}.99€ {{ pet.type }} <br> {{ pet.age }} years old
-        </p>
+        <h1>{{ pet.name }}</h1>
+        <p>{{ pet.price }}.99€ <br> age: {{ pet.age }}, animal: {{ pet.type }}</p>
       </div>
     </ul>
   </div>

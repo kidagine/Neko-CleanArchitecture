@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NekoPetShop.Core.Entity
 {
-    public enum AnimalType { All, Cat, Dog, Goat, Dragon, Pug, Gundam };
+    public enum AnimalType { All, Cat, Dog, Goat, Dragon, Pug };
 
     public class Pet
     {

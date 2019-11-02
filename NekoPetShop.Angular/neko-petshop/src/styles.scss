@@ -9,6 +9,11 @@
   font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
+@font-face {
+  font-family: SequelSans;
+  src: url(assets/fonts/SequelSansBlackBody.otf) format("opentype");
+}
+
 html{
   scroll-behavior: smooth;
 }

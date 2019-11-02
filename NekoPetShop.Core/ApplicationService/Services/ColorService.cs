@@ -27,11 +27,11 @@ namespace NekoPetShop.Core.ApplicationService.Services
         {
             if (color.Id != default)
             {
-                throw new NotSupportedException($"The pet id should not be specified");
+                throw new NotSupportedException($"The color id should not be specified");
             }
             else if (string.IsNullOrEmpty(color.Name))
             {
-                throw new InvalidDataException("You need to specify the owner's first name.");
+                throw new InvalidDataException("You need to specify the color's name.");
             }
             return _colorRepository.Create(color);
         }
@@ -40,7 +40,7 @@ namespace NekoPetShop.Core.ApplicationService.Services
         {
             if (string.IsNullOrEmpty(color.Name))
             {
-                throw new InvalidDataException("You need to specify the owner's first name.");
+                throw new InvalidDataException("You need to specify the color's name.");
             }
             return _colorRepository.Update(color);
         }

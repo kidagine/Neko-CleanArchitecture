@@ -1,0 +1,78 @@
+<div class="navigation-bar">
+  <div class="logo_container">
+    <div class="logo" routerLink="/">NEKO</div>
+  </div>
+  <ul class="navigation-options">
+    <a (click)="getProducts('pets')"><li>Pets</li></a>
+    <a (click)="getProducts('colors')"><li>Colors</li></a>
+    <a (click)="getProducts('owners')"><li>Owners</li></a>
+  </ul>
+  <a class="navigation-misc"><img src="assets/images/search-icon.png" width="26" height="26"></a>
+  <a href="javascript:void(0);" class="icon" (click)="hideNavigationItems()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<h1 class="page-heading">Admin</h1>
+<h2>{{ currentEntity }}</h2>
+<ul class="pets" *ngIf="currentEntity === 'pets'">
+  <li *ngFor="let pet of pets">
+    <a routerLink="/pet/{{pet.id}}">
+      <span class="badge">{{pet.id}}</span> {{pet.name}}
+    </a>
+    <button class="delete" title="delete pet"
+      (click)="delete(pet)">x</button>
+  </li>
+</ul>
+<ul class="pets" *ngIf="currentEntity === 'colors'">
+  <li *ngFor="let color of colors">
+    <a>
+      <span class="badge">{{color.id}}</span>  name: {{color.name}}
+    </a>
+    <button class="delete" title="delete color"
+      (click)="delete(color)">x</button>
+  </li>
+</ul>
+<ul class="pets" *ngIf="currentEntity === 'owners'">
+  <li *ngFor="let owner of owners">
+    <a>
+      <span class="badge">{{owner.id}}</span>  firstName: {{owner.firstName}}  lastName: {{owner.lastName}}  address: {{owner.address}}  phoneNumber: {{owner.phoneNumber}}  email: {{owner.email}}  
+    </a>
+    <button class="delete" title="delete owner"
+      (click)="delete(owner)">x</button>
+  </li>
+</ul>
+
+<h2>Post {{ currentEntity }}</h2>
+<div *ngIf="currentEntity === 'pets'">
+  <form [formGroup]="petForm"  (ngSubmit)="addProduct()">
+    <input placeholder="name" formControlName="name">
+    <br>
+    <input placeholder="type" formControlName="type">
+    <br>
+    <input placeholder="price" formControlName="price">
+    <br>
+    <button type="submit">Save</button>
+  </form></div>
+<div *ngIf="currentEntity === 'colors'">
+  <form [formGroup]="colorForm"  (ngSubmit)="addProduct()">
+    <input placeholder="name" formControlName="name">
+    <br>
+    <button type="submit">Save</button>
+  </form>
+</div>
+<div *ngIf="currentEntity === 'owners'">
+  <form [formGroup]="ownerForm"  (ngSubmit)="addProduct()">
+    <input placeholder="firstName" formControlName="firstName">
+    <br>
+    <input placeholder="lastName" formControlName="lastName">
+    <br>
+    <input placeholder="address" formControlName="address">
+    <br>
+    <input placeholder="phoneNumber" formControlName="phoneNumber">
+    <br>
+    <input placeholder="email" formControlName="email">
+    <br>
+    <button type="submit">Save</button>
+  </form>
+</div>

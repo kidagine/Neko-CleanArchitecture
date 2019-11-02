@@ -1,0 +1,171 @@
+//Navigation bar
+.navigation-bar {
+  background-color: #fff;
+  z-index: 1200!important;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  min-height: 48px;
+  padding: 0px 220px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.navigation-bar a {
+  float: left;
+  display: block;
+  color: #000;
+  text-align: center;
+  padding: 13px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.logo_container {
+  height: 100%;
+  display: table;
+  float: left;
+}
+
+.logo {
+  padding-top: 10px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  font-weight: 900;
+  font-size: 28px;
+  color: #000;
+  cursor: pointer;
+}
+
+.logo:focus{
+  outline:0;
+}
+
+.page-heading{
+  margin: 0;
+  font-weight:500;
+  font-size: 50px;;   
+  text-align: center;
+  text-transform: uppercase;
+  font-family: SequelSans;
+  padding: 100px;
+  color: #000;
+}
+
+.navigation-options a:first-child{
+  padding-left: 35px;
+}
+
+.navigation-options a li{
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+  color: #000;
+  font-size: 13px;
+  position: relative;
+  text-decoration: none;
+}
+
+.navigation-options a li::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -8px;
+  left: 0;
+  background-color: #000;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.navigation-options a li:hover::before{
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+
+.navigation-bar .navigation-misc {
+  float: right;
+}
+.navigation-bar .icon {
+  float: right;
+}
+
+//Pets
+.pets {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 800px;
+}
+.pets li {
+  position: relative;
+  cursor: pointer;
+  color: #000;
+  background-color: #fff;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+.pets li:hover {
+  color: #54555E;
+  left: .1em;
+}
+
+.pets a {
+  color: #333;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  width: 1250px;
+}
+
+.pets a:hover {
+  color:#607D8B;
+}
+
+.pets .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color:#000;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  text-align: right;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button.delete {
+  position: relative;
+  left: 740px;
+  top: -32px;
+  background-color: #000;
+  color: white;
+}

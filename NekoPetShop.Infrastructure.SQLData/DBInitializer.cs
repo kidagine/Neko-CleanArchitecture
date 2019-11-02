@@ -30,9 +30,6 @@ namespace NekoPetShop.Infrastructure.SQLData
             Pet dragonPet2 = context.Pets.Add(new Pet() { Name = "Loki", Type = AnimalType.Dragon, ProductDate = DateTime.Parse("01/04/2002"), Birthdate = DateTime.Parse("07/05/2011"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
 			Pet pugPet1 = context.Pets.Add(new Pet() { Name = "Sam", Type = AnimalType.Pug, ProductDate = DateTime.Parse("01/04/2001"), Birthdate = DateTime.Parse("10/22/2001"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
 			Pet pugPet2 = context.Pets.Add(new Pet() { Name = "Bibi", Type = AnimalType.Pug, ProductDate = DateTime.Parse("01/04/2000"), Birthdate = DateTime.Parse("07/05/2003"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
-			Pet gundamPet1 = context.Pets.Add(new Pet() { Name = "Bandai", Type = AnimalType.Gundam, ProductDate = DateTime.Parse("01/04/1999"), Birthdate = DateTime.Parse("10/22/2000"), SoldDate = DateTime.Parse("04/19/2019"), Owner = owner4, Price = 150 }).Entity;
-			Pet gundamPet2 = context.Pets.Add(new Pet() { Name = "Oda", Type = AnimalType.Gundam, ProductDate = DateTime.Parse("01/04/1998"), Birthdate = DateTime.Parse("07/05/2010"), SoldDate = DateTime.Parse("12/02/2017"), Owner = owner4, Price = 180 }).Entity;
-
 
 			Color colorRed = context.Colors.Add(new Color { Name = "Red" }).Entity;
             Color colorBlack = context.Colors.Add(new Color { Name = "Black" }).Entity;
@@ -48,8 +45,6 @@ namespace NekoPetShop.Infrastructure.SQLData
 			owner1.Pets.Add(catPet8);
 			owner1.Pets.Add(pugPet1);
 			owner1.Pets.Add(pugPet2);
-			owner1.Pets.Add(gundamPet1);
-			owner1.Pets.Add(gundamPet2);
 			owner2.Pets.Add(dogPet1);
             owner2.Pets.Add(dogPet2);
             owner3.Pets.Add(goatPet1);

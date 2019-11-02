@@ -1,24 +1,14 @@
 <app-navigation-bar></app-navigation-bar>
-<div *ngIf="pet">
-    <h2>{{pet.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{pet.id}}</div>
-    <div>
-      <label>id:
-        <input [(ngModel)]="pet.id" placeholder="id"/>
-      </label>
-      <br>
-      <label>name:
-        <input [(ngModel)]="pet.name" placeholder="name"/>
-      </label>
-      <br>
-      <label>price:
-        <input [(ngModel)]="pet.price" placeholder="price"/>
-      </label>
-      <br>
-      <label>type:
-        <input [(ngModel)]="pet.type" placeholder="type"/>
-      </label>
-    </div>
-    <button (click)="goBack()">go back</button>
-    <button (click)="updatePet(pet.id)">save</button>
-</div>
+  <div>
+    <header class="purchase-container">
+      <div class="header-content text-md-center">
+        <h1>DEEPER DIMENSIONS OF SOUND.</h1>
+        <p class="name">{{pet.name}}</p>
+        <p class="price">{{pet.price}}€</p>
+        <div class="button-container">
+        <a id="button">Purchase</a>
+        </div>
+      </div>
+    </header>
+  </div>
+<app-footer></app-footer>

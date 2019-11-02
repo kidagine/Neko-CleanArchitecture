@@ -11,6 +11,11 @@
   color: #fff;
   cursor: pointer;
 }
+
+.logo:focus{
+  outline:0;
+}
+
 .footer{
   background-color: #000;
 }

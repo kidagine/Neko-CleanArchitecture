@@ -11,6 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class PetListComponent implements OnInit {
   pets: Pet[];
+  currentFilter: string = "Pets";
   currentSort: string = "featured items";
   totalPages: number;
   currentPage: number = 1;
@@ -75,8 +76,12 @@ export class PetListComponent implements OnInit {
     this.petService.deletePet(pet).subscribe();
   }
 
-  setCurrentSort(currentSort?: string){
+  setCurrentSort(currentSort: string){
     this.currentSort = currentSort;
+  }
+
+  setCurrentFilter(currentFilter: string){
+    this.currentFilter = currentFilter;
   }
 
   ngOnInit() {

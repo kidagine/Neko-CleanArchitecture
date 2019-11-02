@@ -1,29 +1,49 @@
-label {
-  display: inline-block;
-  width: 3em;
-  margin: .5em 0;
-  color: #607D8B;
-  font-weight: bold;
+/* Overview Start */
+.purchase-container{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  color:#000;
+  max-width:1470px;
+  padding-left:1rem;
+  padding-right:55rem;
+  margin:auto;
+  text-align:center;
 }
-input {
-  height: 2em;
-  font-size: 1em;
-  padding-left: .4em;
+
+.header-content{
+  z-index:2;
 }
-button {
-  margin-top: 20px;
-  font-family: Arial;
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
+
+.header-content h1{
+font-family: sans-serif; 
+text-align: left;
+line-height: 85%;
+font-weight: 800;
+font-size: 55px;
+margin-bottom:10px;
 }
-button:hover {
-  background-color: #cfd8dc;
+
+.name{
+font-family: sans-serif; 
+text-align: left;
+line-height: 85%;
+font-weight: 800;
+font-size: 27px;
+margin-bottom:10px;
 }
-button:disabled {
-  background-color: #eee;
-  color: #ccc;
-  cursor: auto;
+.price{
+font-family: sans-serif; 
+text-align: left;
+line-height: 85%;
+font-weight: bold;
+font-size: 20px;
+padding-bottom: 10px;
+margin-bottom:20px;
+border-bottom: 2px solid rgb(136, 124, 124);
 }
+.button-container{
+  width: 200px;
+  height: 500px;
+}
+/* Overview End */

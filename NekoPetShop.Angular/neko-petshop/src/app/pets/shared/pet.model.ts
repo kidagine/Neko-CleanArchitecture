@@ -3,6 +3,5 @@ export class Pet {
   name: string;
   type: string;
   age: number;
-  // soldDate: Date;
-  Price: number;
+  price: number;
 }
