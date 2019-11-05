@@ -84,6 +84,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 			else
 			{
 				filteredList.List = _context.Pets.Include(p => p.Owner);
+				return filteredList;
 			}
 
 			if (filter.AnimalType == AnimalType.All)

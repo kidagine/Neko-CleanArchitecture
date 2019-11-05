@@ -61,7 +61,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             {
                 if (id != color.Id)
                 {
-                    return BadRequest("Parameter ID and color ID have to be the same");
+                    return BadRequest($"Parameter ID({id}) and color ID({color.Id}) have to be the same");
                 }
                 return Ok(_colorService.Update(color));
             }
