@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using NekoPetShop.Core.Entity;
 
 namespace NekoPetShop.Infrastructure.SQLData
@@ -52,9 +52,24 @@ namespace NekoPetShop.Infrastructure.SQLData
             owner4.Pets.Add(dragonPet1);
             owner4.Pets.Add(dragonPet2);
 
-            context.PetColors.Add(new PetColor(){Pet = catPet1, Color = colorRed });
+            context.PetColors.Add(new PetColor(){ Pet = catPet1, Color = colorBlack });
+			context.PetColors.Add(new PetColor() { Pet = catPet2, Color = colorRed });
+			context.PetColors.Add(new PetColor() { Pet = catPet3, Color = colorWhite });
+			context.PetColors.Add(new PetColor() { Pet = catPet4, Color = colorRed });
+			context.PetColors.Add(new PetColor() { Pet = catPet5, Color = colorWhite });
+			context.PetColors.Add(new PetColor() { Pet = catPet6, Color = colorWhite });
+			context.PetColors.Add(new PetColor() { Pet = catPet7, Color = colorWhite });
+			context.PetColors.Add(new PetColor() { Pet = catPet8, Color = colorBlack });
+			context.PetColors.Add(new PetColor() { Pet = dogPet1, Color = colorBlack });
+			context.PetColors.Add(new PetColor() { Pet = dogPet2, Color = colorRed });
+			context.PetColors.Add(new PetColor() { Pet = goatPet1, Color = colorRed });
+			context.PetColors.Add(new PetColor() { Pet = goatPet2, Color = colorBlack });
+			context.PetColors.Add(new PetColor() { Pet = dragonPet1, Color = colorWhite });
+			context.PetColors.Add(new PetColor() { Pet = dragonPet2, Color = colorRed });
+			context.PetColors.Add(new PetColor() { Pet = pugPet1, Color = colorRed });
+			context.PetColors.Add(new PetColor() { Pet = pugPet2, Color = colorBlack });
 
-            context.SaveChanges();
+			context.SaveChanges();
         }
     }
 }

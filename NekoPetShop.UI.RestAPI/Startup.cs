@@ -57,7 +57,7 @@ namespace NekoPetShop.UI.RestAPI
 			services.AddMvc().AddJsonOptions(options => {
 				options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
 				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                options.SerializerSettings.MaxDepth = 3;
+                options.SerializerSettings.MaxDepth = 5;
             });
 
         }

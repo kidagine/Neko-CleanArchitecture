@@ -64,7 +64,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 
         public Pet ReadById(int id)
         {
-            return _context.Pets.AsNoTracking().Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).FirstOrDefault(p => p.Id == id);     
+            return _context.Pets.AsNoTracking().Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).FirstOrDefault(p => p.Id == id);     
         }
 
 		public FilteredList<Pet> ReadAll(Filter filter = null)
@@ -83,7 +83,7 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 			}
 			else
 			{
-				filteredList.List = _context.Pets.Include(p => p.Owner);
+				filteredList.List = _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color);
 				return filteredList;
 			}
 
@@ -120,15 +120,15 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 				switch (filter.SortType)
 				{
 					case SortType.Id:
-						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Id);
+						return _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Id);
 					case SortType.Name:
-						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Name);
+						return _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Name);
 					case SortType.Birthday:
-						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Birthdate);
+						return _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Birthdate);
 					case SortType.Price:
-						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Price);
+						return _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Price);
 					case SortType.ProductDate:
-						return _context.Pets.Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.ProductDate);
+						return _context.Pets.Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.ProductDate);
 					default:
 						return _context.Pets;
 				}
@@ -138,15 +138,15 @@ namespace NekoPetShop.Infrastructure.SQLData.Repositories
 				switch (filter.SortType)
 				{
 					case SortType.Id:
-						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Id);
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Id);
 					case SortType.Name:
-						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Name);
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Name);
 					case SortType.Birthday:
-						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Birthdate);
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Birthdate);
 					case SortType.Price:
-						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.Price);
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.Price);
 					case SortType.ProductDate:
-						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.PetColors).ThenInclude(pc => pc.Pet).Include(p => p.Owner).OrderBy(p => p.ProductDate);
+						return _context.Pets.Where(p => p.Type == filter.AnimalType).Include(p => p.Owner).Include(p => p.PetColors).ThenInclude(pc => pc.Color).OrderBy(p => p.ProductDate);
 					default:
 						return _context.Pets.Where(p => p.Type == filter.AnimalType);
 				}
