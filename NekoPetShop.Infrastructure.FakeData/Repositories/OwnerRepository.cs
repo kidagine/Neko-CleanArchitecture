@@ -7,7 +7,7 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {
-        public Owner CreateOwner(Owner ownerToCreate)
+        public Owner Create(Owner ownerToCreate)
         {
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             ownerToCreate.Id = FakeDB.GetNextOwnerId();
@@ -16,7 +16,7 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
             return ownerToCreate;
         }
 
-        public Owner UpdateOwner(int id, Owner ownerToUpdate)
+        public Owner Update(Owner ownerToUpdate)
         {   
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             foreach (Owner o in updatedOwnersList)
@@ -34,7 +34,7 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
             return ownerToUpdate;
         }
 
-        public Owner DeleteOwner(int id)
+        public Owner Delete(int id)
         {
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             Owner ownerToRemove = null;
@@ -50,12 +50,12 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
             return ownerToRemove;
         }
 
-        public IEnumerable<Owner> GetOwners()
+        public IEnumerable<Owner> ReadAll(Filter filter)
         {
             return FakeDB.ReadOwnerData();
         }
 
-        public Owner FindOwnerById(int id)
+        public Owner ReadById(int id)
         {
             return FakeDB.ReadOwnerData().FirstOrDefault(owner => owner.Id == id);
         }
