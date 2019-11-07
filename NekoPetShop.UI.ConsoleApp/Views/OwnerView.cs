@@ -25,7 +25,7 @@ namespace NekoPetShop.UI.ConsoleApp
             Console.Clear();
             ShowMenuLayoutASCII();
             ShowOwnerListLayout();
-            ShowOwnerListData(ownerService.GetOwners());
+            ShowOwnerListData(ownerService.ReadAll());
         }
 
         private void ShowMenuLayoutASCII()
@@ -134,10 +134,10 @@ namespace NekoPetShop.UI.ConsoleApp
             Console.WriteLine("Email:");
             string email = Console.ReadLine();
             Console.WriteLine();
-            Owner owner = ownerService.NewOwner(firstName, lastName, address, phoneNumber, email);
-            ownerService.CreateOwner(owner);
+            Owner owner = ownerService.New(firstName, lastName, address, phoneNumber, email);
+            ownerService.Create(owner);
             ClearOwnerList();
-            ShowOwnerListData(ownerService.GetOwners());
+            ShowOwnerListData(ownerService.ReadAll());
         }
 
         private void DeleteOwner()
@@ -149,9 +149,9 @@ namespace NekoPetShop.UI.ConsoleApp
             {
                 ConsoleError();
             }
-            ownerService.DeleteOwner(id);
+            ownerService.Delete(id);
             ClearOwnerList();
-            ShowOwnerListData(ownerService.GetOwners());
+            ShowOwnerListData(ownerService.ReadAll());
         }
 
         private void UpdateOwner()
@@ -178,10 +178,10 @@ namespace NekoPetShop.UI.ConsoleApp
             Console.WriteLine("Email:");
             string email = Console.ReadLine();
             Console.WriteLine();
-            Owner owner = ownerService.NewOwner(firstName, lastName, address, phoneNumber, email);
-            ownerService.UpdateOwner(id, owner);
+            Owner owner = ownerService.New(firstName, lastName, address, phoneNumber, email);
+            ownerService.Update(owner);
             ClearOwnerList();
-            ShowOwnerListData(ownerService.GetOwners());
+            ShowOwnerListData(ownerService.ReadAll());
         }
 
         private void ClearOwnerList()
