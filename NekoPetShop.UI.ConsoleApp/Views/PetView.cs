@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Globalization;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace NekoPetShop.UI.ConsoleApp
             Console.Clear();
             ShowMenuLayoutASCII();
             ShowPetListLayout();
-            ShowPetListData(petService.GetPets());
+            ShowPetListData(petService.ReadAll().List.ToList());
         }
 
         private void ShowMenuLayoutASCII()
@@ -52,7 +53,7 @@ namespace NekoPetShop.UI.ConsoleApp
             int countTop = 12;
             foreach (Pet p in petsList)
             {
-                string petListing = ($"|  {p.Id} {GetFixedSpacing(p.Id.ToString().Length, 5)} {p.Name} {GetFixedSpacing(p.Name.Length, 8)} {p.Type} {GetFixedSpacing(p.Type.ToString().Length, 10)} {p.Birthdate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.SoldDate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.Color} {GetFixedSpacing(p.Color.ToString().Length, 9)} {p.Owner.FirstName} {p.Owner.LastName} {GetFixedSpacing(p.Owner.FirstName.ToString().Length + p.Owner.LastName.ToString().Length, 17)} {p.Price.ToString("C")}");
+                string petListing = ($"|  {p.Id} {GetFixedSpacing(p.Id.ToString().Length, 5)} {p.Name} {GetFixedSpacing(p.Name.Length, 8)} {p.Type} {GetFixedSpacing(p.Type.ToString().Length, 10)} {p.Birthdate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.SoldDate.ToString("dd/MM/yyyy")} {GetFixedSpacing("dd/MM/yyyy".Length, 13)} {p.Owner.FirstName} {p.Owner.LastName} {GetFixedSpacing(p.Owner.FirstName.ToString().Length + p.Owner.LastName.ToString().Length, 17)} {p.Price.ToString("C")}");
                 Console.SetCursorPosition(18, countTop);
                 Console.WriteLine(petListing);
                 countTop++;
@@ -160,7 +161,7 @@ namespace NekoPetShop.UI.ConsoleApp
             string color = Console.ReadLine();
             Console.WriteLine();
             Console.WriteLine("Previous owner:");
-            Owner previousOwner = SelectPreviousOwner();
+			Owner previousOwner = null;
             Console.WriteLine();
             Console.WriteLine("Price:");
             double price;
@@ -169,10 +170,10 @@ namespace NekoPetShop.UI.ConsoleApp
                 ConsoleError();
             }
             Console.WriteLine();
-            Pet pet = petService.NewPet(name, type, birthdate, soldDate, color, previousOwner, price);
-            petService.CreatePet(pet);
+            Pet pet = petService.New(name, type, birthdate, soldDate, previousOwner, price);
+            petService.Create(pet);
             ClearPetList();
-            ShowPetListData(petService.GetPets());
+            ShowPetListData(petService.ReadAll().List.ToList());
         }
 
         private void DeletePet()
@@ -184,9 +185,9 @@ namespace NekoPetShop.UI.ConsoleApp
             {
                 ConsoleError();
             }
-            petService.DeletePet(id);
+            petService.Delete(id);
             ClearPetList();
-            ShowPetListData(petService.GetPets());
+            ShowPetListData(petService.ReadAll().List.ToList());
         }
 
         private void UpdatePet()
@@ -221,7 +222,7 @@ namespace NekoPetShop.UI.ConsoleApp
             string color = Console.ReadLine();
             Console.WriteLine();
             Console.WriteLine("Previous owner:");
-            Owner previousOwner = SelectPreviousOwner();
+			Owner previousOwner = null;
             Console.WriteLine();
             Console.WriteLine("Price:");
             double price;
@@ -230,69 +231,69 @@ namespace NekoPetShop.UI.ConsoleApp
                 ConsoleError();
             }
             Console.WriteLine();
-            Pet pet = petService.NewPet(name, type, birthdate, soldDate, color, previousOwner, price);
-            petService.UpdatePet(id, pet);
+            Pet pet = petService.New(name, type, birthdate, soldDate, previousOwner, price);
+            petService.Update(pet);
             ClearPetList();
-            ShowPetListData(petService.GetPets());
+            ShowPetListData(petService.ReadAll().List.ToList());
         }
 
         private void SearchPetsByType()
         {
-            Console.WriteLine("-Search-");
-            List<Pet> filteredPetsList = petService.SearchPetsByType(SelectAnimalType());
-            ClearPetList();
-            ShowPetListData(filteredPetsList);
+            //Console.WriteLine("-Search-");
+            //List<Pet> filteredPetsList = petService.SearchPetsByType(SelectAnimalType());
+            //ClearPetList();
+            //ShowPetListData(filteredPetsList);
         }
 
         private void SortPetsByPrice()
         {
-            int selection;
-            Console.WriteLine("-Sort-");
-            Console.WriteLine("0 from cheap");
-            Console.WriteLine("1 from pricey");
-            while (!int.TryParse(Console.ReadLine(), out selection))
-            {
-                ConsoleError();
-            }
-            if (selection == 0)
-            {
-                SortType type = SortType.Ascending;
-                List<Pet> filteredPetsList = petService.SortPetsByPrice(type);
-                ClearPetList();
-                ShowPetListData(filteredPetsList);
-            }
-            else
-            {
-                SortType type = SortType.Descending;
-                List<Pet> filteredPetsList = petService.SortPetsByPrice(type);
-                ClearPetList();
-                ShowPetListData(filteredPetsList);
-            }
+            //int selection;
+            //Console.WriteLine("-Sort-");
+            //Console.WriteLine("0 from cheap");
+            //Console.WriteLine("1 from pricey");
+            //while (!int.TryParse(Console.ReadLine(), out selection))
+            //{
+            //    ConsoleError();
+            //}
+            //if (selection == 0)
+            //{
+            //    SortType type = SortType.Ascending;
+            //    List<Pet> filteredPetsList = petService.SortPetsByPrice(type);
+            //    ClearPetList();
+            //    ShowPetListData(filteredPetsList);
+            //}
+            //else
+            //{
+            //    SortType type = SortType.Descending;
+            //    List<Pet> filteredPetsList = petService.SortPetsByPrice(type);
+            //    ClearPetList();
+            //    ShowPetListData(filteredPetsList);
+            //}
         }
 
         private void GetCheapestPets()
         {
-            Console.WriteLine("-Cheapest-");
-            List<Pet> filteredPetsList = petService.GetCheapestPets();
-            ClearPetList();
-            ShowPetListData(filteredPetsList);
+            //Console.WriteLine("-Cheapest-");
+            //List<Pet> filteredPetsList = petService.GetCheapestPets();
+            //ClearPetList();
+            //ShowPetListData(filteredPetsList);
         }
 
-        private Owner SelectPreviousOwner()
+        private void SelectPreviousOwner()
         {
-            int selection;
-            int max = 0;
-            foreach (Owner o in ownerService.GetOwners())
-            {
-                Console.WriteLine($"{o.Id}: {o.FirstName}");
-                max++;
-            }
-            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 0 || selection >= max)
-            {
-                Console.WriteLine(GetRandomizedInsult());
-            }
-            Owner owner = ownerService.FindOwnerById(selection);
-            return owner;
+            //int selection;
+            //int max = 0;
+            //foreach (Owner o in ownerService.GetOwners())
+            //{
+            //    Console.WriteLine($"{o.Id}: {o.FirstName}");
+            //    max++;
+            //}
+            //while (!int.TryParse(Console.ReadLine(), out selection) || selection < 0 || selection >= max)
+            //{
+            //    Console.WriteLine(GetRandomizedInsult());
+            //}
+            //Owner owner = ownerService.FindOwnerById(selection);
+            //return owner;
         }
 
         private AnimalType SelectAnimalType()
