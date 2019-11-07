@@ -21,7 +21,7 @@ namespace NekoPetShop.Infrastructure.FakeData.Repositories
             List<Owner> updatedOwnersList = FakeDB.ReadOwnerData().ToList();
             foreach (Owner o in updatedOwnersList)
             {
-                if (o.Id == id)
+                if (o.Id == ownerToUpdate.Id)
                 {
                     o.FirstName = ownerToUpdate.FirstName;
                     o.LastName = ownerToUpdate.LastName;
