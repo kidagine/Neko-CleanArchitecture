@@ -20,6 +20,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoPetShop.Infrastructure.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NekoPetShop.Infrastructure.FakeData", "NekoPetShop.Infrastructure.FakeData\NekoPetShop.Infrastructure.FakeData.csproj", "{ABA5734C-2979-4ED9-B02F-5C32D2AA5AA5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B1BB99F8-A0C5-4864-BCF4-4A965CA4A6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoPetShop.Tests", "NekoPetShop.Tests\NekoPetShop.Tests.csproj", "{DCA7B636-3BFD-42EF-8D45-445FFF9E1A05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,10 @@ Global
 		{ABA5734C-2979-4ED9-B02F-5C32D2AA5AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABA5734C-2979-4ED9-B02F-5C32D2AA5AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABA5734C-2979-4ED9-B02F-5C32D2AA5AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA7B636-3BFD-42EF-8D45-445FFF9E1A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA7B636-3BFD-42EF-8D45-445FFF9E1A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA7B636-3BFD-42EF-8D45-445FFF9E1A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA7B636-3BFD-42EF-8D45-445FFF9E1A05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +69,7 @@ Global
 		{D38CFC32-D23A-48F6-B45C-B284CAF3AD26} = {170CA4FA-22D0-400D-9D44-A294E44E8F41}
 		{5CB94636-F55F-434F-BC6B-7A4036B424D8} = {40C0A26F-37C4-4865-846D-4B1557ECFE97}
 		{ABA5734C-2979-4ED9-B02F-5C32D2AA5AA5} = {40C0A26F-37C4-4865-846D-4B1557ECFE97}
+		{DCA7B636-3BFD-42EF-8D45-445FFF9E1A05} = {B1BB99F8-A0C5-4864-BCF4-4A965CA4A6D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68E5F8C0-D613-481C-BF3F-63C0E6127A26}

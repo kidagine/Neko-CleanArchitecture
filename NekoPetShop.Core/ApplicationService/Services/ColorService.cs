@@ -57,7 +57,11 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public Color ReadById(int id)
         {
-            return _colorRepository.ReadById(id);
+			if (id < 0)
+			{
+				throw new InvalidDataException($"The Id: {id} is of negative value");
+			}
+			return _colorRepository.ReadById(id);
         }
 
         public List<Color> ReadAll(Filter filter = null)

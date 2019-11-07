@@ -65,7 +65,11 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
         public Owner ReadById(int id)
         {
-            return _ownerRepository.ReadById(id);
+			if (id < 0)
+			{
+				throw new InvalidDataException($"The Id: {id} is of negative value");
+			}
+			return _ownerRepository.ReadById(id);
         }
 
         public List<Owner> ReadAll(Filter filter)
