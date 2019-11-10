@@ -17,6 +17,7 @@ namespace NekoPetShop.Infrastructure.SQLData
             modelBuilder.Entity<PetColor>().HasOne(pc => pc.Color).WithMany(c => c.PetColors).HasForeignKey(pc => pc.ColorId);
         }
 
+		public DbSet<User> Users { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Pet> Pets { get; set; }

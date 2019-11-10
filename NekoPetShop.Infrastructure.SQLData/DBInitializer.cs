@@ -1,14 +1,31 @@
 ﻿using System;
 using NekoPetShop.Core.Entity;
+using NekoPetShop.Core.Helpers;
 
 namespace NekoPetShop.Infrastructure.SQLData
 {
-    public class DBInitializer
-    {
-        public static void Seed(NekoPetShopContext context)
+	public class DBInitializer : IDBInitializer
+	{
+		private readonly IAuthenticationHelper _authenticationHelper;
+
+
+		public DBInitializer(IAuthenticationHelper authenticationHelper)
+		{
+			_authenticationHelper = authenticationHelper;
+		}
+
+		public void Seed(NekoPetShopContext context)
         {
-            context.Database.EnsureDeleted();
+			context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
+
+			string password = "1234";
+			_authenticationHelper.CreatePasswordHash(password, out byte[] passwordHashAdmin, out byte[] passwordSaltAdmin);
+			_authenticationHelper.CreatePasswordHash(password, out byte[] passwordHashUser, out byte[] passwordSaltUser);
+
+			context.Users.Add(new User() { Username = "Admin", PasswordHash = passwordHashAdmin, PasswordSalt = passwordSaltAdmin, IsAdmin = true });
+			context.Users.Add(new User() { Username = "User", PasswordHash = passwordHashUser, PasswordSalt = passwordSaltUser, IsAdmin = false });
+
             Owner owner1 = context.Owners.Add(new Owner() { FirstName = "Son", LastName = "Goku", Address = "King kai's 25", PhoneNumber = "6459124429", Email = "dragonballz@gmail.com" }).Entity;
             Owner owner4 = context.Owners.Add(new Owner() { FirstName = "Clarke", LastName = "Kent", Address = "Metropolis 89", PhoneNumber = "8424229058", Email = "notSuperman@hotmail.com" }).Entity;
             Owner owner3 = context.Owners.Add(new Owner() { FirstName = "Billidan", LastName = "Blurprage", Address = "Glaster bruf 23", PhoneNumber = "5628991924", Email = "illySuks@yahoo.com" }).Entity;
