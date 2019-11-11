@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using NekoPetShop.Core.Entity;
@@ -21,6 +22,14 @@ namespace NekoPetShop.Core.ApplicationService.Services
 
 		public User Create(User user)
 		{
+			if (user.Id != default)
+			{
+				throw new NotSupportedException($"The user id should not be specified");
+			}
+			if (string.IsNullOrEmpty(user.Username))
+			{
+				throw new InvalidDataException("You need to specify the user's name.");
+			}
 			return _userRepository.Create(user);
 		}
 

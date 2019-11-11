@@ -19,7 +19,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
 			_authenticationHelper = authenticationHelper;
 		}
 
-		// Post api/users -- LOG IN
+		// POST api/users -- LOG IN
 		[HttpPost]
 		public ActionResult Login([FromBody] LoginInputModel loginInputModel)
 		{
@@ -27,7 +27,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
 			{
 				User user = _userService.ValidateUser(loginInputModel);
 				string token = _authenticationHelper.GenerateToken(user);
-				return Ok(new { user.Username, token});
+				return Ok(new { user.Username, user.IsAdmin, token});
 			}
 			catch (Exception e)
 			{

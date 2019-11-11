@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using NekoPetShop.Core.DomainService;
 using NekoPetShop.Core.Entity;
