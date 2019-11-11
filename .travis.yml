@@ -1,0 +1,8 @@
+language: csharp
+mono: none
+dotnet: 2.2.7
+solution: NekoPetShop.sln
+script:
+  - dotnet restore
+  - dotnet build
+  - dotnet ./NekoPetShop.Tests/bin/Release/netcoreapp2.2/NekoPetShop.Tests.dll
