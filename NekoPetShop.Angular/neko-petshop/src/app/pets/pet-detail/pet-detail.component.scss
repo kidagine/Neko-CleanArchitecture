@@ -4,24 +4,65 @@
   display:flex;
   align-items:center;
   color:#000;
-  max-width:1470px;
+  min-width:1300px;
   padding-left:1rem;
-  padding-right:55rem;
   margin:auto;
   text-align:center;
 }
 
 .header-content{
   z-index:2;
+  min-width: 460px;
+  min-height: 480px;
+  margin-left: 9%;
+  padding-right: 20%;
+  border-left: 2px solid #181818;
+  padding-left: 1%;
 }
 
 .header-content h1{
-font-family: sans-serif; 
+font-family: "Helvetica Neue";
 text-align: left;
-line-height: 85%;
-font-weight: 800;
-font-size: 55px;
+color: #313131;
+line-height: 32px;
+font-weight: 300;
+font-size: 2.18487rem;
 margin-bottom:10px;
+}
+
+.header-content h1 span{
+font-family: "Helvetica Neue";
+text-align: left;
+color: #3b3b3b;
+font-size: 14px;
+font-weight: lighter;
+line-height: 1.6;
+margin-bottom: 120px;
+}
+
+.header-content p{
+font-family: "Helvetica Neue";
+text-align: left;
+color: #313131;
+font-size: 14px;
+font-weight: lighter;
+line-height: 22px;
+padding-top:12px;
+}
+
+.more-information{
+  font-family: "Helvetica Neue";
+text-align: left;
+color: #313131;
+font-size: 14px;
+font-weight: lighter;
+line-height: 22px;
+padding-top:12px;
+text-decoration: underline;
+}
+
+.more-information:hover{
+  cursor: pointer;
 }
 
 .name{
@@ -42,8 +83,144 @@ padding-bottom: 10px;
 margin-bottom:20px;
 border-bottom: 2px solid rgb(136, 124, 124);
 }
-.button-container{
-  width: 200px;
-  height: 500px;
+
+/*order details*/
+.order-details{
+  list-style-type: circle;
+  text-align: left;
+  font-size: 13px;
+  line-height: 25px;
 }
-/* Overview End */
+
+.button-container{
+  width: 100%;
+  height: 100%;
+}
+
+.button-enter{
+  overflow: hidden;
+  background-color: #181818;
+  transition: all .15s ease;
+  font-family: "Helvetica Neue";
+  letter-spacing: .07143rem;
+  font-size: .85714rem;
+  font-size: 14px;
+  font-weight: bold;
+  border: 0;
+  margin: 0 auto; 
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
+  z-index: 9;
+  width: 100%;
+  height: 43px;
+  display: block;
+}
+
+.button-enter:hover{
+  color: #fff;
+  cursor: pointer;  
+  border: 1px solid #181818;
+}
+
+.button-effect {
+  color: #FFF;
+  border: 4px solid #181818;
+  box-shadow:0px 0px 0px 1px #181818 inset;
+  background-color: #181818;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-effect span {
+  transition: all 0.2s ease-out;
+  z-index: 2;
+}
+.button-effect:hover span{
+  letter-spacing: 0.13em;
+  color: #333;
+}
+
+.button-effect:after {
+  background: #FFF;
+  border: 0px solid #000;
+  content: "";
+  height: 155px;
+  left: -75px;
+  opacity: .8;
+  position: absolute;
+  top: -50px;
+  -webkit-transform: rotate(35deg);
+          transform: rotate(35deg);
+  width: 50px;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 1;
+}
+.button-effect:hover:after {
+  background: #FFF;
+  border: 20px solid #000;
+  opacity: 0;
+  left: 120%;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+}
+
+//Sorting
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 16px;
+  padding-right: 100%;
+}
+.drop-button {
+  background-color: transparent;
+  color: #000;
+  padding: 16px;
+  height: 45px;
+  width: 100%;
+  width: 225px;
+  margin-right: 10%;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  border: 0;
+  border: 1px solid #e2e2e2;
+  cursor: pointer;
+}
+.drop-button:focus{
+  outline:0;
+}
+.dropdown img{
+  margin-left: -30px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  margin-left: 30px;
+  min-width: 262px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropbtn {
+  border-bottom: 2px solid #000;
+}
+.dropdown:hover img{
+  transform: rotate(90deg)
+} 
