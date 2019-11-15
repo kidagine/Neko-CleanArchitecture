@@ -17,8 +17,8 @@
 <h2>{{ currentEntity }}</h2>
 <ul class="pets" *ngIf="currentEntity === 'pets'">
   <li *ngFor="let pet of pets">
-    <a (click)="setSelectedPet(pet)">
-      <span class="badge">{{pet.id}}</span> name: {{pet.name}}, type: {{pet.type}}, price: {{pet.price}}, birthday: {{pet.birthdate|date}}, soldDate: {{pet.soldDate|date}}, ownerId: {{pet.owner.id}},
+    <a routerLink="/pet/{{pet.id}}">
+      <span class="badge">{{pet.id}}</span> {{pet.name}}
     </a>
     <button class="delete" title="delete pet"
       (click)="delete(pet)">x</button>
@@ -26,7 +26,7 @@
 </ul>
 <ul class="pets" *ngIf="currentEntity === 'colors'">
   <li *ngFor="let color of colors">
-    <a (click)="setSelectedColor(color)">
+    <a>
       <span class="badge">{{color.id}}</span>  name: {{color.name}}
     </a>
     <button class="delete" title="delete color"
@@ -35,108 +35,23 @@
 </ul>
 <ul class="pets" *ngIf="currentEntity === 'owners'">
   <li *ngFor="let owner of owners">
-    <a (click)="setSelectedOwner(owner)">
-      <span class="badge">{{owner.id}}</span>  firstName: {{owner.firstName}},  lastName: {{owner.lastName}},  address: {{owner.address}},  phoneNumber: {{owner.phoneNumber}},  email: {{owner.email}} 
+    <a>
+      <span class="badge">{{owner.id}}</span>  firstName: {{owner.firstName}}  lastName: {{owner.lastName}}  address: {{owner.address}}  phoneNumber: {{owner.phoneNumber}}  email: {{owner.email}}  
     </a>
     <button class="delete" title="delete owner"
       (click)="delete(owner)">x</button>
   </li>
 </ul>
 
-<h2>Put {{ currentEntity }}</h2>
-<div *ngIf="pets != null && currentEntity === 'pets'">
-  <form [formGroup]="petForm"  (ngSubmit)="updatePet(pet.id)">
-      <input placeholder="name" value="{{ pet.name }}" formControlName="name">
-      <br>
-      <select  formControlName="type">
-          <option hidden value="">Select pet type</option>
-          <option>Cat</option>
-          <option>Dog</option>
-          <option>Goat</option>
-          <option>Dragon</option>
-          <option>Pug</option>
-      </select>   
-      <br>
-      <input placeholder="price" value="{{ pet.price }}" formControlName="price">
-      <br>
-      <input type="date" value="{{ pet.birthdate|date }}" formControlName="birthdate">
-      <br>
-      <input type="date" value="{{ pet.soldDate|date }}" formControlName="soldDate">
-      <br>
-      <select  formControlName="owner">
-          <option hidden value="">Select owner </option>
-          <option *ngFor="let owner of owners">
-            {{owner.id}}
-          </option>
-        </select>
-      <br>
-      <p style="font-weight: bold;">choose color IDs</p>
-      <div *ngFor="let color of colors; let i=index" >
-          <label>
-            <input type="checkbox" [value]="color.value" (change)="changeColorArray(color.id)">
-            {{color.id}}
-          </label>
-      </div>
-    <button type="submit">Save</button>
-  </form>
-</div>
-<div *ngIf="color != null && currentEntity === 'colors'">
-  <form [formGroup]="colorForm"  (ngSubmit)="updateColor(color.id)">
-    <input value="{{ color.name }}" formControlName="name">
-    <br>
-    <button type="submit">Save</button>
-  </form>
-</div>
-<div *ngIf="owner != null && currentEntity === 'owners'">
-  <form [formGroup]="ownerForm"  (ngSubmit)="updateOwner(owner.id)">
-    <input value="{{ owner.firstName }}" formControlName="firstName">
-    <br>
-    <input value="{{ owner.lastName }}" formControlName="lastName">
-    <br>
-    <input value="{{ owner.address }}" formControlName="address">
-    <br>
-    <input value="{{ owner.phoneNumber }}" formControlName="phoneNumber">
-    <br>
-    <input value="{{ owner.email }}" formControlName="email">
-    <br>
-    <button type="submit">Save</button>
-  </form>
-</div>
-
 <h2>Post {{ currentEntity }}</h2>
 <div *ngIf="currentEntity === 'pets'">
   <form [formGroup]="petForm"  (ngSubmit)="addProduct()">
     <input placeholder="name" formControlName="name">
     <br>
-    <select  formControlName="type">
-        <option hidden value="">Select pet type</option>
-        <option>Cat</option>
-        <option>Dog</option>
-        <option>Goat</option>
-        <option>Dragon</option>
-        <option>Pug</option>
-    </select>    
+    <input placeholder="type" formControlName="type">
     <br>
     <input placeholder="price" formControlName="price">
     <br>
-    <input type="date" placeholder="birthdate" formControlName="birthdate">
-    <br>
-    <input type="date" placeholder="soldDate" formControlName="soldDate">
-    <br>
-    <select  formControlName="owner">
-      <option hidden value="">Select owner </option>
-      <option *ngFor="let owner of owners">
-        {{owner.id}}
-      </option>
-    </select>
-    <br>
-    <p style="font-weight: bold;">choose color IDs</p>
-    <div *ngFor="let color of colors; let i=index" >
-        <label>
-          <input type="checkbox" [value]="color.value" (change)="changeColorArray(color.id)">
-          {{color.id}}
-        </label>
-    </div>
     <button type="submit">Save</button>
   </form></div>
 <div *ngIf="currentEntity === 'colors'">

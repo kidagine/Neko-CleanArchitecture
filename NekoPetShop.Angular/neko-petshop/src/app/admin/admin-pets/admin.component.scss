@@ -1,6 +1,6 @@
 //Navigation bar
 .navigation-bar {
-  background-color: #000;
+  background-color: #fff;
   z-index: 1200!important;
   overflow: hidden;
   position: fixed;
@@ -15,7 +15,7 @@
 .navigation-bar a {
   float: left;
   display: block;
-  color: #fff;
+  color: #000;
   text-align: center;
   padding: 13px 16px;
   text-decoration: none;
@@ -35,7 +35,7 @@
   vertical-align: middle;
   font-weight: 900;
   font-size: 28px;
-  color: #fff;
+  color: #000;
   cursor: pointer;
 }
 
@@ -51,7 +51,7 @@
   text-transform: uppercase;
   font-family: SequelSans;
   padding: 100px;
-  color: #fff;
+  color: #000;
 }
 
 .navigation-options a:first-child{
@@ -62,11 +62,10 @@
   display: table-cell;
   vertical-align: middle;
   height: 100%;
-  color: #fff;
+  color: #000;
   font-size: 13px;
   position: relative;
   text-decoration: none;
-  cursor: pointer;
 }
 
 .navigation-options a li::before{
@@ -76,7 +75,7 @@
   height: 2px;
   bottom: -8px;
   left: 0;
-  background-color: #fff;
+  background-color: #000;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
@@ -90,6 +89,7 @@
   transform: scaleX(1);
 }
 
+
 .navigation-bar .navigation-misc {
   float: right;
 }
@@ -97,18 +97,18 @@
   float: right;
 }
 
-//Admin
+//Pets
 .pets {
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 1150px;
+  width: 800px;
 }
 .pets li {
   position: relative;
   cursor: pointer;
   color: #000;
-  background-color: #E9E9E9;
+  background-color: #fff;
   margin: .5em;
   padding: .3em 0;
   height: 1.6em;
@@ -116,13 +116,12 @@
 }
 
 .pets li:hover {
-  color: #000;
-  font-weight: bold;
+  color: #54555E;
   left: .1em;
 }
 
 .pets a {
-  color: #000;
+  color: #333;
   text-decoration: none;
   position: relative;
   display: block;
@@ -130,7 +129,7 @@
 }
 
 .pets a:hover {
-  color:#000;
+  color:#607D8B;
 }
 
 .pets .badge {
@@ -165,31 +164,8 @@ button:hover {
 
 button.delete {
   position: relative;
-  left: 1100px;
+  left: 740px;
   top: -32px;
   background-color: #000;
   color: white;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-label {
-  display: block;
 }

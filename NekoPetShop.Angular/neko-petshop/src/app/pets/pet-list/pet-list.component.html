@@ -38,7 +38,8 @@
     <ul class="product-list" *ngFor="let pet of pets">
       <div class="product-list-item">
         <img src="https://i.gifer.com/tEo.gif" width="260" height="260" routerLink="/pet/{{pet.id}}">
-        <p> <span style="font-weight: 600;">{{ pet.name }} </span>age: {{ pet.age }}, animal: {{ pet.type }}<br> {{ pet.price }}.99€ </p>
+        <h1>{{ pet.name }}</h1>
+        <p>{{ pet.price }}.99€ <br> age: {{ pet.age }}, animal: {{ pet.type }}</p>
       </div>
     </ul>
   </div>

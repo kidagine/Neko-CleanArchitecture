@@ -3,25 +3,11 @@
     <div class="logo" routerLink="/">NEKO</div>
   </div>
   <ul class="navigation-options">
-    <div style="float: left;">
-      <a style="padding-left: 35px;" routerLink="/pets"><li>Shop</li></a>
-    </div>
-    <div style="float: right;">
-      <div class="dropdown">
-        <div>
-        <div *ngIf="username">
-            <li style="padding-right: 35px;" class="user">{{ username }}</li>
-          </div>  
-          <div *ngIf="!username">
-              <li style="padding-right: 35px;" routerLink="/sign-in" class="user">Log in</li>
-          </div>  
-        </div>
-        <div class="dropdown-content" *ngIf="username">
-          <a (click)="logOut()">Log out</a>
-        </div>
-      </div>
-      <img  src="assets/images/search-icon.png" width="26" height="26">
-    </div>
+    <a routerLink="/pets"><li>SHOP</li></a>
   </ul>
-
+  <a class="navigation-misc"><img src="assets/images/basket-icon.png" width="26" height="26"></a>
+  <a class="navigation-misc"><img src="assets/images/search-icon.png" width="26" height="26"></a>
+  <a href="javascript:void(0);" class="icon" (click)="hideNavigationItems()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>

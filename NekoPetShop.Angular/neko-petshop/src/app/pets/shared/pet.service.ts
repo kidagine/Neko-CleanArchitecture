@@ -17,8 +17,8 @@ export class PetService {
   constructor(private http: HttpClient) { }
 
   /** GET all pets */
-  getAllPets(): Observable<FilteredList<Pet[]>> {
-    return this.http.get<FilteredList<Pet[]>>(this.apiUrl)
+  getAllPets(): Observable<FilteredList<Pet>> {
+    return this.http.get<FilteredList<Pet>>(this.apiUrl);
   }
 
   /** GET filtered pets */
@@ -83,6 +83,7 @@ export class PetService {
 
   /** PUT: update the pet on the server */
   updatePet (pet: Pet,id: number ): Observable<Pet> {
+    debugger;
     const url = `${this.apiUrl}/${id}`;
 
     return this.http.put<Pet>(url, pet, this.httpOptions).pipe(

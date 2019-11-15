@@ -3,12 +3,7 @@
 }
 
 .overview h1 {
-  padding-bottom: 10%;
-  font-family: SequelSans;
-  color: #000;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 48px;
+  padding-bottom: 5%;
 }
 
 .container{
@@ -19,7 +14,6 @@
   margin: 0 auto;
   text-align:center;
   padding-top: 10%;
-  padding-bottom: 5%;
 }
 
 .button-enter{
@@ -37,19 +31,37 @@
   white-space: nowrap;
   text-align: center;
   background: 0 0;
-  color: #000;
+  color: #fff;
   background: transparent;
   z-index: 9;
   width: 23%;
   display: block;
-  outline: 3px solid #000;
+  outline: 3px solid #fff;
 }
 
 .button-enter:hover{
-  background-color: #000;
-  color: #fff;
+  background-color: white;
+  color: #000;
   cursor: pointer;  
-  border: 1px solid #000;
+  border: 1px solid #fff;
   outline-color: rgba(0, 0, 0, 0);
   outline-offset: 15px;  
+}
+
+.fullscreen-video-wrap{
+  min-height: 100%;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+  z-index:-2;
+  background-color: #f53357;
+}
+
+.fullscreen-video-wrap img{
+  min-height:100%;
+  min-width:100%;
+  z-index:-2;
 }

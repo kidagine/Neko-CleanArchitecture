@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,7 +6,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent implements OnInit {
-  username: string
   hideNavigationItems() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -17,18 +14,9 @@ export class NavigationBarComponent implements OnInit {
       x.className = "topnav";
     }
   }
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
-    if (this.authenticationService.getToken())
-    {
-      this.username = this.authenticationService.getUsername()
-    }
-  }
-
-  logOut() {
-    this.authenticationService.logout();
-    window.location.reload();
   }
 
 }

@@ -11,7 +11,7 @@ namespace NekoPetShop.UI.RestAPI.Controllers
     public class UsersController : ControllerBase
     {
 		private readonly IUserService _userService;
-		private IAuthenticationHelper _authenticationHelper;
+		private readonly IAuthenticationHelper _authenticationHelper;
 
 		public UsersController(IUserService userService, IAuthenticationHelper authenticationHelper)
 		{
