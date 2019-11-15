@@ -1,57 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using NekoPetShop.Core.Entity;
 using NekoPetShop.Core.ApplicationService;
 using NekoPetShop.Core.Entity.Filtering;
 
 namespace NekoPetShop.UI.RestAPI.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class PetsController : ControllerBase
-	{
-		private readonly IPetService _petService;
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PetsController : ControllerBase
+    {
+        private readonly IPetService _petService;
 
 
-		public PetsController(IPetService petService)
-		{
-			_petService = petService;
-		}
+        public PetsController(IPetService petService)
+        {
+            _petService = petService;
+        }
 
-		// GET api/pets -- READ ALL
-		[Authorize]
-		[HttpGet]
-		public ActionResult<FilteredList<Pet>> Get([FromQuery] Filter filter)
-		{
-			try
-			{
-				FilteredList<Pet> filteredPets = _petService.ReadAll(filter);
-				List<Object> advancedFilteredPets = new List<object>();
-				foreach (Pet pet in filteredPets.List)
-				{
-					advancedFilteredPets.Add(new { pet.Id, pet.Name, pet.Price, pet.Type, age = DateTime.Today.Year - pet.Birthdate.Year, pet.Birthdate, pet.SoldDate, pet.Owner, pet.PetColors });
-				}
+        // GET api/pets -- READ ALL
+        [HttpGet]
+        public ActionResult<FilteredList<Pet>> Get([FromQuery] Filter filter)
+        {
+            try
+            {
+                FilteredList<Pet> filteredPets = _petService.ReadAll(filter);
+                List<Object> advancedFilteredPets = new List<object>();
+                foreach (Pet pet in filteredPets.List)
+                {
+                    advancedFilteredPets.Add(new { pet.Id, pet.Name, pet.Price, pet.Type, age = DateTime.Today.Year - pet.Birthdate.Year, pet.Birthdate, pet.SoldDate, pet.Owner, pet.PetColors });
+                }
 				return Ok(new FilteredList<object> { TotalPages = filteredPets.TotalPages, List = advancedFilteredPets }); ;
-			}
-			catch (Exception e)
-			{
-				return BadRequest(e.Message);
-			}
-		}
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
-		// GET api/pets/5 -- READ BY ID
-		[Authorize]
-		[HttpGet("{id}")]
-		public ActionResult<Pet> Get(int id)
-		{
-			return _petService.ReadById(id);
-		}
+        // GET api/pets/5 -- READ BY ID
+        [HttpGet("{id}")]
+        public ActionResult<Pet> Get(int id)
+        {
+            return _petService.ReadById(id);
+        }
 
-		// POST api/pets -- CREATE
-		[Authorize(Roles = "Administrator")]
-		[HttpPost]
+        // POST api/pets -- CREATE
+        [HttpPost]
         public ActionResult Post([FromBody] Pet pet)
         {
             try
@@ -64,9 +60,8 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             }
         }
 
-		// PUT api/pets/5 - UPDATE
-		[Authorize(Roles = "Administrator")]
-		[HttpPut("{id}")]
+        // PUT api/pets/5 - UPDATE
+        [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Pet pet)
         {
             try
@@ -83,9 +78,8 @@ namespace NekoPetShop.UI.RestAPI.Controllers
             }
         }
 
-		// DELETE api/pets/5 -- DELETE
-		[Authorize(Roles = "Administrator")]
-		[HttpDelete("{id}")]
+        // DELETE api/pets/5 -- DELETE
+        [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             try

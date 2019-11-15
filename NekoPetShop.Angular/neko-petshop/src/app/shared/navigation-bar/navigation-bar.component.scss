@@ -1,20 +1,51 @@
 .navigation-bar {
-  background-color: #fff;
+  background-color: #000;
   z-index: 1200!important;
-  overflow: hidden;
   position: fixed;
   width: 100%;
   top: 0;
-  min-height: 48px;
+  min-height: 56px;
+  max-height: 56px;
   padding: 0px 220px;
   box-sizing: border-box;
   box-shadow: 0 2px 10px rgba(0,0,0,.1);
 }
 
-.navigation-bar a {
-  float: left;
-  display: block;
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+.dropdown-content {
+  display: none;
+  padding-left: 0px;
+  position: absolute;
   color: #000;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a:hover{
+  background-color: #f1f1f1;
+}
+
+.user{
+  color: #fff;
+  padding:  16px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navigation-bar a {
+  display: block;
   text-align: center;
   padding: 13px 16px;
   text-decoration: none;
@@ -34,7 +65,7 @@
   vertical-align: middle;
   font-weight: 900;
   font-size: 28px;
-  color: #000;
+  color: #fff;
   cursor: pointer;
 }
 
@@ -42,18 +73,15 @@
   outline:0;
 }
 
-.navigation-options a:first-child{
-  padding-left: 35px;
-}
-
 .navigation-options a li{
   display: table-cell;
   vertical-align: middle;
   height: 100%;
-  color: #000;
+  color: #fff;
   font-size: 13px;
   position: relative;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .navigation-options a li::before{
@@ -63,7 +91,7 @@
   height: 2px;
   bottom: -8px;
   left: 0;
-  background-color: #000;
+  background-color: #fff;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
@@ -75,14 +103,6 @@
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
-}
-
-
-.navigation-bar .navigation-misc {
-  float: right;
-}
-.navigation-bar .icon {
-  float: right;
 }
 
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */

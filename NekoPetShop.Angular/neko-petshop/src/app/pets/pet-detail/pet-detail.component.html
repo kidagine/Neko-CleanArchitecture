@@ -1,13 +1,33 @@
 <app-navigation-bar></app-navigation-bar>
   <div>
     <header class="purchase-container">
-      <div class="header-content text-md-center">
-        <h1>DEEPER DIMENSIONS OF SOUND.</h1>
-        <p class="name">{{pet.name}}</p>
-        <p class="price">{{pet.price}}€</p>
+      <div style="float:left">
+          <img src = "https://purepng.com/public/uploads/large/51502305652ykjjrpkix5ibhekbh61vyogizh6sq5fop8tmgjzbx6i323glfsl2q550xj5ylqe68a8g06k1loratqtbzabj7mxvw1xwjjwpdus8.png" width="1150"> 
+      </div>
+      <div class="header-content text-md-center" style="float:left">
+        <h1>{{ pet.name }} <br> <span>{{pet.price}}€ | 2 years old</span></h1>
+        <p class="name"> Best cat in the cat market plz buy now includes cat and catsadasdas. Full whiskers packaged in. <br> </p>
+        <p class="more-information">More information</p>
+        <br>
+
         <div class="button-container">
-        <a id="button">Purchase</a>
+            <div class="dropdown" >
+              <div style="float:left; margin-right: 2%;">
+                <button class="drop-button">{{ pet.type }}</button>
+              </div>
+              <div style="float:left">
+                <button class="drop-button">{{ pet.petColors[0].color.name }}</button>
+              </div>
+            </div>
+            <button class="button-enter button-effect">Purchase</button>
         </div>
+        <p class="more-information" style="text-align: center;">Pet guide</p>
+        <br>
+        <ul class = "order-details">
+          <li>✔ Order before 15:00 to receive tomorrow.</li>
+          <li>✔ Pay with iDeal, Apple Pay, Mastercard, Visa, PayPal, Klarna</li>
+          <li>✔ Worldwide shipping</li>
+        </ul>
       </div>
     </header>
   </div>

@@ -10,7 +10,7 @@ namespace NekoPetShop.Core.Helpers
 	public class AuthenticationHelper : IAuthenticationHelper
 	{
 		private readonly byte[] _secretBytes;
-		
+
 
 		public AuthenticationHelper(Byte[] secret)
 		{
